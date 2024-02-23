@@ -88,7 +88,7 @@
         grid-template-areas:  
                               "header header"
                                  "side main";
-      grid-template-columns: auto  1fr; /* Adjust the width of the sidebar as needed */
+      grid-template-columns: auto  1fr; 
       grid-template-rows: auto  1fr; 
         
     
