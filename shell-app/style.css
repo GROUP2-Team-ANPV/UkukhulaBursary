@@ -24,15 +24,13 @@
 .header h1{
     margin-top: 1rem;
 }
- #menu_icon{
+ #menu_icon, #menu_icon_close{
     display: none;
  }
 
 .header_profile{
      
-     display: flex;
-     
-     
+     display: flex; 
 
 }
 .header_profile h1{
@@ -60,6 +58,7 @@
     color: black;
     padding: 1rem;
     text-decoration: none;
+    
 }
 
 .sidebar_logo{
@@ -82,7 +81,7 @@
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1240px) {
 
     .main{
         grid-template-areas:  
@@ -98,6 +97,12 @@
         display: flex;
         font-size: 4rem;
      }
+
+    
+     #menu_icon_close{
+        display: none;
+        font-size: 4rem;
+     }
     
     
     .header_profile h1{
@@ -109,10 +114,12 @@
         margin-right: 1rem;
     }
     .sidebar {
+        display: none;
       width: 100%;
       height: auto;
       position: relative;
       text-align: center;
+      z-index: 1;
     }
     .sidebar_logo{
     
