@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Information</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Student Information</h1>
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>LastName</th>
+                <th>ID Number</th>
+                <th>Birthdate</th>
+                <th>age</th>
+                <th>gender</th>
+                <th>race</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>University</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody">
+            
+        </tbody>
+    </table>
+</div>
+
+<script>
+window.onload = function() {
+    fetch('http://localhost:5263/api/UniversityAdmin/GetAllStudents')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data);
+    })
+    .catch(error => console.error('Error fetching data:', error));
+};
+
+function populateTable(data) {
+    let tableBody = document.getElementById('studentTableBody');
+    tableBody.innerHTML = ''; 
+
+    data.forEach(student => {
+        let row = tableBody.insertRow();
+        row.insertCell().textContent = student.studentID;
+        row.insertCell().textContent = student.firstName;
+        row.insertCell().textContent = student.lastName;
+        row.insertCell().textContent = student.idNumber;
+        row.insertCell().textContent = student.birthDate;
+        row.insertCell().textContent = student.age;
+        row.insertCell().textContent = student.gender;
+        row.insertCell().textContent = student.race;
+        row.insertCell().textContent = student.email;
+        row.insertCell().textContent = student.phoneNumber;
+        row.insertCell().textContent = student.university;
+        });
+}
+</script>
+</body>
+</html>
