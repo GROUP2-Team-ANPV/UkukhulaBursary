@@ -72,11 +72,40 @@ button {
   text-decoration: none;
 }
 
+/* Main Content */
 .content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--light-color);
   grid-area: main;
-  margin-left: 2rem;
-  padding: 0.5rem 8rem;
+  padding: 1rem;
   height: 90vh;
+}
+
+.content__primary {
+  flex: 1.5 200px;
+}
+
+.content__secondary {
+  flex: 1 200px;
+}
+
+.content__students {
+  background-color: var(--light-transparent);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.content__header {
+  padding-bottom: 1.25rem;
+}
+
+.status {
+  background-color: var(--dark-transparent);
+  padding: 0.25rem 0.5rem;
+  width: max-content;
+  border-radius: 0.5rem;
 }
 
 /* Application Form */
