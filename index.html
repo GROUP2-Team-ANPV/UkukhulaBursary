@@ -1,22 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="./app.js"></script>
     <title>Document</title>
-</head>
-<body>
-    <section class="main">
-        <header class="header"></header>
-        <sidebar class="sidebar">
-            <a href="#">Dashbord</a>
-            <a href="#">Create</a>
-            <a href="#">Read</a>
-            <a href="#">Profile</a>
-            <a href="#">Settings</a>
-        </sidebar>
-        <main class="content"></main>
+  </head>
+  <body>
+    <artic class="main">
+      <header class="header"></header>
+      <sidebar class="sidebar">
+        <a href="/dashboard" class="nav-link">Dashbord</a>
+        <a href="/create" class="nav-link">Create</a>
+        <a href="/read" class="nav-link">Read</a>
+        <a href="/profile" class="nav-link">Profile</a>
+        <a href="/settings" class="nav-link">Settings</a>
+      </sidebar>
+      <main class="content">
+        <section class="content__primary">
+            <section class="content__students">
+              <header class="content__header">
+                <h2>Students</h2>
+              </header>
+                <ul>
+                    <li class="student">
+                        <h3 class="student__name">
+                            Ndzalama Mabasa
+                        </h3>
+                        <p class="status">Approved</p>
+                        <p class="amount">R85 000.00</p>
+                    </li>
+                    <li class="student"></li>
+                    <li class="student"></li>
+                    <li class="student"></li>
+                    <li class="student"></li>
+                </ul>
+            </section>
+        </section>
+        <aside class="content__secondary">
+          <section class="content__students">
+            <h2>Students</h2>
+            <ul>
+                <li class="student">
+                    <h3 class="student__name">
+                        Ndzalama Mabasa
+                    </h3>
+                    <p class="status">Approved</p>
+                    <p class="amount">R85 000.00</p>
+                </li>
+                <li class="student"></li>
+                <li class="student"></li>
+                <li class="student"></li>
+                <li class="student"></li>
+            </ul>
+        </section>
+        </aside>
+      </main>
     </section>
-</body>
+  </body>
 </html>
