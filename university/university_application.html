@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
+    <script src="./university.js" defer></script>
     <title>University | Add</title>
   </head>
   <body>
-    <form class="form application-form">
+    <form class="form university-form">
       <header class="form__header">
-        <h2>Ukukhula Bursary</h2>
-        <h3>(University)</h3>
+        <h1>Ukukhula Bursary</h1>
+        <h2>(University)</h2>
       </header>
 
       <section class="form__controls-container">
@@ -19,12 +20,12 @@
           <ul class="form__controls">
             <li class="form__control">
               <label for="name">Name</label>
-              <input type="text" name="university-name" id="name" />
+              <input type="text" name="universityName" id="name" required />
             </li>
 
             <li class="form__control">
               <label for="province">Province</label>
-              <select name="province" id="province">
+              <select name="provinceID" id="province">
                 <option value="0">Select Province</option>
                 <option value="1">Earstern Cape</option>
                 <option value="2">Freestate</option>
@@ -44,26 +45,28 @@
           <legend class="form__details-header">Contact Person</legend>
           <ul class="form__controls">
             <li class="form__control">
-              <label for="contact-person">First Name</label>
-              <input type="text" name="contact-person" id="contact-person" />
+              <label for="first-name">First Name</label>
+              <input type="text" name="firstName" id="first-name" required />
             </li>
 
             <li class="form__control">
-              <label for="contact-person">Last Name</label>
-              <input type="text" name="contact-person" id="contact-person" />
+              <label for="last-name">Last Name</label>
+              <input type="text" name="lastName" id="last-name" required />
             </li>
 
             <li class="form__control">
               <label for="phone">Phone Number</label>
-              <input type="tel" name="phone" id="phone" />
+              <input type="tel" name="phoneNumber" id="phone" required />
             </li>
+
             <li class="form__control">
               <label for="email">Email</label>
-              <input type="email" name="email" id="email" />
+              <input type="email" name="email" id="email" required />
             </li>
+
             <li class="form__control">
               <label for="department">Department</label>
-              <select name="department" id="department">
+              <select name="departmentID" id="department">
                 <option value="0">Select Department</option>
                 <option value="1">Artificial Intelligence</option>
                 <option value="2">Computer Engineering</option>
@@ -78,7 +81,11 @@
           </ul>
         </fieldset>
       </section>
-      <button type="submit" class="form__submit primary_button">
+      <button
+        type="submit"
+        class="form__submit primary_button"
+        id="add-university"
+      >
         Add University
       </button>
     </form>
