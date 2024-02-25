@@ -13,7 +13,7 @@ const navigateTo = url =>{
 const router = async () =>{
     const routes = [
         {path: "/", view: university_application_view},
-        {path: "/login", view:login_view},
+       // {path: "/login", view:login_view},
        // {path: "/settings", view:(() => console.log("Viewing Settings"))}
 
     ];
