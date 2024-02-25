@@ -41,43 +41,6 @@ button {
   cursor: pointer;
 }
 
-/* Navigation */
-.main {
-  display: grid;
-  grid-template-areas:
-    "side header"
-    "side main";
-  grid-template-columns: 20vw 80vw;
-}
-
-.header {
-  grid-area: header;
-  background-color: #f1f1f1;
-  height: 10vh;
-}
-
-.sidebar {
-  grid-area: side;
-  width: 20vw;
-  background-color: #f1f1f1;
-  position: fixed;
-  overflow: auto;
-  height: 100%;
-}
-
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 1rem;
-  text-decoration: none;
-}
-
-.content {
-  grid-area: main;
-  margin-left: 2rem;
-  padding: 0.5rem 8rem;
-  height: 90vh;
-}
 
 /* Application Form */
 .form {
