@@ -5,7 +5,10 @@
 }
 
 :root {
-  --main-color: rgb(207, 46, 46);
+  --main-color: rgb(12, 12, 30);
+  --main-color-transparent: rgba(12, 12, 30, 0.5);
+  --secondary-color: rgb(207, 46, 46);
+  --secondary-color-transparent: rgba(207, 46, 46, 0.25);
   --light-color: rgb(231, 229, 229);
   --light-transparent: rgba(231, 229, 229, 0.25);
   --dark-color: rgb(22, 20, 20);
@@ -51,7 +54,7 @@ button {
   grid-template-columns: 20vw 80vw;
 }
 
-.header{
+.header {
   color: var(--light-color);
   align-self: flex-start;
   width: 90vw;
@@ -100,46 +103,55 @@ button {
   gap: 1rem;
 }
 
-.content__students, .content__hods{
+.content__students,
+.content__hods {
   flex: 1;
-  background-color: var(--dark-transparent);
   border-radius: 1rem;
-
-
   max-height: 600px;
   overflow: auto;
-} 
+}
 
-.content__students .content__header, .content__hods .content__header{
+.content__hods {
+  background-color: var(--light-transparent);
+  color: var(--main-color);
+}
+
+.content__students .content__header,
+.content__hods .content__header {
   position: sticky;
   top: 0;
   left: 0;
 
   background-color: var(--light-color);
-  color: var(--dark-color);
+  color: var(--main-color);
 }
 
-.content__hods .content__header{
-  background-color: var(--dark-color);
+.content__hods .content__header {
+  background-color: var(--main-color);
   color: var(--light-color);
 }
 
 .content__students {
-  background-color: var(--light-transparent);
+  background-color: var(--main-color-transparent);
 }
 
 .content__funds {
-  background-color: var(--main-color);
+  background-color: var(--secondary-color);
   border-radius: 1rem;
 }
 
-.students, .hods {
+.department {
+  font-weight: 600;
+}
+.students,
+.hods {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-.student, .hod {
+.student,
+.hod {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -148,7 +160,7 @@ button {
 }
 
 .student:nth-child(even) {
-  background-color: var(--dark-transparent);
+  background-color: var(--main-color-transparent);
 }
 
 .hod:nth-child(even) {
@@ -170,7 +182,7 @@ button {
 }
 
 .student__status {
-  background-color: var(--dark-transparent);
+  background-color: var(--light-transparent);
   padding: 0.25rem 0.5rem;
   width: max-content;
   border-radius: 0.5rem;
@@ -186,6 +198,7 @@ button {
 .funds__balance {
   font-size: 2rem;
   font-weight: 700;
+  color: var(--main-color);
 }
 
 .funds_usage {
@@ -195,7 +208,7 @@ button {
   padding: 0.5rem;
   border-radius: 0.5rem;
 
-  background-color: var(--dark-transparent);
+  background-color: var(--main-color-transparent);
 }
 
 .used,
@@ -284,7 +297,8 @@ button {
 }
 
 @media screen and (width <= 768px) {
-  .student, .hod {
+  .student,
+  .hod {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
