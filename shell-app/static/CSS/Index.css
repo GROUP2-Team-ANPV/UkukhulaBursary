@@ -101,13 +101,12 @@
 }
 
 .header .notification {
-	font-size: 1rem;
+	font-size: 2rem;
 	
 }
 
 .header  .notification .num {
-	top: -1rem;
-	right: -6px;
+	margin-left: 1rem;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
