@@ -76,25 +76,34 @@ button {
 .content {
   display: flex;
   flex-wrap: wrap;
+  width: 90vw;
   gap: 1rem;
   color: var(--light-color);
   grid-area: main;
   padding: 1rem;
-  height: 90vh;
 }
 
 .content__primary {
   flex: 1.5 200px;
+  display: flex;
 }
 
 .content__secondary {
   flex: 1 200px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .content__students {
-  background-color: var(--light-transparent);
+  flex: 1;
+  background-color: var(--dark-transparent);
   border-radius: 1rem;
   padding: 1rem;
+
+  max-height: 600px;
+  overflow: auto;
 }
 
 .students {
@@ -120,7 +129,12 @@ button {
 }
 
 .content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 0 0 1.25rem 0.5rem;
+
+  font-size: 1.25rem;
 }
 
 .student__status {
@@ -128,6 +142,38 @@ button {
   padding: 0.25rem 0.5rem;
   width: max-content;
   border-radius: 0.5rem;
+}
+
+.funds {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.funds__balance {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.funds_usage {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  background-color: var(--dark-transparent);
+}
+
+.used,
+.funded {
+  font-weight: 900;
+  text-align: center;
+}
+
+.email a {
+  color: var(--light-color);
 }
 
 /* Application Form */
