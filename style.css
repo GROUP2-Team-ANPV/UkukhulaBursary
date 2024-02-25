@@ -129,7 +129,7 @@ button {
   gap: 1.5rem;
 }
 
-.form__control {
+.form__control, #commentField {
   flex: 1 200px;
   display: flex;
   flex-direction: column;
@@ -139,7 +139,8 @@ button {
 
 .form__control input,
 .form__control select,
-.form__control textarea {
+.form__control textarea 
+{
   padding: 0.75rem;
   border: 0;
   border-radius: 0.25rem;
