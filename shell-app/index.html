@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/CSS/Index.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="/static/JS/Index.js"></script>
+    <script type="module" src="/static/JS/Index.js"></script>
     <title>Ukukhulaburary</title>
 </head>
 <body>
@@ -25,13 +25,13 @@
             <section class="sidebar_logo">
                 <img src="./static/images/logo.png" alt="BBD LOGO">
             </section>
-            <a href="#">Dashbord</a>
-            <a href="#">Create</a>
+            <a href="/" data-link>Dashbord</a>
+            <a href="/login" data-link>login</a>
             <a href="#">Read</a>
             <a href="#">Profile</a>
             <a href="#">Settings</a>
         </sidebar>
-        <main class="content"></main>
+        <main id="content"></main>
     </section>
 </body>
 </html>

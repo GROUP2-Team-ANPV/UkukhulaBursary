@@ -6,6 +6,7 @@ const app = express();
 
 app.use("/static", express.static(path.resolve(__dirname, "shell-app","static")))
 
+
 app.get("/*", (req,res)=>{
     res.sendFile(path.resolve(__dirname,"shell-app", "index.html")); // everything is going to go back to indexhtml
 })
