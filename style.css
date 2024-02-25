@@ -21,6 +21,7 @@ body {
   font-family: sans-serif;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -50,10 +51,13 @@ button {
   grid-template-columns: 20vw 80vw;
 }
 
-.header {
-  grid-area: header;
-  background-color: #f1f1f1;
-  height: 10vh;
+.header{
+  color: var(--light-color);
+  align-self: flex-start;
+  width: 90vw;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  font-size: 1.25rem;
 }
 
 .sidebar {
@@ -77,10 +81,10 @@ button {
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
+  margin: 0 auto;
   gap: 1rem;
   color: var(--light-color);
   grid-area: main;
-  padding: 1rem;
 }
 
 .content__primary {
@@ -96,28 +100,46 @@ button {
   gap: 1rem;
 }
 
-.content__students {
-  flex: 1 200px;
+.content__students, .content__hods{
+  flex: 1;
   background-color: var(--dark-transparent);
   border-radius: 1rem;
-  padding: 1rem;
+
 
   max-height: 600px;
   overflow: auto;
+} 
+
+.content__students .content__header, .content__hods .content__header{
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+.content__hods .content__header{
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.content__students {
+  background-color: var(--light-transparent);
 }
 
 .content__funds {
   background-color: var(--main-color);
   border-radius: 1rem;
+}
+
+.students, .hods {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
 }
 
-.students {
-  display: flex;
-  flex-direction: column;
-}
-
-.student {
+.student, .hod {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,6 +148,10 @@ button {
 }
 
 .student:nth-child(even) {
+  background-color: var(--dark-transparent);
+}
+
+.hod:nth-child(even) {
   background-color: var(--light-transparent);
 }
 
@@ -138,7 +164,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0 1.25rem 0.5rem;
+  padding: 1rem;
 
   font-size: 1.25rem;
 }
@@ -151,9 +177,9 @@ button {
 }
 
 .funds {
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
   gap: 1rem;
 }
 
@@ -258,13 +284,13 @@ button {
 }
 
 @media screen and (width <= 768px) {
-  .student {
+  .student, .hod {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
 
-  .content__secondary{
+  .content__secondary {
     order: -1;
   }
 }
