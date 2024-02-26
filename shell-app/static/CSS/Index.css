@@ -1,0 +1,298 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+:root {
+	--poppins: "Poppins", sans-serif;
+	--lato: "Lato", sans-serif;
+	--main-color: rgba(237, 68, 68, 0.833);
+	--light-color: rgb(231, 229, 229);
+	--light-transparent: rgba(231, 229, 229, 0.25);
+	--dark-color: rgb(22, 20, 20);
+	--dark-transparent: rgba(22, 20, 20, 0.5);
+	--blue: #3c91e6;
+	--light-blue: #cfe8ff;
+	--grey: #eee;
+	--dark-grey: #aaaaaa;
+	--dark: #342e37;
+	--red: rgb(207, 46, 46);
+	--yellow: #ffce26;
+	--light-yellow: #fff2c6;
+	--orange: #fd7238;
+	--light-orange: #ffe0d3;
+}
+.main{
+    display: grid;
+    grid-template-areas:  "side header"
+                          "side main";
+    grid-template-columns: 20vw 80vw;
+    
+
+    
+}
+.header{
+    grid-area: header;
+    background-color:#0c0c1e;
+    height: 10vh;
+    display: flex;
+	position: relative;
+	transition: 0.3s ease;
+
+	padding: 0 24px;
+	align-items: center;
+	grid-gap: 24px;
+	font-family: var(--lato);
+	position: sticky;
+	top: 0;
+	left: 0;
+}
+
+
+
+.header  a {
+	color: #fbfbfb;
+}
+
+.header  .bx.bx-menu {
+	cursor: pointer;
+	color: #fbfbfb;
+}
+
+.header  form {
+	max-width: 400px;
+	width: 100%;
+	margin-right: auto;
+}
+
+.header  form .form-input {
+	display: flex;
+	align-items: center;
+	height: 36px;
+}
+
+.header form .form-input input {
+	flex-grow: 1;
+	padding: 0 16px;
+	height: 100%;
+	border: none;
+	background: #060714;
+	border-radius: 36px 0 0 36px;
+	outline: none;
+	width: 100%;
+	color: #fbfbfb;
+}
+
+.header form .form-input button {
+	width: 36px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--main-color);
+	color: #0c0c1e;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	border-radius: 0 36px 36px 0;
+	cursor: pointer;
+}
+
+.header .notification {
+	font-size: 2rem;
+	
+}
+
+.header  .notification .num {
+	margin-left: 1rem;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid #0c0c1e;
+	background: var(--red);
+	color: #0c0c1e;
+	font-weight: 700;
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header  .profile img {
+	width: 2rem;
+	height: 2rem;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+
+
+
+.header h1{
+    margin-top: 1rem;
+}
+ #menu_icon, #menu_icon_close{
+    display: none;
+ }
+
+
+
+
+
+.sidebar{
+    grid-area: side;
+    width: 20vw;
+    position: fixed;
+	height: 100%;
+	background-color: #0c0c1e;
+	font-family: var(--lato);
+	transition: 0.3s ease;
+}
+
+
+
+
+.sidebar .brand {
+	font-size: 24px;
+	font-weight: 700;
+	height: 1rem;
+	display: flex;
+	align-items: center;
+	color: var(--main-color);
+	position: sticky;
+	top: 0;
+	left: 0;
+	background: #0c0c1e;
+	padding-bottom: 20px;
+	box-sizing: content-box;
+}
+
+.sidebar .brand .bx {
+	min-width: 60px;
+	display: flex;
+	justify-content: center;
+}
+
+.side_menu{
+    background-color: #0c0c1e;
+}
+
+.sidebar .side-menu {
+	width: 100%;
+
+}
+
+.sidebar .side_menu li {
+	height: 5rem;
+	background: transparent;
+	margin-left: 6px;
+	border-radius: 48px 0 0 48px;
+	padding: 4px;
+}
+
+.sidebar .side_menu li.active {
+	background: #060714;
+	position: relative;
+}
+
+
+.sidebar .side_menu li a {
+	width: 100%;
+	height: 100%;
+	background: #0c0c1e;
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	color: #fbfbfb;
+	white-space: nowrap;
+	overflow-x: hidden;
+}
+
+.sidebar .side-menu.top li.active a {
+	color: var(--main-color);
+}
+
+.sidebar.hide .side-menu li a {
+	width: calc(48px - (4px * 2));
+	transition: width 0.3s ease;
+}
+
+.sidebar .side_menu li a.logout {
+	color: var(--red);
+}
+
+.sidebar .side_menu.top li a:hover {
+	color: var(--main-color);
+}
+
+.sidebar .side_menu li a .bx {
+	min-width: calc(60px - ((4px + 6px) * 2));
+	display: flex;
+	justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+#content{
+    grid-area: main;
+    margin-left: 2rem;
+    padding: 0.5rem 8rem;
+    height: 90vh ;
+    overflow: auto;
+}
+
+
+@media screen and (max-width: 1240px) {
+
+    .main{
+        grid-template-areas:  
+                              "header header"
+                                 "side main";
+      grid-template-columns: auto  1fr; 
+      grid-template-rows: auto  1fr; 
+        
+    
+        
+    }
+    #menu_icon{
+        display: flex;
+        font-size: 4rem;
+     }
+
+    
+     #menu_icon_close{
+        display: none;
+        font-size: 4rem;
+     }
+    
+    
+    .header_profile h1{
+        display: none;
+        
+    }
+    .header_profile_image{
+    
+        margin-right: 1rem;
+    }
+    .sidebar {
+        display: none;
+      width: 100%;
+      height: auto;
+      position: relative;
+      text-align: center;
+      z-index: 1;
+    }
+    .sidebar_logo{
+    
+        display: none;
+    }
+}
+
