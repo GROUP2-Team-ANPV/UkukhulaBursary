@@ -252,8 +252,8 @@
 
     </form>
 
-    <!-- <button id="prevBtn">Previous</button>
-    <button id="nextBtn">Next</button> -->
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
 
     <script>
       let currentIndex = 0;
@@ -288,15 +288,15 @@
           document.getElementById('status').value = student.status;
       }
 
-    //   document.getElementById('prevBtn').addEventListener('click', () => {
-    //       currentIndex = Math.max(0, currentIndex - 1);
-    //       displayStudent(currentIndex);
-    //   });
+      document.getElementById('prevBtn').addEventListener('click', () => {
+          currentIndex = Math.max(0, currentIndex - 1);
+          displayStudent(currentIndex);
+      });
 
-    //   document.getElementById('nextBtn').addEventListener('click', () => {
-    //       currentIndex = Math.min(students.length - 1, currentIndex + 1);
-    //       displayStudent(currentIndex);
-    //   });
+      document.getElementById('nextBtn').addEventListener('click', () => {
+          currentIndex = Math.min(students.length - 1, currentIndex + 1);
+          displayStudent(currentIndex);
+      });
   </script>
 </body>
 </html>
