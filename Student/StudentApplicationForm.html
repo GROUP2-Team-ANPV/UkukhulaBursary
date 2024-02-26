@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./get_universities.js" defer></script>
     <title>Document</title>
+    <script src="./add_student.js" defer></script>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
@@ -19,35 +21,36 @@
           <ul class="form__controls">
             <li class="form__control">
               <label for="first-name">First Name</label>
-              <input type="text" id="first-name" name="first-name" required />
+              <input type="text" id="first-name" name="firstName" required />
             </li>
             <li class="form__control">
               <label for="last-name">Last Name</label>
-              <input type="text" id="last-name" name="last-name" required />
+              <input type="text" id="last-name" name="lastName" required />
             </li>
             <li class="form__control">
               <label for="id-number">ID Number </label>
-              <input type="text" id="id-number" name="id-number" required />
+              <input type="text" id="id-number" name="idNumber" required />
             </li>
             <li class="form__control">
               <label for="birthdate">Birthdate </label>
-              <input type="date" id="birthdate" name="bithdate" required />
+              <input type="date" id="birthdate" name="birthdate" required />
             </li>
             <li class="form__control">
               <label for="gender">Gender</label>
-              <select id="gender" name="gender" required>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+              <select id="gender" name="genderId" required>
+                <option value="0">Select Gender</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Other</option>
               </select>
             </li>
             <li class="form__control">
-              <label for="ethnicity">Ethnicity:</label>
-              <select id="ethnicity" name="ethnicity" required>
-                <option value="">Select Ethnicity</option>
-                <option value="black">Black</option>
-                <option value="indian">Indian</option>
-                <option value="colored">Colored</option>
+              <label for="race">Ethnicity:</label>
+              <select id="race" name="raceId" required>
+                <option value="0">Select Ethnicity</option>
+                <option value="1">Black</option>
+                <option value="2">Indian</option>
+                <option value="3">Colored</option>
               </select>
             </li>
           </ul>
@@ -57,7 +60,7 @@
           <ul class="form__controls">
             <li class="form__control">
               <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" required />
+              <input type="tel" id="phone" name="phoneNumber" required />
             </li>
             <li class="form__control">
               <label for="email">Email</label>
@@ -69,23 +72,23 @@
           <legend class="form__details-header">Academic Details</legend>
           <ul class="form__controls">
             <li class="form__control">
-              <label for="Department">Department</label>
-              <select id="Department">
-                <option value="">Select Department</option>
-                <option value="Artificial Intelligence">
+              <label for="department">Department</label>
+              <select id="department" name="departmentId">
+                <option value="0">Select Department</option>
+                <option value="1">
                   Artificial Intelligence
                 </option>
-                <option value="Computer Engineering'">
+                <option value="2">
                   Computer Engineering'
                 </option>
-                <option value="Computer Game Design">
+                <option value="3">
                   Computer Game Design
                 </option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Cybersecurit">Cybersecurit</option>
-                <option value="Data Science">'Data Science</option>
-                <option value="Information Systems">Information Systems</option>
-                <option value="Software Engineering">
+                <option value="4">Computer Science</option>
+                <option value="5">Cybersecurit</option>
+                <option value="6">'Data Science</option>
+                <option value="7">Information Systems</option>
+                <option value="8">
                   Software Engineering
                 </option>
               </select>
@@ -96,7 +99,9 @@
             </li>
             <li class="form__control">
               <label for="university">university</label>
-              <input type="text" id="university" name="university" required />
+              <select name="universityID" id="university">
+                <option value="0">Select University</option>
+              </select>
             </li>
           </ul>
         </fieldset>
@@ -108,7 +113,7 @@
               <input
                 type="number"
                 id="amount-needed"
-                name="amount-needed"
+                name="amount"
                 min="0"
                 step="0.01"
                 required
