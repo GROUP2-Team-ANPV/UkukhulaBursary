@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../list.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css">
+</head>
 </head>
 <body>
     <section class="container">
@@ -21,9 +23,9 @@
             </tbody>
         </table>
     </section>
-
+    <i class='bx bx-plus'></i>
     <script>
-        fetch('http://localhost:5263/api/UniversityAdmin/GetAllFundRequests')
+        fetch('http://localhost:5263/api/UniversityAdmin/GetFundRequests')
             .then(response => response.json())
             .then(data => {
                 const studentTableBody = document.getElementById('studentTableBody');
@@ -49,7 +51,7 @@
                     statusCell.textContent = student.status;
                     row.appendChild(statusCell);
 
-                    // Append the row to the table body
+                   
                     studentTableBody.appendChild(row);
                 });
             })
