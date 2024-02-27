@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../list.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css">
+</head>
 </head>
 <body>
     <section class="container">
-        <h1>University Applications</h1>   
+        <h1>Students Applications</h1>   
         <table>
             <thead>
                 <tr>
@@ -17,33 +19,45 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
-                
-                <tr>
-                    <td id="universityName"></td>
-                    <td><a href="viewApplication.html" >View Application</a></td>
-                    <td id="status"></td>
-                </tr>
-                
+            <tbody id="studentTableBody">
             </tbody>
         </table>
     </section>
-
+    <i class='bx bx-plus'></i>
     <script>
-        
-        fetch()
+        fetch('http://localhost:5263/api/UniversityAdmin/GetFundRequests')
             .then(response => response.json())
             .then(data => {
+                const studentTableBody = document.getElementById('studentTableBody');
+
                 
-                document.getElementById('universityName').textContent = data.universityName;
-                document.getElementById('status').textContent = data.status;
-                
+                data.forEach(student => {
+                   
+                    const row = document.createElement('tr');
+
+                    
+                    const studentname = document.createElement('td');
+                    studentname.textContent = student.firstName +' ' + student.lastName;
+                    row.appendChild(studentname);
+
+                    const viewApplicationCell = document.createElement('td');
+                    const viewApplicationLink = document.createElement('a');
+                    viewApplicationLink.href = `viewApplication.html?studentID=${student.studentID}`;
+                    viewApplicationLink.textContent = 'View Application';
+                    viewApplicationCell.appendChild(viewApplicationLink);
+                    row.appendChild(viewApplicationCell);
+
+                    const statusCell = document.createElement('td');
+                    statusCell.textContent = student.status;
+                    row.appendChild(statusCell);
+
+                   
+                    studentTableBody.appendChild(row);
+                });
             })
             .catch(error => {
                 console.error('Error fetching application details:', error);
             });
-
-        
     </script>
 </body>
 </html>

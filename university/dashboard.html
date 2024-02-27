@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../list.css">
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -21,61 +22,17 @@
             <h2>Students</h2>
             <i class="bx bx-dots-horizontal-rounded bx-md"></i>
           </header>
-          <ul class="students">
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-
-            <li class="student">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="student__status">Review</p>
-              <p class="student__amount">R85 000.00</p>
-            </li>
-          </ul>
+          <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>View Application</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+            </tbody>
+        </table>
         </section>
       </section>
 
@@ -161,5 +118,41 @@
         </section>
       </aside>
     </main>
+
+    <script>
+      fetch('http://localhost:5263/api/UniversityAdmin/GetAllFundRequests')
+          .then(response => response.json())
+          .then(data => {
+              const studentTableBody = document.getElementById('studentTableBody');
+
+              
+              data.forEach(student => {
+                 
+                  const row = document.createElement('tr');
+
+                  
+                  const studentname = document.createElement('td');
+                  studentname.textContent = student.firstName +' ' + student.lastName;
+                  row.appendChild(studentname);
+
+                  const viewApplicationCell = document.createElement('td');
+                  const viewApplicationLink = document.createElement('a');
+                  viewApplicationLink.href = `viewApplication.html?studentID=${student.studentID}`;
+                  viewApplicationLink.textContent = 'View Application';
+                  viewApplicationCell.appendChild(viewApplicationLink);
+                  row.appendChild(viewApplicationCell);
+
+                  const statusCell = document.createElement('td');
+                  statusCell.textContent = student.status;
+                  row.appendChild(statusCell);
+
+                  // Append the row to the table body
+                  studentTableBody.appendChild(row);
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching application details:', error);
+          });
+  </script>
   </body>
 </html>

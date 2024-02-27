@@ -271,8 +271,7 @@ button {
   gap: 1.5rem;
 }
 
-.form__control,
-#commentField {
+.form__control {
   flex: 1 200px;
   display: flex;
   flex-direction: column;
