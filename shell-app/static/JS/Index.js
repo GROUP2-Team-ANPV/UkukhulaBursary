@@ -1,5 +1,6 @@
-import login_view from "./views/login_view.js";
-import university_application_view from "./views/university_application_view.js";
+import LoginView from "./views/LoginView.js";
+import UniversityApplicationView from "./views/UniversityApplicationView.js";
+import StudentApplicationView from "./views/StudentApplicationView.js";
 
 const navigateTo = (url) => {
   history.replaceState(null, null, url);
@@ -8,8 +9,9 @@ const navigateTo = (url) => {
 
 const router = async () => {
   const routes = [
-    { path: "/universityappliction", view: university_application_view },
-     {path: "/login", view:login_view},
+    { path: "/universityappliction", view: UniversityApplicationView },
+    {path : "/studentapplication", view: StudentApplicationView},
+     {path: "/login", view:LoginView},
     // {path: "/settings", view:(() => console.log("Viewing Settings"))}
   ];
 

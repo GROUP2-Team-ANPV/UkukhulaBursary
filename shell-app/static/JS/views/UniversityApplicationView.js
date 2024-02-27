@@ -1,6 +1,6 @@
-import abstract_views from "./abstract_views.js";;
+import AbstractViews from "./AbstractViews.js";;
 
-export default class extends abstract_views{
+export default class extends AbstractViews{
     constructor(){
         super();
         this.setTitle("UnviersityApplication");
@@ -8,7 +8,7 @@ export default class extends abstract_views{
 
     async getHtml(){
         return `
-        <link rel="stylesheet" href="/static/CSS/university_application.css" />
+        <link rel="stylesheet" href="/static/CSS/UniversityApplication.css" />
         <script type="module" src="/static/JS/university.js"></script>
         
         
