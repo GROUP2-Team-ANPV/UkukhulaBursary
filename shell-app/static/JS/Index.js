@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (targetLink) {
       e.preventDefault();
-      console.log("clicked");
       navigateTo(targetLink.href);
     }
   });
