@@ -8,8 +8,8 @@ const navigateTo = (url) => {
 
 const router = async () => {
   const routes = [
-    { path: "/", view: university_application_view },
-    // {path: "/login", view:login_view},
+    { path: "/universityappliction", view: university_application_view },
+     {path: "/login", view:login_view},
     // {path: "/settings", view:(() => console.log("Viewing Settings"))}
   ];
 
@@ -30,26 +30,12 @@ const router = async () => {
     };
   }
   const view = new match.route.view();
-  document.querySelector("#main-content").innerHTML = await view.getHtml();
+  document.querySelector("#content").innerHTML = await view.getHtml();
 };
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
-  let menuIcon = document.querySelector("#menu_icon");
-  let menuIconClose = document.querySelector("#menu_icon_close");
-  let navbar = document.querySelector(".sidebar");
-
-  menuIcon.addEventListener("click", () => {
-    menuIcon.style.display = "none";
-    navbar.style.display = "block";
-    menuIconClose.style.display = "flex";
-  });
-
-  menuIconClose.addEventListener("click", () => {
-    menuIconClose.style.display = "none";
-    navbar.style.display = "none";
-    menuIcon.style.display = "flex";
-  });
+  
   document.body.addEventListener("click", (e) => {
     if (e.target.matches("[data-link]")) {
       e.preventDefault();
@@ -72,7 +58,7 @@ allSideMenu.forEach((item) => {
   });
 });
 
-const menuBar = document.querySelector("#content nav .bx.bx-menu");
+const menuBar = document.querySelector("#header nav .bx.bx-menu");
 const sidebar = document.getElementById("sidebar");
 
 menuBar.addEventListener("click", function () {
@@ -80,12 +66,12 @@ menuBar.addEventListener("click", function () {
 });
 
 const searchButton = document.querySelector(
-  "#content nav form .form-input button"
+  "#header nav form .form-input button"
 );
 const searchButtonIcon = document.querySelector(
-  "#content nav form .form-input button .bx"
+  "#header nav form .form-input button .bx"
 );
-const searchForm = document.querySelector("#content nav form");
+const searchForm = document.querySelector("#header nav form");
 
 searchButton.addEventListener("click", function (e) {
   if (window.innerWidth < 576) {
