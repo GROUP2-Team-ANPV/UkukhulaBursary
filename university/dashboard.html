@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./university_data.js" defer></script>
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../list.css">
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -110,5 +111,41 @@
         </section>
       </aside>
     </main>
+
+    <script>
+      fetch('http://localhost:5263/api/UniversityAdmin/GetAllFundRequests')
+          .then(response => response.json())
+          .then(data => {
+              const studentTableBody = document.getElementById('studentTableBody');
+
+              
+              data.forEach(student => {
+                 
+                  const row = document.createElement('tr');
+
+                  
+                  const studentname = document.createElement('td');
+                  studentname.textContent = student.firstName +' ' + student.lastName;
+                  row.appendChild(studentname);
+
+                  const viewApplicationCell = document.createElement('td');
+                  const viewApplicationLink = document.createElement('a');
+                  viewApplicationLink.href = `viewApplication.html?studentID=${student.studentID}`;
+                  viewApplicationLink.textContent = 'View Application';
+                  viewApplicationCell.appendChild(viewApplicationLink);
+                  row.appendChild(viewApplicationCell);
+
+                  const statusCell = document.createElement('td');
+                  statusCell.textContent = student.status;
+                  row.appendChild(statusCell);
+
+                  // Append the row to the table body
+                  studentTableBody.appendChild(row);
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching application details:', error);
+          });
+  </script>
   </body>
 </html>
