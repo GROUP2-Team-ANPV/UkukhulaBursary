@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <label for="id_document">Upload your ID document (.docx/.pdf)* <span class="required-label">(Required)</span></label><br>
+    <input type="file" id="id_document" name="id_document" accept=".doc,.docx,.pdf" required><br>
+    
+    <label for="transcript">Upload your Transcript (.docx/.pdf)* <span class="required-label">(Required)</span></label><br>
+    <input type="file" id="transcript" name="transcript" accept=".doc,.docx,.pdf" required><br>
+    
+    <label for="cv">Upload your CV (.docx/.pdf)* <span class="required-label">(Required)</span></label><br>
+    <input type="file" id="cv" name="cv" accept=".doc,.docx,.pdf" required><br>
+    
+    <input type="submit" id="submitBtn" value="Submit">
+  </form>
+  <div id="message"></div>
+  <script src="script.js"></script>
+</body>
+</html>
