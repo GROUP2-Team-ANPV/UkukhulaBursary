@@ -79,7 +79,7 @@ body {
   width: 60px;
 }
 
-#sidebar.hide + #header{
+#sidebar.hide + #header {
   width: calc(100% - 60px);
   left: 60px;
 }
@@ -263,28 +263,6 @@ body {
   cursor: pointer;
 }
 
-#header nav .notification {
-  font-size: 20px;
-  position: relative;
-}
-
-#header nav .notification .num {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #0c0c1e;
-  background: var(--red);
-  color: #0c0c1e;
-  font-weight: 700;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 #header nav .profile img {
   width: 36px;
   height: 36px;
@@ -353,7 +331,6 @@ body {
     background: var(--red);
   }
 
-  #content nav form.show ~ .notification,
   #content nav form.show ~ .profile {
     display: none;
   }
