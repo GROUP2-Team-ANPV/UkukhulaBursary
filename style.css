@@ -13,7 +13,8 @@
   --light-transparent: rgba(231, 229, 229, 0.25);
   --dark-color: rgb(22, 20, 20);
   --dark-transparent: rgba(22, 20, 20, 0.5);
-  --success-color: rgb(0, 128, 0);
+  --success: rgb(0, 128, 0);
+  --danger: rgb(255, 0, 0);
 }
 
 body {
@@ -189,10 +190,9 @@ button {
   border-radius: 0.5rem;
 }
 
-.student__status.approved{
-  background-color: var(--success-color);
+.student__status.approved {
+  background-color: var(--success);
 }
-
 
 .funds {
   display: flex;
