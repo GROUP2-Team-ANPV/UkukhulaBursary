@@ -47,6 +47,7 @@ html {
 body {
   background: url(/img/23.jpg) no-repeat;
   background-size: cover;
+  font-size: 0.75rem;
   background-position: center;
   min-height: 100vh;
   overflow-x: hidden;
@@ -180,6 +181,7 @@ body {
 }
 
 #header {
+  background: var(--main-color);
   position: relative;
   width: calc(100% - 280px);
   left: 280px;
@@ -188,8 +190,9 @@ body {
 
 #header nav {
   height: 56px;
-  background: var(--main-color);
-  padding: 0 24px;
+  width: 90vw;
+  margin: auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -200,16 +203,6 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-}
-
-#header nav::before {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  bottom: -40px;
-  left: 0;
-  box-shadow: -20px -20px 0 var(--main-color);
 }
 
 #header nav a {
@@ -230,7 +223,6 @@ body {
 
 #content {
   width: 100%;
-  padding: 16px 24px;
   font-family: var(--poppins);
   max-height: calc(100vh - 56px);
   overflow-y: auto;
@@ -253,8 +245,21 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  #header {
+    width: 100%;
+    left: 200px;
+  }
   #sidebar {
     width: 200px;
+  }
+
+  #sidebar.hide {
+    width: 0;
+  }
+
+  #sidebar.hide + #header {
+    width: 100%;
+    left: 0;
   }
 }
 
