@@ -11,14 +11,17 @@ async function handleAddUniversity(event) {
     universityData[key] = value;
   }
 
-  const response = await fetch("http://localhost:5263/api/BBDAdmin/AddUniversity", {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  const response = await fetch(
+    "http://localhost:5263/api/BBDAdmin/AddUniversity",
+    {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-    body: JSON.stringify(universityData),
-  });
+      body: JSON.stringify(universityData),
+    }
+  );
 }
