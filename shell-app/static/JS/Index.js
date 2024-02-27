@@ -1,15 +1,19 @@
-import login_view from "./views/login_view.js";
-import university_application_view from "./views/university_application_view.js";
+import LoginView from "./views/LoginView.js";
+import UniversityApplicationView from "./views/UniversityApplicationView.js";
+import StudentApplicationView from "./views/StudentApplicationView.js";
+import AdminDashboardView from "./views/AdminDashboardView.js";
 
 const navigateTo = (url) => {
-  history.pushState(null, null, url);
+  history.replaceState(null, null, url);
   router();
 };
 
 const router = async () => {
   const routes = [
-    { path: "/", view: university_application_view },
-    // {path: "/login", view:login_view},
+    { path: "/universityappliction", view: UniversityApplicationView },
+    {path : "/studentapplication", view: StudentApplicationView},
+     {path: "/login", view:LoginView},
+     {path : "/dashboard", view: AdminDashboardView}
     // {path: "/settings", view:(() => console.log("Viewing Settings"))}
   ];
 
@@ -30,30 +34,18 @@ const router = async () => {
     };
   }
   const view = new match.route.view();
-  document.querySelector("#main-content").innerHTML = await view.getHtml();
+  document.querySelector("#content").innerHTML = await view.getHtml();
 };
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
-  let menuIcon = document.querySelector("#menu_icon");
-  let menuIconClose = document.querySelector("#menu_icon_close");
-  let navbar = document.querySelector(".sidebar");
-
-  menuIcon.addEventListener("click", () => {
-    menuIcon.style.display = "none";
-    navbar.style.display = "block";
-    menuIconClose.style.display = "flex";
-  });
-
-  menuIconClose.addEventListener("click", () => {
-    menuIconClose.style.display = "none";
-    navbar.style.display = "none";
-    menuIcon.style.display = "flex";
-  });
+  
   document.body.addEventListener("click", (e) => {
-    if (e.target.matches("[data-link]")) {
+    const targetLink = e.target.closest("[data-link]");
+
+    if (targetLink) {
       e.preventDefault();
-      navigateTo(e.target.href);
+      navigateTo(targetLink.href);
     }
   });
   router();
@@ -72,7 +64,7 @@ allSideMenu.forEach((item) => {
   });
 });
 
-const menuBar = document.querySelector("#content nav .bx.bx-menu");
+const menuBar = document.querySelector("#header nav .bx.bx-menu");
 const sidebar = document.getElementById("sidebar");
 
 menuBar.addEventListener("click", function () {
@@ -80,12 +72,12 @@ menuBar.addEventListener("click", function () {
 });
 
 const searchButton = document.querySelector(
-  "#content nav form .form-input button"
+  "#header nav form .form-input button"
 );
 const searchButtonIcon = document.querySelector(
-  "#content nav form .form-input button .bx"
+  "#header nav form .form-input button .bx"
 );
-const searchForm = document.querySelector("#content nav form");
+const searchForm = document.querySelector("#header nav form");
 
 searchButton.addEventListener("click", function (e) {
   if (window.innerWidth < 576) {

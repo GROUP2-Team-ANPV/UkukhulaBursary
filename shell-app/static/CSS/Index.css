@@ -79,6 +79,11 @@ body {
   width: 60px;
 }
 
+#sidebar.hide + #header{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
 #sidebar .brand {
   font-size: 24px;
   font-weight: 700;
@@ -179,19 +184,14 @@ body {
   justify-content: center;
 }
 
-#content {
+#header {
   position: relative;
   width: calc(100% - 280px);
   left: 280px;
   transition: 0.3s ease;
 }
 
-#sidebar.hide ~ #content {
-  width: calc(100% - 60px);
-  left: 60px;
-}
-
-#content nav {
+#header nav {
   height: 56px;
   background: #0c0c1e;
   padding: 0 24px;
@@ -205,7 +205,7 @@ body {
   z-index: 1000;
 }
 
-#content nav::before {
+#header nav::before {
   content: "";
   position: absolute;
   width: 40px;
@@ -215,28 +215,28 @@ body {
   box-shadow: -20px -20px 0 #0c0c1e;
 }
 
-#content nav a {
+#header nav a {
   color: #fbfbfb;
 }
 
-#content nav .bx.bx-menu {
+#header nav .bx.bx-menu {
   cursor: pointer;
   color: #fbfbfb;
 }
 
-#content nav form {
+#header nav form {
   max-width: 400px;
   width: 100%;
   margin-right: auto;
 }
 
-#content nav form .form-input {
+#header nav form .form-input {
   display: flex;
   align-items: center;
   height: 36px;
 }
 
-#content nav form .form-input input {
+#header nav form .form-input input {
   flex-grow: 1;
   padding: 0 16px;
   height: 100%;
@@ -248,7 +248,7 @@ body {
   color: #fbfbfb;
 }
 
-#content nav form .form-input button {
+#header nav form .form-input button {
   width: 36px;
   height: 100%;
   display: flex;
@@ -263,12 +263,12 @@ body {
   cursor: pointer;
 }
 
-#content nav .notification {
+#header nav .notification {
   font-size: 20px;
   position: relative;
 }
 
-#content nav .notification .num {
+#header nav .notification .num {
   position: absolute;
   top: -6px;
   right: -6px;
@@ -285,14 +285,14 @@ body {
   align-items: center;
 }
 
-#content nav .profile img {
+#header nav .profile img {
   width: 36px;
   height: 36px;
   object-fit: cover;
   border-radius: 50%;
 }
 
-#content main {
+#content {
   width: 100%;
   padding: 16px 24px;
   font-family: var(--poppins);
@@ -301,7 +301,7 @@ body {
   justify-content: space-between;
 }
 
-#content main .head-title {
+#header main .head-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -309,7 +309,7 @@ body {
   flex-wrap: wrap;
 }
 
-#content main .head-title h1 {
+#header main .head-title h1 {
   font-size: 36px;
   font-weight: 600;
   margin-bottom: 10px;
