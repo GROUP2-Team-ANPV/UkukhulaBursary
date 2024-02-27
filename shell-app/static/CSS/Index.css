@@ -241,11 +241,9 @@ body {
   padding: 0 16px;
   height: 100%;
   border: none;
-  background: #060714;
   border-radius: 36px 0 0 36px;
   outline: none;
   width: 100%;
-  color: #fbfbfb;
 }
 
 #header nav form .form-input button {
@@ -297,11 +295,6 @@ body {
 @media screen and (max-width: 768px) {
   #sidebar {
     width: 200px;
-  }
-
-  #content {
-    width: calc(100% - 60px);
-    left: 200px;
   }
 }
 
