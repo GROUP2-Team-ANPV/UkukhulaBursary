@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./university_data.js" defer></script>
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../list.css">
     <link
@@ -22,17 +23,9 @@
             <h2>Students</h2>
             <i class="bx bx-dots-horizontal-rounded bx-md"></i>
           </header>
-          <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>View Application</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="studentTableBody">
-            </tbody>
-        </table>
+          <ul class="students">
+            <!-- students will be fetched from the server -->
+          </ul>
         </section>
       </section>
 
@@ -54,7 +47,7 @@
               </section>
               <section class="funds__used">
                 <p>Students</p>
-                <p class="funded">3</p>
+                <p class="funded"></p>
               </section>
             </section>
           </section>
