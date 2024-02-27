@@ -1,7 +1,7 @@
 /* Main Content */
 #content {
   margin: 0 auto;
-  background-image: url("../images/background.webp");
+  /* background-image: url("../images/background.webp"); */
   gap: 1rem;
   color: var(--light-color);
 }
@@ -19,6 +19,11 @@
   display: flex;
 }
 
+.content__primary,
+.content__secondary {
+  max-height: 600px;
+}
+
 .content__secondary {
   flex: 1 200px;
 
@@ -31,7 +36,6 @@
 .content__hods {
   flex: 1;
   border-radius: 1rem;
-  max-height: 600px;
   overflow: auto;
 }
 

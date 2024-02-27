@@ -45,7 +45,7 @@ html {
 }
 
 body {
-  background: url(/img/23.jpg) no-repeat;
+  background: url(../images/background.webp) no-repeat center center fixed;
   background-size: cover;
   font-size: 0.75rem;
   background-position: center;
@@ -223,10 +223,16 @@ body {
 
 #content {
   width: 100%;
+  padding: 2rem 0;
+  padding-left: 4.0625rem;
   font-family: var(--poppins);
   max-height: calc(100vh - 56px);
   overflow-y: auto;
   justify-content: space-between;
+}
+.page-heading {
+  font-size: 2rem;
+  color: var(--light-color);
 }
 
 #header main .head-title {
@@ -266,6 +272,10 @@ body {
 @media screen and (max-width: 576px) {
   #content nav form.show ~ .profile {
     display: none;
+  }
+
+  #content {
+    padding-left: 0;
   }
 }
 
