@@ -8,7 +8,7 @@ export default class extends AbstractViews{
 
     async getHtml(){
         return `
-        <link rel="stylesheet" href="/static/CSS/styles.css" />
+        <link rel="stylesheet" href="/static/CSS/AdminDashboard.css" />
         <header class="header">
         <h1>Dashboard</h1>
       </header>

@@ -1,6 +1,7 @@
 import LoginView from "./views/LoginView.js";
 import UniversityApplicationView from "./views/UniversityApplicationView.js";
 import StudentApplicationView from "./views/StudentApplicationView.js";
+import AdminDashboardView from "./views/AdminDashboardView.js";
 
 const navigateTo = (url) => {
   history.replaceState(null, null, url);
@@ -12,6 +13,7 @@ const router = async () => {
     { path: "/universityappliction", view: UniversityApplicationView },
     {path : "/studentapplication", view: StudentApplicationView},
      {path: "/login", view:LoginView},
+     {path : "/dashboard", view: AdminDashboardView}
     // {path: "/settings", view:(() => console.log("Viewing Settings"))}
   ];
 
