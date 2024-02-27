@@ -2,7 +2,7 @@ import login_view from "./views/login_view.js";
 import university_application_view from "./views/university_application_view.js";
 
 const navigateTo = (url) => {
-  history.pushState(null, null, url);
+  history.replaceState(null, null, url);
   router();
 };
 
@@ -37,9 +37,12 @@ window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
   
   document.body.addEventListener("click", (e) => {
-    if (e.target.matches("[data-link]")) {
+    const targetLink = e.target.closest("[data-link]");
+
+    if (targetLink) {
       e.preventDefault();
-      navigateTo(e.target.href);
+      console.log("clicked");
+      navigateTo(targetLink.href);
     }
   });
   router();
