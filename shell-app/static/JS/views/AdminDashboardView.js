@@ -1,17 +1,15 @@
 import AbstractViews from "./AbstractViews.js";
 
-export default class extends AbstractViews{
-    constructor(){
-        super();
-        this.setTitle("Login");
-    }
+export default class extends AbstractViews {
+  constructor() {
+    super();
+    this.setTitle("Login");
+  }
 
-    async getHtml(){
-        return `
+  async getHtml() {
+    return `
         <link rel="stylesheet" href="/static/CSS/AdminDashboard.css" />
-        <header class="header">
-        <h1>Dashboard</h1>
-      </header>
+        
       <main class="innercontent">
         <section class="content__primary">
           <section class="content__students">
@@ -161,5 +159,5 @@ export default class extends AbstractViews{
       </main>
        
     `;
-    }
+  }
 }
