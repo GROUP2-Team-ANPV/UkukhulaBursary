@@ -13,7 +13,7 @@ const router = async () => {
     { path: "/universityappliction", view: UniversityApplicationView },
     {path : "/studentapplication", view: StudentApplicationView},
      {path: "/login", view:LoginView},
-     {path : "/dashboard", view: AdminDashboardView}
+     {path : "/", view: AdminDashboardView}
     // {path: "/settings", view:(() => console.log("Viewing Settings"))}
   ];
 
