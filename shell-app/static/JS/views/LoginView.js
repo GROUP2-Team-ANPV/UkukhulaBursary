@@ -4,13 +4,13 @@ export default class extends AbstractViews{
     constructor(){
         super();
         this.setTitle("Login");
+        this.setCSS("/static/CSS/Login.css");;
+        this.setJS("/static/JS/Login.js")
     }
 
     async getHtml(){
         return `
-        <link rel="stylesheet" href="/static/CSS/Login.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <script type="module" src="/static/JS/Login.js"></script>
+      
       
         <article class="wrapper">
         <form id="loginForm">

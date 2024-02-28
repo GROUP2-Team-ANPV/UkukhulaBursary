@@ -1,3 +1,5 @@
+console.log("unviersitydata")
+
 async function getUniversityData(id) {
   const response = await fetch(
     `http://localhost:5263/api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`,

@@ -4,12 +4,13 @@ export default class extends AbstractViews{
     constructor(){
         super();
         this.setTitle("UnviersityApplication");
+        this.setCSS("/static/CSS/UniversityApplication.css");
+        this.setJS("/static/JS/university.js");
     }
 
     async getHtml(){
         return `
-        <link rel="stylesheet" href="/static/CSS/UniversityApplication.css" />
-        <script type="module" src="/static/JS/university.js"></script>
+       
         
         
             <form class="form university-form">

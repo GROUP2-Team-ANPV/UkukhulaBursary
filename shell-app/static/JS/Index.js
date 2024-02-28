@@ -1,7 +1,7 @@
 import LoginView from "./views/LoginView.js";
 import UniversityApplicationView from "./views/UniversityApplicationView.js";
 import StudentApplicationView from "./views/StudentApplicationView.js";
-import AdminDashboardView from "./views/AdminDashboardView.js";
+import UniversityDashboardView from "./views/UniversityDashboardView.js";
 
 const navigateTo = (url) => {
   history.replaceState(null, null, url);
@@ -13,7 +13,7 @@ const router = async () => {
     { path: "/universityappliction", view: UniversityApplicationView },
     { path: "/studentapplication", view: StudentApplicationView },
     { path: "/login", view: LoginView },
-    { path: "/", view: AdminDashboardView }
+    { path: "/", view: UniversityDashboardView }
   ];
 
   // Test each route for potential match
@@ -69,16 +69,16 @@ menuBar.addEventListener("click", function () {
   sidebar.classList.toggle("hide");
 });
 
-const searchButton = document.querySelector(
-  "#header nav form .form-input button"
-);
-const searchButtonIcon = document.querySelector(
-  "#header nav form .form-input button .bx"
-);
 
-window.addEventListener("resize", function () {
-  if (this.innerWidth > 576) {
-    searchButtonIcon.classList.replace("bx-x", "bx-search");
-    searchForm.classList.remove("show");
-  }
-});
+
+
+
+const head = document.querySelector("head");
+  const script = document.createElement("script");
+    script.setAttribute("id" ,"content-script")
+    const cssLink = document.createElement("link");
+    cssLink.setAttribute("id", "content-css")
+    cssLink.setAttribute("rel", "stylesheet"); 
+    head.appendChild(script);
+    head.appendChild(cssLink);
+

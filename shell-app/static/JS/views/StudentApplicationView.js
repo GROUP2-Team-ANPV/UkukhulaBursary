@@ -1,16 +1,18 @@
-import AbstractViews from "./AbstractViews.js";;
+import AbstractViews from "./AbstractViews.js";
 
 export default class extends AbstractViews{
     constructor(){
         super();
         this.setTitle("StudentApplication");
+        this.setCSS("/static/CSS/StudentApplication.css");
+        this.setJS("/static/JS/api/AddStudent.js")
     }
 
     async getHtml(){
         return `
-        <link rel="stylesheet" href="/static/CSS/StudentApplication.css" />
         
-        <script type="module" src="/static/JS/api/AddStudent.js" ></script>
+        
+        
         <script type="module" src="/static/JS/api/GetUniversities.js" ></script>
         <script type="module" src="/static/JS/StudentApplication.js" ></script>
         <form class="form application-form">
