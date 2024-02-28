@@ -11,10 +11,9 @@ const navigateTo = (url) => {
 const router = async () => {
   const routes = [
     { path: "/universityappliction", view: UniversityApplicationView },
-    {path : "/studentapplication", view: StudentApplicationView},
-     {path: "/login", view:LoginView},
-     {path : "/", view: AdminDashboardView}
-    // {path: "/settings", view:(() => console.log("Viewing Settings"))}
+    { path: "/studentapplication", view: StudentApplicationView },
+    { path: "/login", view: LoginView },
+    { path: "/", view: AdminDashboardView }
   ];
 
   // Test each route for potential match
@@ -39,7 +38,6 @@ const router = async () => {
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
-  
   document.body.addEventListener("click", (e) => {
     const targetLink = e.target.closest("[data-link]");
 
@@ -71,30 +69,16 @@ menuBar.addEventListener("click", function () {
   sidebar.classList.toggle("hide");
 });
 
-// const searchButton = document.querySelector(
-//   "#header nav form .form-input button"
-// );
-// const searchButtonIcon = document.querySelector(
-//   "#header nav form .form-input button .bx"
-// );
-// const searchForm = document.querySelector("#header nav form");
+const searchButton = document.querySelector(
+  "#header nav form .form-input button"
+);
+const searchButtonIcon = document.querySelector(
+  "#header nav form .form-input button .bx"
+);
 
-// searchButton.addEventListener("click", function (e) {
-//   if (window.innerWidth < 576) {
-//     e.preventDefault();
-//     searchForm.classList.toggle("show");
-//     if (searchForm.classList.contains("show")) {
-//       searchButtonIcon.classList.replace("bx-search", "bx-x");
-//     } else {
-//       searchButtonIcon.classList.replace("bx-x", "bx-search");
-//     }
-//   }
-// });
-
-if (window.innerWidth < 768) {
-  sidebar.classList.add("hide");
-} 
-// else if (window.innerWidth > 576) {
-//   searchButtonIcon.classList.replace("bx-x", "bx-search");
-//   searchForm.classList.remove("show");
-// }
+window.addEventListener("resize", function () {
+  if (this.innerWidth > 576) {
+    searchButtonIcon.classList.replace("bx-x", "bx-search");
+    searchForm.classList.remove("show");
+  }
+});
