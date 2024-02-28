@@ -147,7 +147,7 @@ export default class extends AbstractViews{
     
     `;
     }
-    async render(){
+    async getJS(){
       StudentapplicationScript();
     }
 }

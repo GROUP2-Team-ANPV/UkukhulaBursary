@@ -10,7 +10,7 @@ export async function getUniversityData(id) {
           },
         }
       );
-      console.log(response);
+      
       const data = await response.json();
     
       // Store the data in session storage

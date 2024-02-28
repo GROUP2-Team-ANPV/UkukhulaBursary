@@ -113,11 +113,8 @@ export default class extends AbstractViews {
  async getJS(){
      getUniversityData(1)
      const storedData = JSON.parse(sessionStorage.getItem("universityData"));
-      console.log(storedData.students)
-
-
-        const universityStudents = document.querySelector(".students");
-        const fundedStudents = document.querySelector(".funded");
+     const universityStudents = document.querySelector(".students");
+     const fundedStudents = document.querySelector(".funded");
 
         if(storedData){
           fundedStudents.textContent = getFundedStudents(storedData.students);
