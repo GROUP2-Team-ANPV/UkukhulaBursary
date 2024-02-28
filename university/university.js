@@ -1,3 +1,17 @@
+import getAllProvinces from "./get_provinces.js";
+const provinceSelect = document.querySelector("#province");
+
+getAllProvinces("http://localhost:5263/api/ConstantTables/GetProvinces").then(
+  (provinces) => {
+    for (const province of provinces) {
+      const option = document.createElement("option");
+      option.value = province.id;
+      option.textContent = province.name;
+      provinceSelect.appendChild(option);
+    }
+  }
+);
+
 const universityForm = document.querySelector(".university-form");
 
 universityForm.addEventListener("submit", handleAddUniversity);
