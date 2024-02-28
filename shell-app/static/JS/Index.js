@@ -10,10 +10,13 @@ const navigateTo = (url) => {
 
 const router = async () => {
   const routes = [
+    { path: "/", view: UniversityDashboardView },
     { path: "/universityappliction", view: UniversityApplicationView },
     { path: "/studentapplication", view: StudentApplicationView },
     { path: "/login", view: LoginView },
-    { path: "/", view: UniversityDashboardView }
+    
+    
+  
   ];
 
   // Test each route for potential match
@@ -33,34 +36,52 @@ const router = async () => {
     };
   }
   const view = new match.route.view();
+  const allSideMenu = document.querySelectorAll("#sidebar  li a");
+
+
+allSideMenu.forEach((item) => {
+  const li = item.parentElement;
+  const url = window.location.href.toString()
+  const aurl =item.getAttribute("href").toString()
+
+  
+  if((url.includes(aurl) && aurl.includes(url.slice(url.length-1)) )){
+    
+    li.classList.add("active")
+    item.firstChild
+  }else{
+    li.classList.remove("active");
+  }
+  
+  
+ 
+});
   document.querySelector("#content").innerHTML = await view.getHtml();
+  
+
+    await view.getJS();
+
+  
+  
+  
 };
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
+
   document.body.addEventListener("click", (e) => {
     const targetLink = e.target.closest("[data-link]");
 
     if (targetLink) {
       e.preventDefault();
+     
       navigateTo(targetLink.href);
     }
   });
   router();
 });
 
-const allSideMenu = document.querySelectorAll("#sidebar .side-menu.top li a");
 
-allSideMenu.forEach((item) => {
-  const li = item.parentElement;
-
-  item.addEventListener("click", function () {
-    allSideMenu.forEach((i) => {
-      i.parentElement.classList.remove("active");
-    });
-    li.classList.add("active");
-  });
-});
 
 const menuBar = document.querySelector("#header nav .bx.bx-menu");
 const sidebar = document.getElementById("sidebar");

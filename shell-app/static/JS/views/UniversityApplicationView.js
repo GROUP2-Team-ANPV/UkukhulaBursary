@@ -1,3 +1,4 @@
+import { UniversityApplicationScript } from "../university.js";
 import AbstractViews from "./AbstractViews.js";;
 
 export default class extends AbstractViews{
@@ -5,7 +6,7 @@ export default class extends AbstractViews{
         super();
         this.setTitle("UnviersityApplication");
         this.setCSS("/static/CSS/UniversityApplication.css");
-        this.setJS("/static/JS/university.js");
+    
     }
 
     async getHtml(){
@@ -95,5 +96,8 @@ export default class extends AbstractViews{
         </button>
         </form>
     `;
+    }
+    async getJS(){
+        UniversityApplicationScript();
     }
 }

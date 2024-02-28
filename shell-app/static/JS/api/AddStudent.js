@@ -1,3 +1,4 @@
+
 const studentApplicationForm = document.querySelector(".application-form");
 
 studentApplicationForm.addEventListener("submit", handleStudentApplication);

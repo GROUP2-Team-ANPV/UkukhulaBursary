@@ -1,4 +1,5 @@
 import AbstractViews from "./AbstractViews.js";
+import { getUniversityData } from "../api/GetUniversityData.js";
 
 
 export default class extends AbstractViews {
@@ -6,7 +7,7 @@ export default class extends AbstractViews {
     super();
     this.setTitle("University DashBoard");
     this.setCSS("/static/CSS/AdminDashboard.css")
-    this.setJS("/static/JS/university_data.js")
+  
   }
   
   async getHtml() {
@@ -109,4 +110,46 @@ export default class extends AbstractViews {
        
     `;
   }
+ async getJS(){
+     getUniversityData(1)
+     const storedData = JSON.parse(sessionStorage.getItem("universityData"));
+     const universityStudents = document.querySelector(".students");
+     const fundedStudents = document.querySelector(".funded");
+
+        if(storedData){
+          fundedStudents.textContent = getFundedStudents(storedData.students);
+          renderStudents(storedData.students)
+        }
+        
+        function getFundedStudents(students) {
+          return students.filter((student) => student.applicationStatus === "Approved")
+            .length;
+        }
+
+        function renderStudents(students) {
+          students.forEach((student) => {
+            const studentItem = document.createElement("li");
+            studentItem.classList.add("student");
+            const studentName = document.createElement("h3");
+            studentName.classList.add("student__name");
+            const applicationStatus = document.createElement("p");
+            applicationStatus.classList.add(
+              "student__status",
+              student.applicationStatus.toLowerCase()
+            );
+
+            const bursaryAmount = document.createElement("p");
+            bursaryAmount.classList.add("student__amount");
+
+            studentName.textContent = `${student.firstName} ${student.lastName}`;
+            applicationStatus.textContent = student.applicationStatus;
+            bursaryAmount.textContent = `R${student.amount}`;
+            studentItem.appendChild(studentName);
+            studentItem.appendChild(applicationStatus);
+            studentItem.appendChild(bursaryAmount);
+            universityStudents.appendChild(studentItem);
+          });
+        }
+
+          }
 }
