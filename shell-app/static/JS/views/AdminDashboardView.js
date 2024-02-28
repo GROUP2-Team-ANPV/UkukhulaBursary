@@ -1,4 +1,13 @@
 import AbstractViews from "./AbstractViews.js";
+const head = document.querySelector("head");
+const script = document.createElement("script");
+const cssLink = document.createElement("link");
+script.setAttribute("src", "/static/JS/university_data.js");
+cssLink.setAttribute("rel", "stylesheet");
+cssLink.setAttribute("href", "/static/CSS/AdminDashboard.css");
+
+head.appendChild(script);
+head.appendChild(cssLink);
 
 export default class extends AbstractViews {
   constructor() {
@@ -8,8 +17,6 @@ export default class extends AbstractViews {
 
   async getHtml() {
     return `
-        <link rel="stylesheet" href="/static/CSS/AdminDashboard.css" />
-        
       <main class="innercontent">
         <section class="content__primary">
           <section class="content__students">
@@ -18,59 +25,7 @@ export default class extends AbstractViews {
               <i class="bx bx-dots-horizontal-rounded bx-md"></i>
             </header>
             <ul class="students">
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
-  
-              <li class="student">
-                <h3 class="student__name">Ndzalama Mabasa</h3>
-                <p class="student__status">Review</p>
-                <p class="student__amount">R85 000.00</p>
-              </li>
+              <!-- fetch students from the database -->
             </ul>
           </section>
         </section>
@@ -157,6 +112,7 @@ export default class extends AbstractViews {
           </section>
         </aside>
       </main>
+      <script src="/university_data.js" type="module" ></script>
        
     `;
   }
