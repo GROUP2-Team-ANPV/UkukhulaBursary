@@ -1,5 +1,5 @@
-import getAllDepartments from "../helpers/get_constants.js";
-import getAllProvinces from "./get_provinces.js";
+import getAllDepartments from "../helpers/get_departments.js";
+import getAllProvinces from "../helpers/get_provinces.js";
 
 const provinceSelect = document.querySelector("#province");
 const departmentSelect = document.querySelector("#department");
