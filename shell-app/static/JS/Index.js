@@ -34,15 +34,23 @@ const router = async () => {
   }
   const view = new match.route.view();
   document.querySelector("#content").innerHTML = await view.getHtml();
+  
+
+    await view.getJS();
+  
+  
+  
 };
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
+  console.log('DOMContentLoaded event triggered');
   document.body.addEventListener("click", (e) => {
     const targetLink = e.target.closest("[data-link]");
 
     if (targetLink) {
       e.preventDefault();
+     
       navigateTo(targetLink.href);
     }
   });

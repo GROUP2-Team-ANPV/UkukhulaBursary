@@ -1,11 +1,12 @@
+import { LoginScript } from "../Login.js";
 import AbstractViews from "./AbstractViews.js";
 
 export default class extends AbstractViews{
     constructor(){
         super();
         this.setTitle("Login");
-        this.setCSS("/static/CSS/Login.css");;
-        this.setJS("/static/JS/Login.js")
+        this.setCSS("/static/CSS/Login.css");
+        
     }
 
     async getHtml(){
@@ -33,5 +34,9 @@ export default class extends AbstractViews{
             
        
     `;
+    }
+
+    async getJS(){
+      LoginScript();
     }
 }
