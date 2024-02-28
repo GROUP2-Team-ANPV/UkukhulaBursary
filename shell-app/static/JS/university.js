@@ -1,3 +1,4 @@
+console.log("Script loaded: AdUniverdity.js");
 const universityForm = document.querySelector(".university-form");
 
 universityForm.addEventListener("submit", handleAddUniversity);

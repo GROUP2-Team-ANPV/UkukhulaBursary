@@ -1,20 +1,14 @@
 import AbstractViews from "./AbstractViews.js";
-const head = document.querySelector("head");
-const script = document.createElement("script");
-const cssLink = document.createElement("link");
-script.setAttribute("src", "/static/JS/university_data.js");
-cssLink.setAttribute("rel", "stylesheet");
-cssLink.setAttribute("href", "/static/CSS/AdminDashboard.css");
 
-head.appendChild(script);
-head.appendChild(cssLink);
 
 export default class extends AbstractViews {
   constructor() {
     super();
-    this.setTitle("Login");
+    this.setTitle("University DashBoard");
+    this.setCSS("/static/CSS/AdminDashboard.css")
+    this.setJS("/static/JS/university_data.js")
   }
-
+  
   async getHtml() {
     return `
       <main class="innercontent">
@@ -112,7 +106,6 @@ export default class extends AbstractViews {
           </section>
         </aside>
       </main>
-      <script src="/university_data.js" type="module" ></script>
        
     `;
   }
