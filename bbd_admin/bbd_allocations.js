@@ -1,39 +1,16 @@
+import getBBDFunds from "../helpers/get_bbd_funds.js";
+
 const allocationYear = document.getElementById("year");
-let allocations = null;
 const usedAmount = document.querySelector(".used");
+const funds = document.querySelector(".funds__balance");
 
-async function getBBDAllocationsData(url) {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
+async function getBBDAllocationsData() {
+  const allocations = await getBBDFunds(
+    "http://localhost:5263/api/BBDAdmin/GetAllBBDFunds"
+  );
+
+  return { allocations };
 }
-
-allocationYear.addEventListener("change", () => {
-  const getDisplayData = allocations.find(
-    (allocation) => allocation.year == allocationYear.value
-  );
-
-  usedAmount.textContent = formatMoney(
-    getDisplayData.budget - getDisplayData.remainingBudget
-  );
-  displayFunds(getDisplayData);
-});
-
-getBBDAllocationsData("http://localhost:5263/api/BBDAdmin/GetAllBBDFunds").then(
-  (data) => {
-    allocations = data;
-    populateAllocationsSelect(data.sort((a, b) => b.year - a.year));
-
-    const latestYearData = data.find(
-      (allocation) => allocation.year == allocationYear.value
-    );
-
-    usedAmount.textContent = formatMoney(
-      latestYearData.budget - latestYearData.remainingBudget
-    );
-    displayFunds(latestYearData);
-  }
-);
 
 function populateAllocationsSelect(data) {
   data.forEach((allocation) => {
@@ -43,8 +20,6 @@ function populateAllocationsSelect(data) {
     allocationYear.appendChild(option);
   });
 }
-
-const funds = document.querySelector(".funds__balance");
 
 function displayFunds(data) {
   funds.textContent = formatMoney(data.budget);
@@ -56,3 +31,27 @@ function formatMoney(amount) {
     currency: "ZAR",
   });
 }
+
+function getSelectedYearData(year, allocations) {
+  return allocations.find((allocation) => allocation.year == year);
+}
+
+getBBDAllocationsData().then(({ allocations }) => {
+  populateAllocationsSelect(allocations.sort((a, b) => b.year - a.year));
+
+  let selectedYearData = getSelectedYearData(allocationYear.value, allocations);
+
+  usedAmount.textContent = formatMoney(
+    selectedYearData.budget - selectedYearData.remainingBudget
+  );
+  displayFunds(selectedYearData);
+
+  allocationYear.addEventListener("change", (event) => {
+    selectedYearData = getSelectedYearData(event.target.value, allocations);
+
+    usedAmount.textContent = formatMoney(
+      selectedYearData.budget - selectedYearData.remainingBudget
+    );
+    displayFunds(selectedYearData);
+  });
+});
