@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./university_data.js" defer></script>
     <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../list.css">
+    <link rel="stylesheet" href="../list.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -22,17 +23,9 @@
             <h2>Students</h2>
             <i class="bx bx-dots-horizontal-rounded bx-md"></i>
           </header>
-          <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>View Application</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="studentTableBody">
-            </tbody>
-        </table>
+          <ul class="students">
+            <!-- students will be fetched from the server -->
+          </ul>
         </section>
       </section>
 
@@ -44,17 +37,21 @@
           <section class="funds">
             <section>
               <p>Balance</p>
-              <p class="funds__balance">R756 000.00</p>
+              <p class="funds__balance">
+                <!-- Get balance from the server -->
+              </p>
             </section>
 
             <section class="funds_usage">
               <section class="funds__used">
                 <p>Total Used</p>
-                <p class="used">R44 000.00</p>
+                <p class="used">
+                  <!-- Get total used from the server -->
+                </p>
               </section>
               <section class="funds__used">
-                <p>Students</p>
-                <p class="funded">3</p>
+                <p>Students Funded</p>
+                <p class="funded"></p>
               </section>
             </section>
           </section>
@@ -65,94 +62,10 @@
             <i class="bx bx-dots-horizontal-rounded bx-md"></i>
           </header>
           <ul class="hods">
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
+            <!-- HODs will be fetched from the server -->
           </ul>
         </section>
       </aside>
     </main>
-
-    <script>
-      fetch('http://localhost:5263/api/UniversityAdmin/GetAllFundRequests')
-          .then(response => response.json())
-          .then(data => {
-              const studentTableBody = document.getElementById('studentTableBody');
-
-              
-              data.forEach(student => {
-                 
-                  const row = document.createElement('tr');
-
-                  
-                  const studentname = document.createElement('td');
-                  studentname.textContent = student.firstName +' ' + student.lastName;
-                  row.appendChild(studentname);
-
-                  const viewApplicationCell = document.createElement('td');
-                  const viewApplicationLink = document.createElement('a');
-                  viewApplicationLink.href = `viewApplication.html?studentID=${student.studentID}`;
-                  viewApplicationLink.textContent = 'View Application';
-                  viewApplicationCell.appendChild(viewApplicationLink);
-                  row.appendChild(viewApplicationCell);
-
-                  const statusCell = document.createElement('td');
-                  statusCell.textContent = student.status;
-                  row.appendChild(statusCell);
-
-                  // Append the row to the table body
-                  studentTableBody.appendChild(row);
-              });
-          })
-          .catch(error => {
-              console.error('Error fetching application details:', error);
-          });
-  </script>
   </body>
 </html>

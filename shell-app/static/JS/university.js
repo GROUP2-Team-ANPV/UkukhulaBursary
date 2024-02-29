@@ -1,3 +1,5 @@
+export function UniversityApplicationScript(){
+  console.log("Script loaded: AdUniverdity.js");
 const universityForm = document.querySelector(".university-form");
 
 universityForm.addEventListener("submit", handleAddUniversity);
@@ -22,3 +24,5 @@ async function handleAddUniversity(event) {
     body: JSON.stringify(universityData),
   });
 }
+}
+

@@ -1,0 +1,75 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url(26.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+form {
+  width: 400px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+input[type="file"] {
+  display: block;
+  margin: 5px 0;
+}
+
+input[type="file"]::file-selector-button {
+  padding: 6px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+input[type="submit"] {
+  display: block;
+  margin: 20px auto;
+  font-size: 16px;
+  background-color: rgb(207, 46, 46);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: red;
+}
+
+.required-label {
+  color: red;
+  font-style: italic;
+  font-weight: 500;
+  font-size: small;
+}
+
+@media (max-width: 500px) {
+  form {
+    width: 90%;
+  }
+  label {
+    margin-top: 12px;
+  }
+  
+}

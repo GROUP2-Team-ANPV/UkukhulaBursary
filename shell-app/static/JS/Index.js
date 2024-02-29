@@ -1,16 +1,22 @@
-import login_view from "./views/login_view.js";
-import university_application_view from "./views/university_application_view.js";
+import LoginView from "./views/LoginView.js";
+import UniversityApplicationView from "./views/UniversityApplicationView.js";
+import StudentApplicationView from "./views/StudentApplicationView.js";
+import UniversityDashboardView from "./views/UniversityDashboardView.js";
 
 const navigateTo = (url) => {
-  history.pushState(null, null, url);
+  history.replaceState(null, null, url);
   router();
 };
 
 const router = async () => {
   const routes = [
-    { path: "/", view: university_application_view },
-    // {path: "/login", view:login_view},
-    // {path: "/settings", view:(() => console.log("Viewing Settings"))}
+    { path: "/", view: UniversityDashboardView },
+    { path: "/universityappliction", view: UniversityApplicationView },
+    { path: "/studentapplication", view: StudentApplicationView },
+    { path: "/login", view: LoginView },
+    
+    
+  
   ];
 
   // Test each route for potential match
@@ -30,85 +36,71 @@ const router = async () => {
     };
   }
   const view = new match.route.view();
-  document.querySelector("#main-content").innerHTML = await view.getHtml();
+  const allSideMenu = document.querySelectorAll("#sidebar  li a");
+
+
+allSideMenu.forEach((item) => {
+  const li = item.parentElement;
+  const url = window.location.href.toString()
+  const aurl =item.getAttribute("href").toString()
+
+  
+  if((url.includes(aurl) && aurl.includes(url.slice(url.length-1)) )){
+    
+    li.classList.add("active")
+    item.firstChild
+  }else{
+    li.classList.remove("active");
+  }
+  
+  
+ 
+});
+
+  document.querySelector("#content").innerHTML= await view.getHtml();
+  
+
+    await view.getJS();
+
+  
+  
+  
 };
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
-  let menuIcon = document.querySelector("#menu_icon");
-  let menuIconClose = document.querySelector("#menu_icon_close");
-  let navbar = document.querySelector(".sidebar");
 
-  menuIcon.addEventListener("click", () => {
-    menuIcon.style.display = "none";
-    navbar.style.display = "block";
-    menuIconClose.style.display = "flex";
-  });
-
-  menuIconClose.addEventListener("click", () => {
-    menuIconClose.style.display = "none";
-    navbar.style.display = "none";
-    menuIcon.style.display = "flex";
-  });
   document.body.addEventListener("click", (e) => {
-    if (e.target.matches("[data-link]")) {
+    const targetLink = e.target.closest("[data-link]");
+
+    if (targetLink) {
       e.preventDefault();
-      navigateTo(e.target.href);
+     
+      navigateTo(targetLink.href);
     }
   });
   router();
 });
 
-const allSideMenu = document.querySelectorAll("#sidebar .side-menu.top li a");
 
-allSideMenu.forEach((item) => {
-  const li = item.parentElement;
 
-  item.addEventListener("click", function () {
-    allSideMenu.forEach((i) => {
-      i.parentElement.classList.remove("active");
-    });
-    li.classList.add("active");
-  });
-});
-
-const menuBar = document.querySelector("#content nav .bx.bx-menu");
+const menuBar = document.querySelector("#header nav .bx.bx-menu");
 const sidebar = document.getElementById("sidebar");
 
 menuBar.addEventListener("click", function () {
   sidebar.classList.toggle("hide");
 });
 
-const searchButton = document.querySelector(
-  "#content nav form .form-input button"
-);
-const searchButtonIcon = document.querySelector(
-  "#content nav form .form-input button .bx"
-);
-const searchForm = document.querySelector("#content nav form");
 
-searchButton.addEventListener("click", function (e) {
-  if (window.innerWidth < 576) {
-    e.preventDefault();
-    searchForm.classList.toggle("show");
-    if (searchForm.classList.contains("show")) {
-      searchButtonIcon.classList.replace("bx-search", "bx-x");
-    } else {
-      searchButtonIcon.classList.replace("bx-x", "bx-search");
-    }
-  }
-});
 
-if (window.innerWidth < 768) {
-  sidebar.classList.add("hide");
-} else if (window.innerWidth > 576) {
-  searchButtonIcon.classList.replace("bx-x", "bx-search");
-  searchForm.classList.remove("show");
-}
 
-window.addEventListener("resize", function () {
-  if (this.innerWidth > 576) {
-    searchButtonIcon.classList.replace("bx-x", "bx-search");
-    searchForm.classList.remove("show");
-  }
-});
+
+const head = document.querySelector("head");
+  const script = document.createElement("script");
+    script.setAttribute("id" ,"content-script")
+    const cssLink = document.createElement("link");
+    cssLink.setAttribute("id", "content-css")
+    cssLink.setAttribute("rel", "stylesheet"); 
+    head.appendChild(script);
+    head.appendChild(cssLink);
+
