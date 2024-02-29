@@ -48,6 +48,10 @@ button {
   cursor: pointer;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 /* Navigation */
 .main {
   display: grid;
@@ -150,6 +154,8 @@ button {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+
+  cursor: pointer;
 }
 
 .student,
@@ -202,7 +208,7 @@ button {
 }
 
 .funds__balance {
-  font-size: 2.75rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--main-color);
 }
@@ -227,6 +233,87 @@ button {
   color: var(--light-color);
 }
 
+/* Student info modal */
+.student__info-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--main-color-transparent);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.student__info-modal.show {
+  transform: scale(1);
+}
+
+.student__info-container {
+  position: relative;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--light-color);
+
+  width: 90%;
+  max-width: 600px;
+  transform: translateY(-150%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.3s;
+}
+
+.student__info-modal.show .student__info-container {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  background-color: var(--light-color);
+  box-shadow: 0 0 0.5rem var(--secondary-color);
+  border-radius: 50%;
+}
+
+.student__info {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  /* gap: 1rem; */
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+
+  border-bottom: 1px solid var(--secondary-color-transparent);
+}
+
+.name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.label {
+  opacity: 0.7;
+}
+
+.value {
+  font-size: 1rem;
+  font-weight: 600;
+}
 /* Application Form */
 .form {
   display: flex;
