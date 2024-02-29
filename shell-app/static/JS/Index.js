@@ -58,9 +58,7 @@ allSideMenu.forEach((item) => {
 });
 
   document.querySelector("#content").innerHTML= await view.getHtml();
-  
-
-    await view.getJS();
+  await view.getJS();
 
   
   
