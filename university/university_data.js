@@ -46,12 +46,14 @@ function getFundedStudents(students) {
     .length;
 }
 
+const documentBody = document.querySelector("body");
 const studentInfoModal = document.querySelector(".student__info-modal");
 const closeStudentInfoModal = document.querySelector(".close-button");
 
 closeStudentInfoModal.addEventListener("click", () => {
   studentInfoModal.style.transitionDelay = "1s";
   studentInfoModal.classList.remove("show");
+  documentBody.classList.remove("no-scroll");
 });
 
 function renderStudents(students) {
@@ -82,6 +84,8 @@ function renderStudents(students) {
       studentInfoModal.style.transitionDelay = "0s";
       populateStudentModal(student);
       studentInfoModal.classList.add("show");
+      window.scrollTo(0, 0);
+      documentBody.classList.add("no-scroll");
     });
   });
 }
