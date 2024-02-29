@@ -111,15 +111,18 @@ export default class extends AbstractViews {
     `;
   }
  async getJS(){
-     getUniversityData(1)
-     const storedData = JSON.parse(sessionStorage.getItem("universityData"));
+
+    
+     getUniversityData(1).then((data) => {
+      renderStudents(data.students);
+      fundedStudents.textContent = getFundedStudents(data.students);
+      
+    });
+    
+    const storedData = JSON.parse(sessionStorage.getItem("universityData"));
      const universityStudents = document.querySelector(".students");
      const fundedStudents = document.querySelector(".funded");
 
-        if(storedData){
-          fundedStudents.textContent = getFundedStudents(storedData.students);
-          renderStudents(storedData.students)
-        }
         
         function getFundedStudents(students) {
           return students.filter((student) => student.applicationStatus === "Approved")
