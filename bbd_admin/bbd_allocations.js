@@ -3,6 +3,7 @@ import getBBDFunds from "../helpers/get_bbd_funds.js";
 const allocationYear = document.getElementById("year");
 const usedAmount = document.querySelector(".used");
 const funds = document.querySelector(".funds__balance");
+const fundedUniversitiesCount = document.querySelector(".funded");
 
 async function getBBDAllocationsData() {
   const allocations = await getBBDFunds(
@@ -23,6 +24,7 @@ function populateAllocationsSelect(data) {
 
 function displayFunds(data) {
   funds.textContent = formatMoney(data.budget);
+  fundedUniversitiesCount.textContent = data.fundedUniversities;
 }
 
 function formatMoney(amount) {
