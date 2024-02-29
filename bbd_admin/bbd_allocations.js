@@ -1,5 +1,6 @@
 const allocationYear = document.getElementById("year");
 let allocations = null;
+const usedAmount = document.querySelector(".used");
 
 async function getBBDAllocationsData(url) {
   const response = await fetch(url);
@@ -12,6 +13,9 @@ allocationYear.addEventListener("change", () => {
     (allocation) => allocation.year == allocationYear.value
   );
 
+  usedAmount.textContent = formatMoney(
+    getDisplayData.budget - getDisplayData.remainingBudget
+  );
   displayFunds(getDisplayData);
 });
 
@@ -24,6 +28,9 @@ getBBDAllocationsData("http://localhost:5263/api/BBDAdmin/GetAllBBDFunds").then(
       (allocation) => allocation.year == allocationYear.value
     );
 
+    usedAmount.textContent = formatMoney(
+      latestYearData.budget - latestYearData.remainingBudget
+    );
     displayFunds(latestYearData);
   }
 );
