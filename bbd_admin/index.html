@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../list.css">
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -17,26 +18,24 @@
     <main class="content">
       <section class="content__primary">
         <section class="content__students">
+           <h2 style="font-size: 35px;">university Information</h1> 
           <header class="content__header">
-            <h1>university Information</h1>
-            <table id="universityTable">
-              <thead>
-                <tr>
-                    <th>University Name</th>
-                    <th>Province Name</th>
-                    <th>Contact Person</th>
-                    <th>Email</th>
-                    <th>phone Number</th>
+           
+            <!-- <i class="bx bx-dots-horizontal-rounded bx-md"></i> -->
 
-                </tr>
-         </thead>
-        <tbody id="UniversityTable">
-            
-        </tbody>
-    </table>
+            <table id="universityTable">
+                <thead>
+                  <tr>
+                      <th>University Name</th>
+                      <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="UniversityTable">  
+                </tbody>
+            </table>
         </section>
       </section>
-
+      <i class='bx bx-plus' style='color: red; font-size: 24px;'></i>
       <aside class="content__secondary">
         <section class="content__funds">
           <header class="content__header">
@@ -44,18 +43,21 @@
           </header>
           <section class="funds">
             <section>
-              <p>Balance | 2024</p>
-              <p class="funds__balance">R2 056 000.00</p>
+              <p id="year">Balance </p>
+              <p class="funds__balance"></p>
             </section>
 
             <section class="funds_usage">
               <section class="funds__used">
+                <p>Remaining Amount</p>
+                <p class="remaining"></p>
                 <p>Allocated</p>
                 <p class="used">R44 000.00</p>
+                
               </section>
               <section class="funds__used">
                 <p>Universities</p>
-                <p class="funded">3</p>
+                <p class="funded"></p>
               </section>
             </section>
           </section>
@@ -66,52 +68,45 @@
             <i class="bx bx-dots-horizontal-rounded bx-md"></i>
           </header>
           <ul class="hods">
+            
+
             <li class="hod">
-              <h3 class="student__name">University Of Limpopo</h3>
-              <p class="department">Limpopo</p>
+              <h3 class="student__name">Universities</h3>
+                <ul>
+                    <li>Number of Universities</li>
+                </ul>
+              </p>
+            </li>
+
+            <li class="hod">
+              
+              <p class="department">applications  Information</p>
               <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >contact person</a
+                <ul>
+                    <li>Number Approved</li>
+                    <li>Number of rejected</li>
+                    <li>Number of Pending</li>
+                </ul>
+                >
+              </p>
+            </li>
+
+            <li class="hod">
+              <h3 class="student__name">Add University</h3>
+              <p class="department">viewStudents</p>
+              <p class="email">
+                <a href="/universityApplications/applicationreview.html"
+                  >link</a
                 >
               </p>
             </li>
 
             <li class="hod">
               <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
+              <p class="department">History</p>
               <p class="email">
                 <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
+                  >history link</a
                 >
               </p>
             </li>
@@ -119,5 +114,55 @@
         </section>
       </aside>
     </main>
+    <script>
+      window.onload = function() {
+          fetch('http://localhost:5263/api/UniversityAdmin/GetUniversityAmount')
+          .then(response => response.json())
+          .then(data => {
+              populateTable(data);
+          })
+          .catch(error => console.error('Error fetching data:', error));
+      };
+      
+      function populateTable(data) {
+          let tableBody = document.getElementById('UniversityTable');
+          tableBody.innerHTML = ''; 
+      
+          data.forEach(university => {
+              let row = tableBody.insertRow();
+
+              row.insertCell().textContent = university.universityName;
+              row.insertCell().textContent = university.amount;
+              row.insertcell().textContent = count(university.universityName)
+
+          });
+
+
+      }
+
+
+      let currentIndex = 0;
+   
+      const studentId = window.location.href.substring(window.location.href.lastIndexOf("=") + 1);
+
+      fetch(`http://localhost:5263/api/BBDAdmin/GetBBDTotalAmount?Year=${year}`)
+          .then(response => response.json())
+          .then(data => {
+            displayStudent(data)
+          })
+          .catch(error => {
+              console.error('Error fetching application details:', error);
+          });
+
+      function displayStudent(data) {
+          const student = data
+          document.getElementById('Year').value = student.year;
+          document.getElementById('funds__Balance').value = student.budget;
+          document.getElementById('remaining').value = student.remainingBudget;
+          document.getElementById('funded').value = student.uniNumber;
+          
+          
+      }
+      </script>
   </body>
 </html>
