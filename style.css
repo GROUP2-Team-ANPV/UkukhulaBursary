@@ -314,6 +314,25 @@ button {
   font-size: 1rem;
   font-weight: 600;
 }
+
+/* BBD Dashboard */
+.budget {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#year {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--light-color);
+}
+
+#year option {
+  background-color: var(--main-color);
+  color: var(--light-color);
+}
 /* Application Form */
 .form {
   display: flex;
