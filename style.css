@@ -316,17 +316,12 @@ button {
 }
 
 /* BBD Dashboard */
-.budget {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
 #year {
   border: none;
   outline: none;
   background-color: transparent;
   color: var(--light-color);
+  font-size: 1.25rem;
 }
 
 #year option {
