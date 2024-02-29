@@ -13,8 +13,9 @@ export function UniversityApplicationScript(){
     for (const [key, value] of formData) {
       universityData[key] = value;
     }
-    console.log(universityData)
+    
     await AddUniversity(universityData)
+    universityForm.reset();
 }
 }
 

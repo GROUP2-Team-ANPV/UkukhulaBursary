@@ -16,6 +16,7 @@ export async function AddUniversity(university){
     
         const data = await response.statusText;
         console.log("Response data:", data);
+        
       } catch (error) {
         console.error("Fetch error:", error);
       }

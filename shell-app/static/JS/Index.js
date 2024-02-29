@@ -94,11 +94,9 @@ menuBar.addEventListener("click", function () {
 
 
 const head = document.querySelector("head");
-  const script = document.createElement("script");
-    script.setAttribute("id" ,"content-script")
+  
     const cssLink = document.createElement("link");
     cssLink.setAttribute("id", "content-css")
     cssLink.setAttribute("rel", "stylesheet"); 
-    head.appendChild(script);
     head.appendChild(cssLink);
 

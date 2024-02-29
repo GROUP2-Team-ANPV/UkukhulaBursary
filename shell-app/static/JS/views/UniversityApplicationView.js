@@ -1,5 +1,5 @@
 import { UniversityApplicationScript } from "../UniversityApplication.js";
-import AbstractViews from "./AbstractViews.js";;
+import AbstractViews from "./AbstractViews.js";
 
 export default class extends AbstractViews{
     constructor(){
