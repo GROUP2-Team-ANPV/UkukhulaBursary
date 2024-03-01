@@ -60,7 +60,7 @@ body {
   width: 280px;
   height: 100%;
   background: var(--main-color);
-  z-index: 2000;
+  z-index: 2;
   font-family: var(--lato);
   transition: 0.3s ease;
   overflow-x: hidden;
@@ -91,7 +91,7 @@ body {
   top: 0;
   left: 0;
   background: var(--main-color);
-  z-index: 500;
+  z-index: 1;
   padding-bottom: 20px;
   box-sizing: content-box;
 }
@@ -166,8 +166,6 @@ body {
   transition: width 0.3s ease;
 }
 
-
-
 #sidebar .side-menu.top li a:hover {
   color: var(--secondary-color);
 }
@@ -200,7 +198,7 @@ body {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 3;
 }
 
 #header nav a {
