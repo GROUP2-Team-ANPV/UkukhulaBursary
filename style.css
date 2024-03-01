@@ -97,6 +97,11 @@ button {
   grid-area: main;
 }
 
+.content__primary,
+.content__secondary {
+  max-height: 600px;
+}
+
 .content__primary {
   flex: 1.5 200px;
   display: flex;
@@ -114,7 +119,6 @@ button {
 .content__hods {
   flex: 1;
   border-radius: 1rem;
-  max-height: 600px;
   overflow: auto;
 }
 
@@ -173,8 +177,13 @@ button {
 
 .university__name,
 .university__contact,
-.university__email {
+.university__email,
+.student__name,
+.student__gender,
+.student__race,
+.student__university {
   flex: 1 1 200px;
+  justify-self: flex-start;
 }
 
 .student:nth-child(even) {
@@ -429,7 +438,11 @@ button {
 
   .university__name,
   .university__contact,
-  .university__email {
-    flex: 1 1 0;
+  .university__email,
+  .student__name,
+  .student__gender,
+  .student__race,
+  .student__university {
+    flex-basis: 0;
   }
 }
