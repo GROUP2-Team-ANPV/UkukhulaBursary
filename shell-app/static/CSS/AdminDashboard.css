@@ -1,27 +1,22 @@
 /* Main Content */
-#content {
-  margin: 0 auto;
-  /* background-image: url("../images/background.webp"); */
-  gap: 1rem;
-  color: var(--light-color);
-}
-
-.innercontent {
+.content {
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
   margin: 0 auto;
-  gap: 1.5rem;
-}
-
-.content__primary {
-  flex: 1.5 200px;
-  display: flex;
+  gap: 1rem;
+  color: var(--light-color);
+  grid-area: main;
 }
 
 .content__primary,
 .content__secondary {
   max-height: 600px;
+}
+
+.content__primary {
+  flex: 1.5 200px;
+  display: flex;
 }
 
 .content__secondary {
@@ -70,27 +65,48 @@
 .department {
   font-weight: 600;
 }
+
 .students,
-.hods {
+.hods,
+.universities {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+
+  cursor: pointer;
 }
 
 .student,
-.hod {
+.hod,
+.university {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0.5rem;
   border-radius: 0.5rem;
 }
 
+.university__name,
+.university__contact,
+.university__email,
+.student__name,
+.student__gender,
+.student__race,
+.student__status,
+.student__amount,
+.student__university {
+  flex: 1 1 200px;
+  justify-self: flex-start;
+}
+
 .student:nth-child(even) {
   background-color: var(--main-color-transparent);
 }
 
-.hod:nth-child(even) {
+.hod:nth-child(even),
+.university:nth-child(even) {
   background-color: var(--light-transparent);
 }
 
@@ -115,6 +131,14 @@
   border-radius: 0.5rem;
 }
 
+.student__status.approved {
+  background-color: var(--success);
+}
+
+.student__status.rejected {
+  background-color: var(--danger);
+}
+
 .funds {
   display: flex;
   flex-direction: column;
@@ -123,7 +147,7 @@
 }
 
 .funds__balance {
-  font-size: 2.75rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--main-color);
 }
@@ -148,84 +172,117 @@
   color: var(--light-color);
 }
 
-/* Application Form */
-.form {
-  display: flex;
-  flex-direction: column;
-  color: var(--light-color);
+/* Student info modal */
+.student__info-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 100vw;
   background-color: var(--main-color-transparent);
-  padding: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.student__info-modal.show {
+  transform: scale(1);
+  z-index: 10;
+}
+
+.student__info-container {
+  position: relative;
+  padding: 0 1rem;
   border-radius: 1rem;
+  background-color: var(--light-color);
 
-  width: 90vw;
-  max-width: 700px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow: auto;
+  transform: translateY(-150%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.3s;
 }
 
-.form__header {
-  text-align: center;
-  margin-bottom: 2rem;
+.student__info-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--light-color);
+  z-index: 20;
+  padding-top: 1rem;
 }
 
-.form__controls-container {
+.student__info-modal.show .student__info-container {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  background-color: var(--light-color);
+  box-shadow: 0 0 0.5rem var(--secondary-color);
+  border-radius: 50%;
+}
+
+.student__info {
   display: flex;
   flex-direction: column;
-
-  gap: 1.5rem;
+  overflow: auto;
+  /* gap: 1rem; */
 }
 
-.form__details-container {
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  border-color: var(--dark-color);
-  outline: 0;
-
+.info {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
 
-  gap: 2rem;
+  border-bottom: 1px solid var(--secondary-color-transparent);
 }
 
-.form__details-header {
-  font-weight: bold;
-  padding: 0.25rem 0.5rem;
-  background-color: var(--secondary-color);
-  border-radius: 0.5rem;
+.name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.form__controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+.label {
+  opacity: 0.7;
 }
 
-.form__control {
-  flex: 1 200px;
-  display: flex;
-  flex-direction: column;
-
-  gap: 0.5rem;
+.value {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-.form__control input,
-.form__control select,
-.form__control textarea {
-  padding: 0.75rem;
-  border: 0;
-  border-radius: 0.25rem;
-
+/* BBD Dashboard */
+#year {
+  border: none;
   outline: none;
+  background-color: transparent;
+  color: var(--light-color);
+  font-size: 1.25rem;
 }
 
-.form__submit {
-  margin: 2rem 0;
-  background-color: transparent;
-  border: 0.1rem solid var(--light-color);
+#year option {
+  background-color: var(--main-color);
   color: var(--light-color);
 }
 
 @media screen and (width <= 768px) {
   .student,
-  .hod {
+  .hod,
+  .university {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
@@ -233,5 +290,17 @@
 
   .content__secondary {
     order: -1;
+  }
+
+  .university__name,
+  .university__contact,
+  .university__email,
+  .student__name,
+  .student__gender,
+  .student__race,
+  .student__status,
+  .student__amount,
+  .student__university {
+    flex-basis: 0;
   }
 }
