@@ -1,4 +1,4 @@
-import LoginView from "./views/LoginView.js";
+//import LoginView from "./views/LoginView.js";
 import UniversityApplicationView from "./views/UniversityApplicationView.js";
 import StudentApplicationView from "./views/StudentApplicationView.js";
 import UniversityDashboardView from "./views/UniversityDashboardView.js";
@@ -13,7 +13,7 @@ const router = async () => {
     { path: "/", view: UniversityDashboardView },
     { path: "/universityappliction", view: UniversityApplicationView },
     { path: "/studentapplication", view: StudentApplicationView },
-    { path: "/login", view: LoginView },
+   // { path: "/login", view: LoginView },
     
     
   
