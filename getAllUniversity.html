@@ -43,6 +43,7 @@ function populateTable(data) {
     data.forEach(university => {
         let row = tableBody.insertRow();
         row.insertCell().textContent = university.universityName;
+        
         row.insertCell().textContent = university.provinceName;
         row.insertCell().textContent = university.contactPerson;
         row.insertCell().textContent = university.email;

@@ -97,6 +97,11 @@ button {
   grid-area: main;
 }
 
+.content__primary,
+.content__secondary {
+  max-height: 600px;
+}
+
 .content__primary {
   flex: 1.5 200px;
   display: flex;
@@ -114,7 +119,6 @@ button {
 .content__hods {
   flex: 1;
   border-radius: 1rem;
-  max-height: 600px;
   overflow: auto;
 }
 
@@ -150,7 +154,8 @@ button {
   font-weight: 600;
 }
 .students,
-.hods {
+.hods,
+.universities {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -159,19 +164,34 @@ button {
 }
 
 .student,
-.hod {
+.hod,
+.university {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0.5rem;
   border-radius: 0.5rem;
 }
 
+.university__name,
+.university__contact,
+.university__email,
+.student__name,
+.student__gender,
+.student__race,
+.student__university {
+  flex: 1 1 200px;
+  justify-self: flex-start;
+}
+
 .student:nth-child(even) {
   background-color: var(--main-color-transparent);
 }
 
-.hod:nth-child(even) {
+.hod:nth-child(even),
+.university:nth-child(even) {
   background-color: var(--light-transparent);
 }
 
@@ -314,6 +334,20 @@ button {
   font-size: 1rem;
   font-weight: 600;
 }
+
+/* BBD Dashboard */
+#year {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--light-color);
+  font-size: 1.25rem;
+}
+
+#year option {
+  background-color: var(--main-color);
+  color: var(--light-color);
+}
 /* Application Form */
 .form {
   display: flex;
@@ -391,7 +425,8 @@ button {
 
 @media screen and (width <= 768px) {
   .student,
-  .hod {
+  .hod,
+  .university {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
@@ -399,5 +434,15 @@ button {
 
   .content__secondary {
     order: -1;
+  }
+
+  .university__name,
+  .university__contact,
+  .university__email,
+  .student__name,
+  .student__gender,
+  .student__race,
+  .student__university {
+    flex-basis: 0;
   }
 }

@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./bbd_allocations.js" type="module" defer></script>
     <link rel="stylesheet" href="../style.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <title>BBD | Admin</title>
+    <title>University</title>
   </head>
   <body>
     <header class="header">
@@ -18,22 +19,12 @@
       <section class="content__primary">
         <section class="content__students">
           <header class="content__header">
-            <h1>university Information</h1>
-            <table id="universityTable">
-              <thead>
-                <tr>
-                    <th>University Name</th>
-                    <th>Province Name</th>
-                    <th>Contact Person</th>
-                    <th>Email</th>
-                    <th>phone Number</th>
-
-                </tr>
-         </thead>
-        <tbody id="UniversityTable">
-            
-        </tbody>
-    </table>
+            <h2>Students</h2>
+            <i class="bx bx-dots-horizontal-rounded bx-md"></i>
+          </header>
+          <ul class="students">
+            <!-- students will be fetched from the server -->
+          </ul>
         </section>
       </section>
 
@@ -41,21 +32,28 @@
         <section class="content__funds">
           <header class="content__header">
             <h2>Budget</h2>
+            <select name="budget__year" id="year" title="year">
+              <!-- Get Years from the API -->
+            </select>
           </header>
           <section class="funds">
             <section>
-              <p>Balance | 2024</p>
-              <p class="funds__balance">R2 056 000.00</p>
+              <p>Total Amount</p>
+              <p class="funds__balance">
+                <!-- Get balance from the server -->
+              </p>
             </section>
 
             <section class="funds_usage">
               <section class="funds__used">
-                <p>Allocated</p>
-                <p class="used">R44 000.00</p>
+                <p>Total Used</p>
+                <p class="used">
+                  <!-- Get total used from the server -->
+                </p>
               </section>
               <section class="funds__used">
                 <p>Universities</p>
-                <p class="funded">3</p>
+                <p class="funded"></p>
               </section>
             </section>
           </section>
@@ -65,59 +63,20 @@
             <h2>Universities</h2>
             <i class="bx bx-dots-horizontal-rounded bx-md"></i>
           </header>
-          <ul class="hods">
-            <li class="hod">
-              <h3 class="student__name">University Of Limpopo</h3>
-              <p class="department">Limpopo</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >contact person</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
-
-            <li class="hod">
-              <h3 class="student__name">Ndzalama Mabasa</h3>
-              <p class="department">Department</p>
-              <p class="email">
-                <a href="mailto:ndzalama.mabasa@univen.ac.za"
-                  >ndzalama.mabasa@univen.ac.za</a
-                >
-              </p>
-            </li>
+          <ul class="universities">
+            <!-- universities will be fetched from the server -->
           </ul>
         </section>
       </aside>
     </main>
+
+    <section class="student__info-modal">
+      <section class="student__info-container">
+        <i class="bx bx-x x-circle close-button"></i>
+        <!-- populate from fetched results -->
+        <h2 class="name"></h2>
+        <ul class="student__info"></ul>
+      </section>
+    </section>
   </body>
 </html>
