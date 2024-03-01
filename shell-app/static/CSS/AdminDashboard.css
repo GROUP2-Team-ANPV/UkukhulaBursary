@@ -196,15 +196,25 @@
 
 .student__info-container {
   position: relative;
-  padding: 1rem;
+  padding: 0 1rem;
   border-radius: 1rem;
   background-color: var(--light-color);
 
   width: 90%;
   max-width: 600px;
+  max-height: 80vh;
+  overflow: auto;
   transform: translateY(-150%);
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.3s;
+}
+
+.student__info-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--light-color);
+  z-index: 20;
+  padding-top: 1rem;
 }
 
 .student__info-modal.show .student__info-container {
