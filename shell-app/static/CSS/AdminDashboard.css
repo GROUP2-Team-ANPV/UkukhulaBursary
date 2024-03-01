@@ -135,6 +135,10 @@
   background-color: var(--success);
 }
 
+.student__status.rejected {
+  background-color: var(--danger);
+}
+
 .funds {
   display: flex;
   flex-direction: column;
