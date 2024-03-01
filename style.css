@@ -150,7 +150,8 @@ button {
   font-weight: 600;
 }
 .students,
-.hods {
+.hods,
+.universities {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -159,19 +160,29 @@ button {
 }
 
 .student,
-.hod {
+.hod,
+.university {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0.5rem;
   border-radius: 0.5rem;
 }
 
+.university__name,
+.university__contact,
+.university__email {
+  flex: 1 1 200px;
+}
+
 .student:nth-child(even) {
   background-color: var(--main-color-transparent);
 }
 
-.hod:nth-child(even) {
+.hod:nth-child(even),
+.university:nth-child(even) {
   background-color: var(--light-transparent);
 }
 
@@ -405,7 +416,8 @@ button {
 
 @media screen and (width <= 768px) {
   .student,
-  .hod {
+  .hod,
+  .university {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
@@ -413,5 +425,11 @@ button {
 
   .content__secondary {
     order: -1;
+  }
+
+  .university__name,
+  .university__contact,
+  .university__email {
+    flex: 1 1 0;
   }
 }
