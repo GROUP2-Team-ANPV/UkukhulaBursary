@@ -1,5 +1,6 @@
 import { StudentapplicationScript } from "../StudentApplication.js";
 import AbstractViews from "./AbstractViews.js";
+import { getAllUniversities } from "../api/GetUniversities.js";
 
 export default class extends AbstractViews{
     constructor(){
@@ -10,11 +11,7 @@ export default class extends AbstractViews{
 
     async getHtml(){
         return `
-        
-        
-        
-        <script type="module" src="/static/JS/api/GetUniversities.js" ></script>
-        <script type="module" src="/static/JS/StudentApplication.js" ></script>
+       
         <form class="form application-form">
         <header class="form__header">
           <h2>Ukukhula Bursary</h2>
@@ -148,6 +145,16 @@ export default class extends AbstractViews{
     `;
     }
     async getJS(){
-      StudentapplicationScript();
+      const universitySelect = document.getElementById("university");
+      const universities = await getAllUniversities();
+      console.log(universities);
+
+      for (const university of universities) {
+        const option = document.createElement("option");
+        option.value = university.id;
+        option.textContent = university.universityName;
+        universitySelect.appendChild(option);
+      }
+        StudentapplicationScript();
     }
 }

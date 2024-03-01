@@ -1,25 +1,25 @@
 
-const studentApplicationForm = document.querySelector(".application-form");
+export async function AddStudent(student){
+  
+   try {
+    const response =  await fetch('http://localhost:5263/api/UniversityAdmin/StudentFundRequest', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          
+      },
+      body: JSON.stringify(student), 
+   })
+     
+    if (!response.ok) {
+         throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-studentApplicationForm.addEventListener("submit", handleStudentApplication);
-
-async function handleStudentApplication(event) {
-  event.preventDefault();
-  const StudentData = {};
-  const formData = new FormData(studentApplicationForm);
-
-  for (const [key, value] of formData) {
-    StudentData[key] = value;
-  }
-
-  const response = await fetch("http://localhost:5263/api/UniversityAdmin/StudentFundRequest", {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    headers: {
-      "Content-Type": "application/json",
-    },
-
-    body: JSON.stringify(StudentData),
-  });
+    const data = await response.statusText;
+    console.log("Response data:", data);
+  
+   } catch(error){      
+      console.error('Error:', error);
+   }
+        
 }

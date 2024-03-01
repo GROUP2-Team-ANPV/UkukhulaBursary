@@ -1,43 +1,39 @@
-export function StudentapplicationScript(){
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('applicationForm');
-    
-        form.addEventListener('submit', function (event) {
-            event.preventDefault(); 
-    
+import { AddStudent } from "./api/AddStudent.js";
+
+
+export function StudentapplicationScript() {
+  
+    console.log("page loaded")
+    try {
+      const form = document.querySelector('.application-form');
+      
+      form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
             const formData = new FormData(form);
-    
-            
-            const jsonObject = {};
+            const studentData = {};
             formData.forEach((value, key) => {
-                jsonObject[key] = value;
+            studentData[key] = value;
             });
-    
+
             
-            fetch('http://localhost:5263/api/UniversityAdmin/StudentFundRequest', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    
-                },
-                body: JSON.stringify(jsonObject), 
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json(); 
-                }
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                
-                console.log('Success:', data);
-            })
-            .catch(error => {
-                
-                console.error('Error:', error);
-            });
+
+            
+            if (studentData) {
+                await AddStudent(studentData);
+                console.log("Student added successfully");
+            }else{
+                console.log("Error adding student:", error);
+            }
+            
+            form.reset();
         });
-    });
-    
+        
+    } catch (error) {
+      console.error("Error initializing the application:", error);
+      
+    }
+  
 }
+
 
