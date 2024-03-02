@@ -1,0 +1,63 @@
+<main class="content">
+  <section class="content__primary">
+    <section class="content__students">
+      <header class="content__header">
+        <h2>Students</h2>
+        <i class="bx bx-dots-horizontal-rounded bx-md"></i>
+      </header>
+      <ul class="students">
+        <!-- students will be fetched from the server -->
+      </ul>
+    </section>
+  </section>
+
+  <aside class="content__secondary">
+    <section class="content__funds">
+      <header class="content__header">
+        <h2>Budget</h2>
+        <select name="budget__year" id="year" title="year">
+          <!-- Get Years from the API -->
+        </select>
+      </header>
+      <section class="funds">
+        <section>
+          <p>Total Amount</p>
+          <p class="funds__balance">
+            <!-- Get balance from the server -->
+          </p>
+        </section>
+
+        <section class="funds_usage">
+          <section class="funds__used">
+            <p>Total Used</p>
+            <p class="used">
+              <!-- Get total used from the server -->
+            </p>
+          </section>
+          <section class="funds__used">
+            <p>Universities</p>
+            <p class="funded"></p>
+          </section>
+        </section>
+      </section>
+    </section>
+    <section class="content__hods">
+      <header class="content__header">
+        <h2>Universities</h2>
+        <i class="bx bx-dots-horizontal-rounded bx-md"></i>
+      </header>
+      <ul class="universities">
+        <!-- universities will be fetched from the server -->
+      </ul>
+    </section>
+  </aside>
+</main>
+
+<section class="student__info-modal">
+  <section class="student__info-container">
+    <i class="bx bx-x x-circle close-button"></i>
+    <!-- populate from fetched results -->
+    <h2 class="name"></h2>
+    <ul class="student__info"></ul>
+  </section>
+</section>
