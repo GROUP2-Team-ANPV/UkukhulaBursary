@@ -50,7 +50,7 @@ function getSelectedYearData(year, allocations) {
   return allocations.find((allocation) => allocation.year == year);
 }
 
-getBBDAllocationsData().then(({ allocations, universities, students }) => {
+getBBDAllocationsData().then(({ allocations, students }) => {
   populateAllocationsSelect(allocations.sort((a, b) => b.year - a.year));
 
   let selectedYearData = getSelectedYearData(allocationYear.value, allocations);
@@ -69,35 +69,35 @@ getBBDAllocationsData().then(({ allocations, universities, students }) => {
     displayFunds(selectedYearData);
   });
 
-  renderUniversities(universities);
+  // renderUniversities(universities);
   renderStudents(students);
 });
 
-function renderUniversities(allUniversities) {
-  const universitiesList = allUniversities.map((university) => {
-    const listItem = document.createElement("li");
-    listItem.classList.add("university");
+// function renderUniversities(allUniversities) {
+//   const universitiesList = allUniversities.map((university) => {
+//     const listItem = document.createElement("li");
+//     listItem.classList.add("university");
 
-    const universityName = document.createElement("h3");
-    universityName.classList.add("university__name");
-    universityName.textContent = university.universityName;
+//     const universityName = document.createElement("h3");
+//     universityName.classList.add("university__name");
+//     universityName.textContent = university.universityName;
 
-    const contactPerson = document.createElement("p");
-    contactPerson.classList.add("university__contact");
-    contactPerson.textContent = university.contactPerson;
+//     const contactPerson = document.createElement("p");
+//     contactPerson.classList.add("university__contact");
+//     contactPerson.textContent = university.contactPerson;
 
-    const email = document.createElement("a");
-    email.classList.add("university__email");
-    email.href = `mailto:${university.email}`;
-    email.textContent = university.email;
+//     const email = document.createElement("a");
+//     email.classList.add("university__email");
+//     email.href = `mailto:${university.email}`;
+//     email.textContent = university.email;
 
-    listItem.append(universityName, contactPerson, email);
+//     listItem.append(universityName, contactPerson, email);
 
-    return listItem;
-  });
+//     return listItem;
+//   });
 
-  universities.append(...universitiesList);
-}
+//   universities.append(...universitiesList);
+// }
 
 
 
