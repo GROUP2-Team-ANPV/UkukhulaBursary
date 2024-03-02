@@ -1,4 +1,11 @@
-function renderStudents(allStudents) {
+function renderStudents(
+  allStudents,
+  studentInfoModal,
+  studentNameContainer,
+  documentBody,
+  populateStudentModal,
+  studentInfoContainer
+) {
   const studentsList = allStudents.map((student) => {
     const listItem = document.createElement("li");
     listItem.classList.add("student");
@@ -19,6 +26,18 @@ function renderStudents(allStudents) {
     application.append(seeApplication);
 
     listItem.append(studentName, university, application);
+
+    application.addEventListener("click", () => {
+      studentInfoModal.style.transitionDelay = "0s";
+
+      studentInfoContainer.textContent = "";
+      studentNameContainer.textContent = `${student.firstName} ${student.lastName}`;
+      studentInfoContainer.append(...populateStudentModal(student));
+
+      studentInfoModal.classList.add("show");
+      window.scrollTo(0, 0);
+      documentBody.classList.add("no-scroll");
+    });
 
     return listItem;
   });
