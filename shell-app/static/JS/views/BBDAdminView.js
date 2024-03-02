@@ -2,6 +2,7 @@ import AbstractViews from "./AbstractViews.js";
 import renderUniversities from "../helpers/render_universities.js";
 import renderStudents from "../helpers/render_students.js";
 import getBBDAllocationsData from "../api/GetBBDAllocationData.js";
+import populateStudentModal from "../helpers/populate_student_info.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -24,6 +25,11 @@ export default class extends AbstractViews {
     const fundedUniversitiesCount = document.querySelector(".funded");
     const universitiesContainer = document.querySelector(".universities");
     const studentsContainer = document.querySelector(".students");
+    const studentInfoContainer = document.querySelector(".student__info");
+    const studentNameContainer = document.querySelector(".name");
+    const documentBody = document.querySelector("body");
+    const studentInfoModal = document.querySelector(".student__info-modal");
+    const closeStudentInfoModal = document.querySelector(".close-button");
 
     function populateAllocationsSelect(data) {
       data.forEach((allocation) => {
@@ -69,7 +75,22 @@ export default class extends AbstractViews {
       });
 
       universitiesContainer.append(...renderUniversities(universities));
-      studentsContainer.append(...renderStudents(students));
+      studentsContainer.append(
+        ...renderStudents(
+          students,
+          studentInfoModal,
+          studentNameContainer,
+          documentBody,
+          populateStudentModal,
+          studentInfoContainer
+        )
+      );
+    });
+
+    closeStudentInfoModal.addEventListener("click", () => {
+      studentInfoModal.style.transitionDelay = "1s";
+      studentInfoModal.classList.remove("show");
+      documentBody.classList.remove("no-scroll");
     });
   }
 }
