@@ -1,0 +1,33 @@
+.content {
+  overflow-x: auto;
+}
+
+.actions {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 1rem;
+}
+
+.table {
+  width: 100%;
+  color: var(--main-color);
+  background-color: var(--light-transparent);
+  font-size: 1rem;
+
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.table__header {
+  background-color: var(--light-color);
+  padding: 1rem 0.5rem;
+}
+
+th,
+td {
+  padding: 1rem 0.5rem;
+  text-align: start;
+  width: 200px;
+}
