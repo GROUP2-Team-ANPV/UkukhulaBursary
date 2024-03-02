@@ -1,34 +1,32 @@
-import UniversityApplicationView from "./views/UniversityApplicationView.js";
 import StudentApplicationView from "./views/StudentApplicationView.js";
 import UniversityDashboardView from "./views/UniversityDashboardView.js";
 import BBDAdminView from "./views/BBDAdminView.js";
 import { parseJwt } from "./JwtDecoder.js";
-
-let userRole =parseJwt(sessionStorage.getItem("token"));
-let routes =[]
+import UniversitiesView from "./views/UniversitiesView.js";
+import populateDashboard from "./helpers/populate_dashboard.js";
+const menuComtainer = document.querySelector("#sidebar ul");
+let userRole = parseJwt(sessionStorage.getItem("token"));
+let routes = [];
 
 const navigateTo = (url) => {
   history.replaceState(null, null, url);
   router();
 };
 
+menuComtainer.append(...populateDashboard(userRole));
 
 const router = async () => {
-  if (userRole =="BBD Admin"){
-     routes = [
+  if (userRole == "BBD Admin") {
+    routes = [
       { path: "/", view: BBDAdminView },
-      { path: "/universityappliction", view: UniversityApplicationView },
-      { path: "/studentapplication", view: StudentApplicationView },
-    ]
-  } else if( userRole=="University Admin"){
-     routes = [
+      { path: "/universities", view: UniversitiesView },
+    ];
+  } else if (userRole == "University Admin") {
+    routes = [
       { path: "/", view: UniversityDashboardView },
-      { path: "/universityappliction", view: UniversityApplicationView },
       { path: "/studentapplication", view: StudentApplicationView },
-    ]
+    ];
   }
-  ;
-
   // Test each route for potential match
   const potentialMatches = routes.map((route) => {
     return {
@@ -71,8 +69,6 @@ if (sessionStorage.getItem("token") == null) {
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
-  
-  
   const logoutButton = document.getElementById("logout");
 
   logoutButton.addEventListener("click", (e) => {

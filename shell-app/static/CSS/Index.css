@@ -351,3 +351,66 @@ button {
   border: 0.1rem solid var(--light-color);
   color: var(--light-color);
 }
+
+/* Modal */
+.student__info-modal,
+.application-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--main-color-transparent);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.student__info-modal.show,
+.application-modal.show {
+  transform: scale(1);
+  z-index: 10;
+}
+
+.student__info-container,
+.application-container {
+  position: relative;
+
+  border-radius: 1rem;
+  background-color: var(--main-color);
+
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow: auto;
+  transform: translateY(-150%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.3s;
+}
+
+.student__info-modal.show .student__info-container,
+.application-modal.show .application-container {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.student__info-container {
+  padding: 0 1rem;
+  background-color: var(--light-color);
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  background-color: var(--light-color);
+  box-shadow: 0 0 0.5rem var(--secondary-color);
+  border-radius: 50%;
+}
