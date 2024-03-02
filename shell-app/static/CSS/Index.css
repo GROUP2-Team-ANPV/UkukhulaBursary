@@ -6,25 +6,6 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-}
-
-li {
-  list-style: none;
-}
-
-button {
-  border: 0;
-  border-radius: 0.5rem;
-  outline: 0;
-
-  padding: 1rem 0.5rem;
-  font-size: 0.85rem;
-
-  cursor: pointer;
-}
-
 :root {
   --poppins: "Poppins", sans-serif;
   --lato: "Lato", sans-serif;
@@ -51,6 +32,29 @@ body {
   background-position: center;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  border-radius: 0.5rem;
+  outline: 0;
+
+  padding: 1rem 0.5rem;
+  font-size: 0.85rem;
+
+  cursor: pointer;
 }
 
 #sidebar {
