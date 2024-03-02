@@ -1,5 +1,6 @@
 import AbstractViews from "./AbstractViews.js";
 import renderUniversities from "../helpers/render_universities.js";
+import renderStudents from "../helpers/render_students.js";
 import getBBDAllocationsData from "../api/GetBBDAllocationData.js";
 
 export default class extends AbstractViews {
@@ -21,7 +22,7 @@ export default class extends AbstractViews {
     const funds = document.querySelector(".funds__balance");
     const fundedUniversitiesCount = document.querySelector(".funded");
     const universitiesContainer = document.querySelector(".universities");
-    const students = document.querySelector(".students");
+    const studentsContainer = document.querySelector(".students");
 
     function populateAllocationsSelect(data) {
       data.forEach((allocation) => {
@@ -67,29 +68,8 @@ export default class extends AbstractViews {
       });
 
       universitiesContainer.append(...renderUniversities(universities));
-      renderStudents(students);
+      studentsContainer.append(...renderStudents(students));
     });
-
-    function renderStudents(allStudents) {
-      const studentsList = allStudents.map((student) => {
-        const listItem = document.createElement("li");
-        listItem.classList.add("student");
-
-        const studentName = document.createElement("h3");
-        studentName.classList.add("student__name");
-        studentName.textContent = `${student.firstName} ${student.lastName}`;
-
-        const university = document.createElement("p");
-        university.classList.add("student__university");
-        university.textContent = student.university;
-
-        listItem.append(studentName, university);
-
-        return listItem;
-      });
-
-      students.append(...studentsList);
-    }
 
     async function approveStudent(applicationId) {
       const apiUrl = `http://localhost:5263/api/BBDAdmin/${applicationId}/approve`;
