@@ -33,7 +33,7 @@ button {
   --secondary-color: rgb(207, 46, 46);
   --secondary-color-transparent: rgba(207, 46, 46, 0.25);
   --light-color: rgb(231, 229, 229);
-  --light-transparent: rgba(231, 229, 229, 0.25);
+  --light-transparent: rgba(231, 229, 229, 0.85);
   --dark-color: rgb(22, 20, 20);
   --dark-transparent: rgba(22, 20, 20, 0.5);
   --success: rgb(0, 128, 0);
