@@ -15,7 +15,7 @@ async function getBBDAllocationsData() {
   );
 
   const universities = await getAllUniversities(
-    ""
+    "http://localhost:5263/api/BBDAdmin/GetAllUniversities"
   );
 
   const students = await getAllStudents(
@@ -50,56 +50,50 @@ function getSelectedYearData(year, allocations) {
   return allocations.find((allocation) => allocation.year == year);
 }
 
-getBBDAllocationsData().then(({ allocations, students }) => {
+getBBDAllocationsData().then(({ allocations, universities, students }) => {
   populateAllocationsSelect(allocations.sort((a, b) => b.year - a.year));
 
   let selectedYearData = getSelectedYearData(allocationYear.value, allocations);
 
-  usedAmount.textContent = formatMoney(
-    selectedYearData.budget - selectedYearData.remainingBudget
-  );
+  usedAmount.textContent = formatMoney(selectedYearData.amountUsed);
   displayFunds(selectedYearData);
 
   allocationYear.addEventListener("change", (event) => {
     selectedYearData = getSelectedYearData(event.target.value, allocations);
 
-    usedAmount.textContent = formatMoney(
-      selectedYearData.budget - selectedYearData.remainingBudget
-    );
+    usedAmount.textContent = formatMoney(selectedYearData.amountUsed);
     displayFunds(selectedYearData);
   });
 
-  // renderUniversities(universities);
+  renderUniversities(universities);
   renderStudents(students);
 });
 
-// function renderUniversities(allUniversities) {
-//   const universitiesList = allUniversities.map((university) => {
-//     const listItem = document.createElement("li");
-//     listItem.classList.add("university");
+function renderUniversities(allUniversities) {
+  const universitiesList = allUniversities.map((university) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("university");
 
-//     const universityName = document.createElement("h3");
-//     universityName.classList.add("university__name");
-//     universityName.textContent = university.universityName;
+    const universityName = document.createElement("h3");
+    universityName.classList.add("university__name");
+    universityName.textContent = university.universityName;
 
-//     const contactPerson = document.createElement("p");
-//     contactPerson.classList.add("university__contact");
-//     contactPerson.textContent = university.contactPerson;
+    const contactPerson = document.createElement("p");
+    contactPerson.classList.add("university__contact");
+    contactPerson.textContent = university.contactPerson;
 
-//     const email = document.createElement("a");
-//     email.classList.add("university__email");
-//     email.href = `mailto:${university.email}`;
-//     email.textContent = university.email;
+    const email = document.createElement("a");
+    email.classList.add("university__email");
+    email.href = `mailto:${university.email}`;
+    email.textContent = university.email;
 
-//     listItem.append(universityName, contactPerson, email);
+    listItem.append(universityName, contactPerson, email);
 
-//     return listItem;
-//   });
+    return listItem;
+  });
 
-//   universities.append(...universitiesList);
-// }
-
-
+  universities.append(...universitiesList);
+}
 
 function showStudentInfo(student) {
   const popup = document.createElement("div");
@@ -131,15 +125,10 @@ function showStudentInfo(student) {
     popup.remove();
   });
 
-  
   popup.appendChild(closeButton);
 
   document.body.appendChild(popup);
 }
-
-
-
-
 
 function renderStudents(allStudents) {
   const studentsList = allStudents.map((student) => {
@@ -150,37 +139,26 @@ function renderStudents(allStudents) {
     studentName.classList.add("student__name");
     studentName.textContent = `${student.firstName} ${student.lastName}`;
 
-
-
     const university = document.createElement("p");
     university.classList.add("student__university");
     university.textContent = student.university;
 
- 
+    const statusSelect = document.createElement("select");
+    statusSelect.classList.add("student__status");
 
-     const statusSelect = document.createElement("select");
-     statusSelect.classList.add("student__status");
+    const applicationId = `${student.fundRequestID}`;
 
+    const options = ["approve", "reject", "pending"];
+    options.forEach((optionValue) => {
+      const option = document.createElement("option");
+      option.value = optionValue;
+      option.textContent = optionValue;
+      statusSelect.appendChild(option);
+    });
 
-     const applicationId = `${student.fundRequestID}`;
- 
-     
-     
-     const options = ["approve", "reject", "pending"];
-     options.forEach((optionValue) => {
-       const option = document.createElement("option");
-       option.value = optionValue;
-       option.textContent = optionValue;
-       statusSelect.appendChild(option);
-     });
- 
-     
-     
-     statusSelect.value = student.status;
- 
-     
-     
-     statusSelect.addEventListener("change", async (event) => {
+    statusSelect.value = student.status;
+
+    statusSelect.addEventListener("change", async (event) => {
       const newStatus = event.target.value;
       try {
         if (newStatus === "approve") {
@@ -188,35 +166,28 @@ function renderStudents(allStudents) {
         } else if (newStatus === "reject") {
           await rejectStudent(applicationId);
         }
-    
+
         student.status = newStatus;
       } catch (error) {
         console.error(error.message);
         statusSelect.value = student.status;
       }
     });
- 
-     listItem.append(studentName, university, statusSelect);
- 
-   
-     
-     studentName.addEventListener("click", () => {
-       showStudentInfo(student);
-     });
- 
-     return listItem;
 
-  
+    listItem.append(studentName, university, statusSelect);
+
+    studentName.addEventListener("click", () => {
+      showStudentInfo(student);
+    });
+
+    return listItem;
   });
- 
+
   students.append(...studentsList);
 }
 
-
-
 async function approveStudent(applicationId) {
   const apiUrl = `http://localhost:5263/api/BBDAdmin/${applicationId}/approve`;
-
 
   const response = await fetch(apiUrl, {
     method: "POST",
@@ -231,8 +202,6 @@ async function approveStudent(applicationId) {
 
   return response.json();
 }
-
-
 
 async function rejectStudent(applicationId, comment = "There is no space ") {
   const apiUrl = `http://localhost:5263/api/BBDAdmin/${applicationId}/reject?comment=${comment}`;
