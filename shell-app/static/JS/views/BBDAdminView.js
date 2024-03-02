@@ -2,6 +2,7 @@ import AbstractViews from "./AbstractViews.js";
 import getAllStudents from "../helpers/get_all_students.js";
 import getBBDFunds from "../helpers/get_bbd_funds.js";
 import getAllUniversities from "../helpers/get_all_universities.js";
+import renderUniversities from "../helpers/render_universities.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -21,7 +22,7 @@ export default class extends AbstractViews {
     const usedAmount = document.querySelector(".used");
     const funds = document.querySelector(".funds__balance");
     const fundedUniversitiesCount = document.querySelector(".funded");
-    const universities = document.querySelector(".universities");
+    const universitiesContainer = document.querySelector(".universities");
     const students = document.querySelector(".students");
 
     async function getBBDAllocationsData() {
@@ -83,35 +84,9 @@ export default class extends AbstractViews {
         displayFunds(selectedYearData);
       });
 
-      renderUniversities(universities);
+      universitiesContainer.append(...renderUniversities(universities));
       renderStudents(students);
     });
-
-    function renderUniversities(allUniversities) {
-      const universitiesList = allUniversities.map((university) => {
-        const listItem = document.createElement("li");
-        listItem.classList.add("university");
-
-        const universityName = document.createElement("h3");
-        universityName.classList.add("university__name");
-        universityName.textContent = university.universityName;
-
-        const contactPerson = document.createElement("p");
-        contactPerson.classList.add("university__contact");
-        contactPerson.textContent = university.contactPerson;
-
-        const email = document.createElement("a");
-        email.classList.add("university__email");
-        email.href = `mailto:${university.email}`;
-        email.textContent = university.email;
-
-        listItem.append(universityName, contactPerson, email);
-
-        return listItem;
-      });
-
-      universities.append(...universitiesList);
-    }
 
     function renderStudents(allStudents) {
       const studentsList = allStudents.map((student) => {
