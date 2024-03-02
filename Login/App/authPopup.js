@@ -22,9 +22,11 @@ async function handleResponse(response) {
         sessionStorage.setItem("name", response.account.name)
         sessionStorage.setItem("accessToken", response.accessToken)
         const data = { email: username }; 
+        console.log(response);
+        console.log(data);
 
         try {
-            const res = await fetch('http://localhost:5263/api/Auth/Login', {
+            const res = await fetch(`http://localhost:5263/api/Auth/Login?email=${data.email.toLowerCase()}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,12 +35,13 @@ async function handleResponse(response) {
             });
 
             if (!res.ok) {
-                throw new Error('Failed to login. Please try again.');
+                const data = await res.json();
+                alert(data.message);
             }
 
             const result = await res.json();
             sessionStorage.setItem('token', result.message);
-            window.location.href = 'http://localhost:3000/redirect.html';
+            window.location.href = '/';
         } catch (error) {
             console.error('There was a problem logging in:', error.message);
         }
