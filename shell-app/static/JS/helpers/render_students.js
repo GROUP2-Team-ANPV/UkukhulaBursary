@@ -11,7 +11,15 @@ function renderStudents(allStudents) {
     university.classList.add("student__university");
     university.textContent = student.university;
 
-    listItem.append(studentName, university);
+    const application = document.createElement("p");
+    application.classList.add("student__application");
+    application.textContent = "Application";
+    const seeApplication = document.createElement("i");
+    seeApplication.classList.add("bx", "bxs-right-top-arrow-circle", "bx-sm");
+    application.append(seeApplication);
+    // application.style.textDecoration = "underline";
+
+    listItem.append(studentName, university, application);
 
     return listItem;
   });
