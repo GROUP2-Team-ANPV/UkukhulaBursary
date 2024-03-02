@@ -186,11 +186,6 @@
   padding-top: 1rem;
 }
 
-.student__info-modal.show .student__info-container {
-  transform: translateY(0);
-  opacity: 1;
-}
-
 .student__info {
   display: flex;
   flex-direction: column;
