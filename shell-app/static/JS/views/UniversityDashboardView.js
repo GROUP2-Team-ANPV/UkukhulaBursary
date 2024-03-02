@@ -1,5 +1,7 @@
 import AbstractViews from "./AbstractViews.js";
 import { getUniversityData } from "../api/GetUniversityData.js";
+import populateStudentModal from "../helpers/populate_student_info.js";
+import formatMoney from "../helpers/format_money.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -20,6 +22,8 @@ export default class extends AbstractViews {
     const hods = document.querySelector(".hods");
     const fundsBalance = document.querySelector(".funds__balance");
     const usedFunds = document.querySelector(".used");
+    const studentInfo = document.querySelector(".student__info");
+    const studentNameContainer = document.querySelector(".name");
 
     getUniversityData(1).then((data) => {
       renderStudents(data.students);
@@ -85,7 +89,11 @@ export default class extends AbstractViews {
 
         studentItem.addEventListener("click", () => {
           studentInfoModal.style.transitionDelay = "0s";
-          populateStudentModal(student);
+
+          studentInfo.textContent = "";
+          studentNameContainer.textContent = `${student.firstName} ${student.lastName}`;
+          studentInfo.append(...populateStudentModal(student));
+
           studentInfoModal.classList.add("show");
           window.scrollTo(0, 0);
           documentBody.classList.add("no-scroll");
@@ -120,53 +128,6 @@ export default class extends AbstractViews {
 
     function renderUsedFunds(funds) {
       usedFunds.textContent = formatMoney(funds);
-    }
-
-    function formatMoney(amount) {
-      return amount.toLocaleString("en-ZA", {
-        style: "currency",
-        currency: "ZAR",
-      });
-    }
-
-    const studentInfo = document.querySelector(".student__info");
-
-    function populateStudentModal(student) {
-      studentInfo.textContent = "";
-
-      const studentName = document.querySelector(".name");
-      studentName.textContent = `${student.firstName} ${student.lastName}`;
-
-      for (let [key, value] of Object.entries(student)) {
-        const label = key.replace(/([A-Z])/g, " $1").toLowerCase();
-
-        if (
-          label != "student i d" &&
-          label !== "first name" &&
-          label !== "last name"
-        ) {
-          const infoItem = document.createElement("li");
-          infoItem.classList.add("info");
-          const infoLabel = document.createElement("p");
-          infoLabel.classList.add("label");
-          const infoValue = document.createElement("p");
-          infoValue.classList.add("value");
-
-          infoLabel.textContent = label;
-
-          if (label === "amount") {
-            value = formatMoney(value);
-          }
-          if (label === "birth date") {
-            value = value.split("T")[0];
-          }
-
-          infoValue.textContent = value;
-          infoItem.appendChild(infoLabel);
-          infoItem.appendChild(infoValue);
-          studentInfo.appendChild(infoItem);
-        }
-      }
     }
   }
 }
