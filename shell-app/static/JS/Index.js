@@ -3,7 +3,8 @@ import UniversityDashboardView from "./views/UniversityDashboardView.js";
 import BBDAdminView from "./views/BBDAdminView.js";
 import { parseJwt } from "./JwtDecoder.js";
 import UniversitiesView from "./views/UniversitiesView.js";
-
+import populateDashboard from "./helpers/populate_dashboard.js";
+const menuComtainer = document.querySelector("#sidebar ul");
 let userRole = parseJwt(sessionStorage.getItem("token"));
 let routes = [];
 
@@ -12,10 +13,12 @@ const navigateTo = (url) => {
   router();
 };
 
+menuComtainer.append(...populateDashboard(userRole));
+
 const router = async () => {
   if (userRole == "BBD Admin") {
     routes = [
-      { path: "/admin", view: BBDAdminView },
+      { path: "/", view: BBDAdminView },
       { path: "/universities", view: UniversitiesView },
     ];
   } else if (userRole == "University Admin") {
