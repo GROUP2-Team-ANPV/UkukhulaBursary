@@ -1,4 +1,3 @@
-//import LoginView from "./views/LoginView.js";
 import UniversityApplicationView from "./views/UniversityApplicationView.js";
 import BBDAdminView from "./views/BBDAdminView.js";
 import StudentApplicationView from "./views/StudentApplicationView.js";
@@ -15,8 +14,9 @@ const router = async () => {
     { path: "/admin", view: BBDAdminView },
     { path: "/universityappliction", view: UniversityApplicationView },
     { path: "/studentapplication", view: StudentApplicationView },
-    // { path: "/login", view: LoginView },
+    
   ];
+  
 
   // Test each route for potential match
   const potentialMatches = routes.map((route) => {
@@ -54,9 +54,26 @@ const router = async () => {
   await view.getJS();
 };
 
+if (sessionStorage.getItem("token")==null){
+  window.location.href = "/login";
+
+}
+
+
+
+
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
+
+  const logoutButton = document.getElementById("logout") 
+
+  logoutButton.addEventListener("click" ,(e)=>{
+    e.preventDefault();
+    sessionStorage.clear()
+    window.location.href = "/login";
+  })
   document.body.addEventListener("click", (e) => {
+    
     const targetLink = e.target.closest("[data-link]");
 
     if (targetLink) {
@@ -64,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       navigateTo(targetLink.href);
     }
+
   });
   router();
 });

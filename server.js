@@ -1,9 +1,13 @@
-const { PublicClientApplication } = require("@azure/msal-node");
+//const { PublicClientApplication } = require("@azure/msal-node");
 const express = require("express");
 const path = require("path");
 
 
 const app = express();
+
+
+
+
 
 app.use("/static", express.static(path.resolve(__dirname, "shell-app","static")))
 
@@ -14,7 +18,7 @@ app.get("/login", (req,res)=>{
 
 
 app.get("/*", (req,res)=>{
-    res.sendFile(path.resolve(__dirname,"shell-app", "index.html")); // everything is going to go back to indexhtml
+    res.sendFile(path.resolve(__dirname,"shell-app", "index.html")); 
 })
 
 
