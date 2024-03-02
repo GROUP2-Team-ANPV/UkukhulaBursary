@@ -9,6 +9,7 @@ export default class extends AbstractViews {
     super();
     this.setTitle("University DashBoard");
     this.setCSS("/static/CSS/AdminDashboard.css");
+    this.setPageHeading("Dashboard");
   }
 
   async getHtml() {

@@ -1,21 +1,20 @@
-export default class{
-    
-    constructor(){
+export default class {
+  constructor() {}
 
-    }
+  setTitle(title) {
+    document.title = title;
+  }
 
-    setTitle(title){
-        document.title =title;
-    }
-    setCSS(href){
-        document.querySelector("#content-css").setAttribute("href", href);
-    }
-   
+  setPageHeading(heading) {
+    document.querySelector("#page-heading").innerHTML = heading;
+  }
 
-    async getHtml(){
-        return "";
-    }
-    async getJS(){
-    
-    }
+  setCSS(href) {
+    document.querySelector("#content-css").setAttribute("href", href);
+  }
+
+  async getHtml() {
+    return "";
+  }
+  async getJS() {}
 }
