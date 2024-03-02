@@ -3,6 +3,7 @@ import { getUniversityData } from "../api/GetUniversityData.js";
 import populateStudentModal from "../helpers/populate_student_info.js";
 import formatMoney from "../helpers/format_money.js";
 import renderHODs from "../helpers/render_HODs.js";
+import renderStudents from "../helpers/render_university_students.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -26,9 +27,22 @@ export default class extends AbstractViews {
     const usedFunds = document.querySelector(".used");
     const studentInfoContainer = document.querySelector(".student__info");
     const studentNameContainer = document.querySelector(".name");
+    const documentBody = document.querySelector("body");
+    const studentInfoModal = document.querySelector(".student__info-modal");
+    const closeStudentInfoModal = document.querySelector(".close-button");
 
     getUniversityData(1).then((data) => {
-      renderStudents(data.students, studentInfoContainer);
+      universityStudents.append(
+        ...renderStudents(
+          data.students,
+          studentInfoModal,
+          studentInfoContainer,
+          studentNameContainer,
+          populateStudentModal,
+          documentBody
+        )
+      );
+
       fundedStudents.textContent = getFundedStudents(data.students);
       hods.append(...renderHODs(data.headOfDepartment));
 
@@ -55,53 +69,11 @@ export default class extends AbstractViews {
       ).length;
     }
 
-    const documentBody = document.querySelector("body");
-    const studentInfoModal = document.querySelector(".student__info-modal");
-    const closeStudentInfoModal = document.querySelector(".close-button");
-
     closeStudentInfoModal.addEventListener("click", () => {
       studentInfoModal.style.transitionDelay = "1s";
       studentInfoModal.classList.remove("show");
       documentBody.classList.remove("no-scroll");
     });
-
-    function renderStudents(students, studentInfoContainer) {
-      students.forEach((student) => {
-        const studentItem = document.createElement("li");
-        studentItem.classList.add("student");
-        const studentName = document.createElement("h3");
-        studentName.classList.add("student__name");
-        const applicationStatus = document.createElement("p");
-        applicationStatus.classList.add(
-          "student__status",
-          student.applicationStatus.toLowerCase()
-        );
-
-        const bursaryAmount = document.createElement("p");
-        bursaryAmount.classList.add("student__amount");
-
-        studentName.textContent = `${student.firstName} ${student.lastName}`;
-        applicationStatus.textContent = student.applicationStatus;
-        bursaryAmount.textContent = formatMoney(student.amount);
-
-        studentItem.appendChild(studentName);
-        studentItem.appendChild(applicationStatus);
-        studentItem.appendChild(bursaryAmount);
-        universityStudents.appendChild(studentItem);
-
-        studentItem.addEventListener("click", () => {
-          studentInfoModal.style.transitionDelay = "0s";
-
-          studentInfoContainer.textContent = "";
-          studentNameContainer.textContent = `${student.firstName} ${student.lastName}`;
-          studentInfoContainer.append(...populateStudentModal(student));
-
-          studentInfoModal.classList.add("show");
-          window.scrollTo(0, 0);
-          documentBody.classList.add("no-scroll");
-        });
-      });
-    }
 
     function renderFundsBalance(funds) {
       fundsBalance.textContent = formatMoney(funds);
