@@ -6,25 +6,6 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-}
-
-li {
-  list-style: none;
-}
-
-button {
-  border: 0;
-  border-radius: 0.5rem;
-  outline: 0;
-
-  padding: 1rem 0.5rem;
-  font-size: 0.85rem;
-
-  cursor: pointer;
-}
-
 :root {
   --poppins: "Poppins", sans-serif;
   --lato: "Lato", sans-serif;
@@ -33,7 +14,7 @@ button {
   --secondary-color: rgb(207, 46, 46);
   --secondary-color-transparent: rgba(207, 46, 46, 0.25);
   --light-color: rgb(231, 229, 229);
-  --light-transparent: rgba(231, 229, 229, 0.25);
+  --light-transparent: rgba(231, 229, 229, 0.85);
   --dark-color: rgb(22, 20, 20);
   --dark-transparent: rgba(22, 20, 20, 0.5);
   --success: rgb(0, 128, 0);
@@ -51,6 +32,29 @@ body {
   background-position: center;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  border-radius: 0.5rem;
+  outline: 0;
+
+  padding: 1rem 0.5rem;
+  font-size: 0.85rem;
+
+  cursor: pointer;
 }
 
 #sidebar {

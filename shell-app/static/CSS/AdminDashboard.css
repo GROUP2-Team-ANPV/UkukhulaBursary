@@ -36,6 +36,7 @@
 
 .content__hods {
   background-color: var(--light-transparent);
+  color: var(--main-color);
 }
 
 .content__students .content__header,
@@ -113,6 +114,7 @@
 .student__amount {
   font-size: 0.83rem;
   font-weight: 600;
+  text-align: end;
 }
 
 .content__header {
@@ -126,17 +128,20 @@
 
 .student__status {
   background-color: var(--light-transparent);
+  color: var(--main-color);
   padding: 0.25rem 0.5rem;
-  width: max-content;
+  text-align: center;
   border-radius: 0.5rem;
 }
 
 .student__status.approved {
   background-color: var(--success);
+  color: var(--light-color);
 }
 
 .student__status.rejected {
-  background-color: var(--danger);
+  background-color: var(--secondary-color);
+  color: var(--light-color);
 }
 
 .funds {
