@@ -15,9 +15,8 @@ function renderStudents(allStudents) {
     application.classList.add("student__application");
     application.textContent = "Application";
     const seeApplication = document.createElement("i");
-    seeApplication.classList.add("bx", "bxs-right-top-arrow-circle", "bx-sm");
+    seeApplication.classList.add("bx", "bx-right-top-arrow-circle", "bx-sm");
     application.append(seeApplication);
-    // application.style.textDecoration = "underline";
 
     listItem.append(studentName, university, application);
 
