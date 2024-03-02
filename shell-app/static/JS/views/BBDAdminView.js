@@ -1,8 +1,6 @@
 import AbstractViews from "./AbstractViews.js";
-import getAllStudents from "../helpers/get_all_students.js";
-import getBBDFunds from "../helpers/get_bbd_funds.js";
-import getAllUniversities from "../helpers/get_all_universities.js";
 import renderUniversities from "../helpers/render_universities.js";
+import getBBDAllocationsData from "../api/GetBBDAllocationData.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -24,22 +22,6 @@ export default class extends AbstractViews {
     const fundedUniversitiesCount = document.querySelector(".funded");
     const universitiesContainer = document.querySelector(".universities");
     const students = document.querySelector(".students");
-
-    async function getBBDAllocationsData() {
-      const allocations = await getBBDFunds(
-        "http://localhost:5263/api/BBDAdmin/GetAllBBDFunds"
-      );
-
-      const universities = await getAllUniversities(
-        "http://localhost:5263/api/BBDAdmin/GetAllUniversities"
-      );
-
-      const students = await getAllStudents(
-        "http://localhost:5263/api/UniversityAdmin/GetAllFundRequests"
-      );
-
-      return { allocations, universities, students };
-    }
 
     function populateAllocationsSelect(data) {
       data.forEach((allocation) => {
