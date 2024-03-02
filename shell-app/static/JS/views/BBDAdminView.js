@@ -16,6 +16,7 @@ export default class extends AbstractViews {
     );
     return html;
   }
+
   async getJS() {
     const allocationYear = document.getElementById("year");
     const usedAmount = document.querySelector(".used");
@@ -70,41 +71,5 @@ export default class extends AbstractViews {
       universitiesContainer.append(...renderUniversities(universities));
       studentsContainer.append(...renderStudents(students));
     });
-
-    async function approveStudent(applicationId) {
-      const apiUrl = `http://localhost:5263/api/BBDAdmin/${applicationId}/approve`;
-
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to approve student");
-      }
-
-      return response.json();
-    }
-
-    async function rejectStudent(
-      applicationId,
-      comment = "There is no space "
-    ) {
-      const apiUrl = `http://localhost:5263/api/BBDAdmin/${applicationId}/reject?comment=${comment}`;
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to reject student");
-      }
-
-      return response.json();
-    }
   }
 }
