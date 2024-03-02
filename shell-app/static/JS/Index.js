@@ -24,7 +24,7 @@ const router = async () => {
   } else if (userRole == "University Admin") {
     routes = [
       { path: "/", view: UniversityDashboardView },
-      { path: "/studentapplication", view: StudentApplicationView },
+      { path: "/applications", view: StudentApplicationView },
     ];
   }
   // Test each route for potential match
