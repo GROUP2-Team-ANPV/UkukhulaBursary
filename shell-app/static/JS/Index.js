@@ -1,7 +1,7 @@
 import UniversityApplicationView from "./views/UniversityApplicationView.js";
-import BBDAdminView from "./views/BBDAdminView.js";
 import StudentApplicationView from "./views/StudentApplicationView.js";
 import UniversityDashboardView from "./views/UniversityDashboardView.js";
+import BBDAdminView from "./views/BBDAdminView.js";
 
 const navigateTo = (url) => {
   history.replaceState(null, null, url);
@@ -11,7 +11,7 @@ const navigateTo = (url) => {
 const router = async () => {
   const routes = [
     { path: "/", view: UniversityDashboardView },
-    { path: "/admin", view: BBDAdminView },
+    {path: "/admin", view: BBDAdminView},
     { path: "/universityappliction", view: UniversityApplicationView },
     { path: "/studentapplication", view: StudentApplicationView },
     
@@ -37,21 +37,31 @@ const router = async () => {
   const view = new match.route.view();
   const allSideMenu = document.querySelectorAll("#sidebar  li a");
 
-  allSideMenu.forEach((item) => {
-    const li = item.parentElement;
-    const url = window.location.href.toString();
-    const aurl = item.getAttribute("href").toString();
 
-    if (url.includes(aurl) && aurl.includes(url.slice(url.length - 1))) {
-      li.classList.add("active");
-      item.firstChild;
-    } else {
-      li.classList.remove("active");
-    }
-  });
+allSideMenu.forEach((item) => {
+  const li = item.parentElement;
+  const url = window.location.href.toString()
+  const aurl =item.getAttribute("href").toString()
 
-  document.querySelector("#content").innerHTML = await view.getHtml();
+  
+  if((url.includes(aurl) && aurl.includes(url.slice(url.length-1)) )){
+    
+    li.classList.add("active")
+    item.firstChild
+  }else{
+    li.classList.remove("active");
+  }
+  
+  
+ 
+});
+
+  document.querySelector("#content").innerHTML= await view.getHtml();
   await view.getJS();
+
+  
+  
+  
 };
 
 if (sessionStorage.getItem("token")==null){
@@ -78,13 +88,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (targetLink) {
       e.preventDefault();
-
+     
       navigateTo(targetLink.href);
     }
 
   });
   router();
 });
+
+
 
 const menuBar = document.querySelector("#header nav .bx.bx-menu");
 const sidebar = document.getElementById("sidebar");
@@ -93,9 +105,14 @@ menuBar.addEventListener("click", function () {
   sidebar.classList.toggle("hide");
 });
 
-const head = document.querySelector("head");
 
-const cssLink = document.createElement("link");
-cssLink.setAttribute("id", "content-css");
-cssLink.setAttribute("rel", "stylesheet");
-head.appendChild(cssLink);
+
+
+
+const head = document.querySelector("head");
+  
+    const cssLink = document.createElement("link");
+    cssLink.setAttribute("id", "content-css")
+    cssLink.setAttribute("rel", "stylesheet"); 
+    head.appendChild(cssLink);
+
