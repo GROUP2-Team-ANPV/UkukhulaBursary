@@ -5,6 +5,11 @@ import { parseJwt } from "./JwtDecoder.js";
 import UniversitiesView from "./views/UniversitiesView.js";
 import populateDashboard from "./helpers/populate_dashboard.js";
 const menuComtainer = document.querySelector("#sidebar ul");
+
+if (sessionStorage.getItem("token") == null) {
+  window.location.href = "/login";
+}
+
 let userRole = parseJwt(sessionStorage.getItem("token"));
 let routes = [];
 
@@ -62,10 +67,6 @@ const router = async () => {
   document.querySelector("#content").innerHTML = await view.getHtml();
   await view.getJS();
 };
-
-if (sessionStorage.getItem("token") == null) {
-  window.location.href = "/login";
-}
 
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
