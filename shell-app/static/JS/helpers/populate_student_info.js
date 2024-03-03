@@ -1,11 +1,10 @@
 import getApplicationConstants from "../api/GetApplicationConstants.js";
+import { updateApplicationStatus } from "../api/UpdateApplicationStatus.js";
 import formatMoney from "./format_money.js";
 import populateStatusSelect from "./populate_status_select.js";
 
 function populateStudentModal(student) {
   const studentInfo = [];
-  const form = document.createElement("form");
-  form.classList.add("info");
 
   for (let [key, value] of Object.entries(student)) {
     const label = key.replace(/([A-Z])/g, " $1").toLowerCase();
@@ -56,6 +55,22 @@ function populateStudentModal(student) {
 
       infoItem.appendChild(infoLabel);
       infoItem.appendChild(infoValue);
+      if (label === "status" && value === "Review") {
+        const saveButton = document.createElement("button");
+        saveButton.textContent = "Save";
+        saveButton.type = "submit";
+        saveButton.classList.add("button");
+        saveButton.classList.add("update-status");
+        infoItem.appendChild(saveButton);
+
+        saveButton.addEventListener("click", async (event) => {
+          event.preventDefault();
+          await updateApplicationStatus(student.fundRequestID, {
+            status: infoValue.value,
+            comment: "",
+          });
+        });
+      }
       studentInfo.push(infoItem);
     }
   }
