@@ -6,6 +6,7 @@ export default class extends AbstractViews {
     super();
     this.setTitle("Universities");
     this.setCSS("/static/CSS/Universities.css");
+    this.setPageHeading("Universities");
   }
 
   async getHtml() {
