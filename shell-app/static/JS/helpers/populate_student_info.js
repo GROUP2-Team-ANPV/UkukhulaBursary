@@ -5,19 +5,23 @@ import populateStatusSelect from "./populate_status_select.js";
 
 function populateStudentModal(student) {
   const studentInfo = [];
+  const generateLinkButton = document.createElement("button");
+  generateLinkButton.textContent = "Generate Link";
+  generateLinkButton.classList.add("button");
+  generateLinkButton.classList.add("generate-link");
 
   for (let [key, value] of Object.entries(student)) {
     const label = key.replace(/([A-Z])/g, " $1").toLowerCase();
+
+    const infoItem = document.createElement("li");
+    let infoValue;
+    let infoLabel;
 
     if (
       !label.includes("i d") &&
       label !== "first name" &&
       label !== "last name"
     ) {
-      let infoLabel;
-      let infoValue;
-
-      const infoItem = document.createElement("li");
       infoItem.classList.add("info");
       if (label === "status" && value === "Review") {
         infoLabel = document.createElement("label");
@@ -71,9 +75,17 @@ function populateStudentModal(student) {
           });
         });
       }
+
       studentInfo.push(infoItem);
     }
   }
+
+  // to be moved to helpers
+  generateLinkButton.addEventListener("click", () => {
+    console.log(student.requestID);
+  });
+
+  studentInfo.push(generateLinkButton);
   return studentInfo;
 }
 

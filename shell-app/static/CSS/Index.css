@@ -403,7 +403,9 @@ button {
   opacity: 1;
 }
 
-.student__info-container {
+.student__info-container,
+.modal-wrapper,
+.student__info-header {
   padding: 0 1rem;
   background-color: var(--light-color);
 }
@@ -418,6 +420,39 @@ button {
   background-color: var(--light-color);
   box-shadow: 0 0 0.5rem var(--secondary-color);
   border-radius: 50%;
+}
+
+/* Modal styles */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+
+  border-bottom: 1px solid var(--secondary-color-transparent);
+}
+
+.info select {
+  padding: 0.75rem;
+  border: 0;
+  border-radius: 0.25rem;
+  width: max-content;
+  outline: none;
+}
+
+.name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
+.label {
+  opacity: 0.7;
+}
+
+.value {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 /* View application button */
