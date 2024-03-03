@@ -2,6 +2,7 @@ import AbstractViews from "./AbstractViews.js";
 import { UniversityApplicationScript } from "../UniversityApplication.js";
 import populateTableWithUniversities from "../helpers/populate_universites_on_table.js";
 import { getAllUniversities } from "../api/GetUniversities.js";
+import { HeadOfDeaprtmentApplicationScript } from "../HeadOfDepartment.js";
 
 
 export default class extends AbstractViews {  constructor() {
@@ -53,5 +54,6 @@ export default class extends AbstractViews {  constructor() {
 
 
     UniversityApplicationScript();
+    await HeadOfDeaprtmentApplicationScript(universities);
   }
 }

@@ -1,5 +1,8 @@
-export function HeadOfDeaprtmentScript(result) {
+import { AddHOD } from "./api/AddHOD.js";
+
+export  function HeadOfDeaprtmentApplicationScript(result) {
     const universitySelect = document.getElementById("university");
+    const hodForm = document.querySelector(".hod-form")
 
   
   for (const university of result) {
@@ -9,29 +12,28 @@ export function HeadOfDeaprtmentScript(result) {
     universitySelect.appendChild(option);
   }
 
+  
+
     async function handleAddHOD(event) {
-    event.preventDefault();
-    const hodData = {};
-    const formData = new FormData(hodForm);
+        event.preventDefault();
+        const hodData = {};
+        const formData = new FormData(hodForm);
 
-    for (const [key, value] of formData) {
-        hodData[key] = value;
-    }
-
-    const response = await fetch(
-        "http://localhost:5263/api/BBDAdmin/AddUniversityUser",
-        {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        headers: {
-            "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(hodData),
+        for (const [key, value] of formData) {
+            hodData[key] = value;
         }
-    );
+        console.log(hodData)
+        if (hodData) {
+            await AddHOD(hodData);
+            console.log("HOD added successfully");
+        }else{
+            console.log("Error adding HOD:", error);
+        }
+        
+        hodForm.reset();
+
 
     }
+    hodForm.addEventListener("submit", handleAddHOD);
 
 }
