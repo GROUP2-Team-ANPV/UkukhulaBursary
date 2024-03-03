@@ -60,12 +60,12 @@ export default class extends AbstractViews {
 
     getBBDAllocationsData().then(({ allocations, universities, students }) => {
       populateAllocationsSelect(allocations.sort((a, b) => b.year - a.year));
-
+      
       let selectedYearData = getSelectedYearData(
         allocationYear.value,
         allocations
       );
-
+        console.log(selectedYearData);
       usedAmount.textContent = formatMoney(selectedYearData.amountUsed);
       displayFunds(selectedYearData);
 
