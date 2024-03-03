@@ -8,6 +8,13 @@ export function parseJwt (token) {
     
      const userdata = JSON.parse(jsonPayload)
      const userRole  = userdata["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+     const userUniversity= userdata["http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid"]
+     console.log(userUniversity)
+
+     if( userRole =="University Admin"){
+        sessionStorage.setItem("universityID",userUniversity)
+        console.log(sessionStorage.getItem("universityID"))
+     }
       const usertimeStamp =userdata["exp"]
       const expirationDate = new Date(usertimeStamp * 1000);
       if (expirationDate.getMinutes ==0) {
