@@ -3,7 +3,7 @@ import { getUniversityData } from "../api/GetUniversityData.js";
 import populateDepartmentSelect from "../helpers/populate_department_select.js";
 import populateEthnicitySelect from "../helpers/populate_ethnicity_select.js";
 import populateGenderSelect from "../helpers/populate_gender_select.js";
-import populateStudentsTable from "../helpers/populate_students_table.js";
+import populateStudentsTable from "../helpers/PopulateStudentsTable.js";
 import populateUniversitySelect from "../helpers/populate_university_select.js";
 import AbstractViews from "./AbstractViews.js";
 
