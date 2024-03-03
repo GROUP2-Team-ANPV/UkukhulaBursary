@@ -16,13 +16,13 @@ function populateDashboard(role) {
   } else if (role == "University Admin") {
     const hodItem = document.createElement("li");
     const hodAnchor = document.createElement("a");
-    hodAnchor.href = "/hods";
+    hodAnchor.href = "/representatives";
     hodAnchor.setAttribute("data-link", "");
     const i = document.createElement("i");
     i.classList.add("bx", "bxs-user-badge");
     const hodText = document.createElement("span");
     hodText.classList.add("text");
-    hodText.textContent = "HODs";
+    hodText.textContent = "Representatives";
     hodAnchor.append(i, hodText);
     hodItem.append(hodAnchor);
     menuItems.push(hodItem);
