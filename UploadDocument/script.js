@@ -7,7 +7,7 @@ function getUrlParameter(name) {
 }
 
 // Get the request ID from the URL
-const requestId = 1;
+const requestId = getUrlParameter("requestId");
 
 // Add event listener to the form
 document.getElementById("uploadForm").addEventListener("submit", function(event) {
