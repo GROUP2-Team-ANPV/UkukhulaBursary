@@ -4,6 +4,7 @@ import { parseJwt } from "./JwtDecoder.js";
 import UniversitiesView from "./views/UniversitiesView.js";
 import populateDashboard from "./helpers/populate_dashboard.js";
 import UniversityApplicationsView from "./views/UniversityApplicationsView.js";
+import RepresentativesView from "./views/RepresentativesView.js";
 const menuComtainer = document.querySelector("#sidebar ul");
 
 if (sessionStorage.getItem("token") == null) {
@@ -30,6 +31,7 @@ const router = async () => {
     routes = [
       { path: "/", view: UniversityDashboardView },
       { path: "/applications", view: UniversityApplicationsView },
+      { path: "/representatives", view: RepresentativesView },
     ];
   }
   // Test each route for potential match
