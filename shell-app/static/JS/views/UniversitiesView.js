@@ -5,6 +5,7 @@ export default class extends AbstractViews {
   constructor() {
     super();
     this.setTitle("Universities");
+    this.setPageHeading("Universities");
     this.setCSS("/static/CSS/Universities.css");
     this.setPageHeading("Universities");
   }
