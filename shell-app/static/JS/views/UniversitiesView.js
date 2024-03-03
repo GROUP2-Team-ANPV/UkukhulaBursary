@@ -53,6 +53,6 @@ export default class extends AbstractViews {
     });
 
     UniversityApplicationScript();
-    HeadOfDeaprtmentApplicationScript(universities);
+    HeadOfDeaprtmentApplicationScript({ universities });
   }
 }
