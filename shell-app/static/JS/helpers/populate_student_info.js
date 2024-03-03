@@ -82,11 +82,27 @@ function populateStudentModal(student) {
 
   // to be moved to helpers
   generateLinkButton.addEventListener("click", () => {
-    console.log(student.requestID);
+    // Define the expiration time in minutes
+    const expirationTimeInMinutes = 60; 
+    
+    // Generate a random upload token 
+    const uploadToken = Math.random().toString(36).substring(2, 15);
+    
+    
+    const requestId = student.requestID;
+    console.log(requestId);
+   
+    // Calculate the expiration timestamp
+    const expirationTimestamp = Date.now() + expirationTimeInMinutes * 60 * 1000; // Current time + expiration time
+    
+    // Generate the upload link with the token, expiration timestamp, and request ID
+    const uploadLink = 'https://blue-glacier-0afa9fa10.5.azurestaticapps.net?token=' + uploadToken + '&expires=' + expirationTimestamp + '&requestId=' + requestId;
+    
+    // Add the link element to the page
+    console.log(uploadLink);
   });
 
   studentInfo.push(generateLinkButton);
   return studentInfo;
 }
-
 export default populateStudentModal;
