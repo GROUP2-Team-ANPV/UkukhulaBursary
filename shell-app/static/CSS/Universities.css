@@ -18,17 +18,14 @@
 
   border-collapse: separate;
   border-spacing: 0;
-  table-layout: fixed;
 }
 
 .table__header {
   background-color: var(--light-color);
-  padding: 1rem 0.5rem;
 }
 
 th,
 td {
   padding: 1rem 0.5rem;
   text-align: start;
-  width: 200px;
 }
