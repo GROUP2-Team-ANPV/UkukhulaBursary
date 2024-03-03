@@ -1,41 +1,27 @@
-import getAllUniversities from "../helpers/get_all_universities.js";
-import getDepartments from "../helpers/get_departments.js";
-import getEthnicity from "../helpers/get_ethnicity.js";
-import getGender from "../helpers/get_gender.js";
-import getStatus from "../helpers/get_status.js";
+import fetchData from "../helpers/FetchData.js";
 
 export async function getUniversityData(id) {
-  const response = await fetch(
-    `http://localhost:5263/api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`,
-    {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+  const data = await fetchData(
+    `http://localhost:5263/api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`
   );
 
-  const data = await response.json();
-
-  const departments = await getDepartments(
+  const departments = await fetchData(
     "http://localhost:5263/api/ConstantTables/GetDepartment"
   );
 
-  const universities = await getAllUniversities(
+  const universities = await fetchData(
     "http://localhost:5263/api/BBDAdmin/GetAllUniversities"
   );
 
-  const gender = await getGender(
+  const gender = await fetchData(
     "http://localhost:5263/api/ConstantTables/GetGender"
   );
 
-  const race = await getEthnicity(
+  const race = await fetchData(
     "http://localhost:5263/api/ConstantTables/GetRace"
   );
 
-  const status = await getStatus(
+  const status = await fetchData(
     "http://localhost:5263/api/ConstantTables/GetStatus"
   );
 
