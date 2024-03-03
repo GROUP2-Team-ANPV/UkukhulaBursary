@@ -230,7 +230,8 @@ button {
   overflow-y: auto;
   justify-content: space-between;
 }
-.page-heading {
+
+#page-heading {
   font-size: 2rem;
   color: var(--light-color);
 }
