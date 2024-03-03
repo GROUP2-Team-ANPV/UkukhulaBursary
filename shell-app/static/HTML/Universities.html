@@ -1,44 +1,47 @@
 <main class="content">
   <header class="actions">
+    <button type="button" id="new-hod">Add New HOD</button>
     <button type="button" id="new-university">Add New University</button>
   </header>
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="table__header">University</th>
-        <th class="table__header">Province</th>
-        <th class="table__header">Students</th>
-        <th class="table__header">HODs</th>
-        <th class="table__header">Contact Person</th>
-        <th class="table__header">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="table__data">University of Limpopo</td>
-        <td class="table__data">Limpopo</td>
-        <td class="table__data">100</td>
-        <td class="table__data">10</td>
-        <td class="table__data">Mr. Mabuza</td>
-        <td class="table__data">
-          <p>view</p>
-          <p>allocate</p>
-        </td>
-      </tr>
-      <tr>
-        <td class="table__data">University of Limpopo</td>
-        <td class="table__data">Limpopo</td>
-        <td class="table__data">100</td>
-        <td class="table__data">10</td>
-        <td class="table__data">Mr. Mabuza</td>
-        <td class="table__data">
-          <p>view</p>
-          <p>allocate</p>
-        </td>
-      </tr>
-      <!-- universities will be fetched from the server -->
-    </tbody>
-  </table>
+  <section class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="table__header">University</th>
+          <th class="table__header">Province</th>
+          <th class="table__header">Students</th>
+          <th class="table__header">HODs</th>
+          <th class="table__header">Contact Person</th>
+          <th class="table__header">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table__data">University of Limpopo</td>
+          <td class="table__data">Limpopo</td>
+          <td class="table__data">100</td>
+          <td class="table__data">10</td>
+          <td class="table__data">Mr. Mabuza</td>
+          <td class="table__data">
+            <p>view</p>
+            <p>allocate</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="table__data">University of Limpopo</td>
+          <td class="table__data">Limpopo</td>
+          <td class="table__data">100</td>
+          <td class="table__data">10</td>
+          <td class="table__data">Mr. Mabuza</td>
+          <td class="table__data">
+            <p>view</p>
+            <p>allocate</p>
+          </td>
+        </tr>
+        <!-- universities will be fetched from the server -->
+      </tbody>
+    </table>
+  </section>
 </main>
 
 <section class="application-modal">
@@ -63,6 +66,7 @@
               <label for="province">Province</label>
               <select name="provinceID" id="province">
                 <option value="0">Select Province</option>
+                <!-- Get from the database -->
                 <option value="1">Earstern Cape</option>
                 <option value="2">Freestate</option>
                 <option value="3">Gauteng</option>
@@ -104,6 +108,7 @@
               <label for="department">Department</label>
               <select name="departmentID" id="department">
                 <option value="0">Select Department</option>
+                <!-- Get from the database -->
                 <option value="1">Artificial Intelligence</option>
                 <option value="2">Computer Engineering</option>
                 <option value="3">Computer Game Design</option>
