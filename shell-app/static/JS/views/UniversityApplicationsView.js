@@ -1,5 +1,4 @@
 import { StudentapplicationScript } from "../StudentApplication.js";
-import getApplicationConstants from "../api/GetApplicationConstants.js";
 import { getUniversityData } from "../api/GetUniversityData.js";
 import populateDepartmentSelect from "../helpers/populate_department_select.js";
 import populateEthnicitySelect from "../helpers/populate_ethnicity_select.js";
@@ -32,7 +31,6 @@ export default class extends AbstractViews {
 
     getUniversityData(universityID).then(
       ({ data, universities, departments, gender, race }) => {
-        console.log(data);
         studentsTable.append(...populateStudentsTable(data.students));
 
         const allUniversities = universities.map(({ id, universityName }) => {
