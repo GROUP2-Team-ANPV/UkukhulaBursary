@@ -6,6 +6,7 @@ import populateGenderSelect from "../helpers/populate_gender_select.js";
 import populateStudentsTable from "../helpers/populateStudentsTable.js";
 import populateUniversitySelect from "../helpers/populate_university_select.js";
 import AbstractViews from "./AbstractViews.js";
+import populateStudentModal from "../helpers/populate_student_info.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -28,10 +29,24 @@ export default class extends AbstractViews {
     const departmentSelect = document.getElementById("department");
     const studentsTable = document.querySelector("table");
     const universityID = sessionStorage.getItem("universityID");
+    const modalWrapper = document.querySelector(".modal-wrapper");
+    const applicationModal = document.querySelector(".application-modal");
+    const documentBody = document.querySelector("body");
+    const closeApplicationModal = document.querySelector(".close-button");
+    const studentNameContainer = document.querySelector(".name");
 
     getUniversityData(universityID).then(
       ({ data, universities, departments, gender, race }) => {
-        studentsTable.append(...populateStudentsTable(data.students));
+        studentsTable.append(
+          ...populateStudentsTable(
+            data.students,
+            modalWrapper,
+            applicationModal,
+            documentBody,
+            populateStudentModal,
+            studentNameContainer
+          )
+        );
 
         const allUniversities = universities.map(({ id, universityName }) => {
           return { id, universityName };
@@ -49,16 +64,21 @@ export default class extends AbstractViews {
           return { id, name };
         });
 
-        universitySelect.append(...populateUniversitySelect(allUniversities));
+        // universitySelect.append(...populateUniversitySelect(allUniversities));
 
-        departmentSelect.append(...populateDepartmentSelect(allDepartments));
+        // departmentSelect.append(...populateDepartmentSelect(allDepartments));
 
-        genderSelect.append(...populateGenderSelect(genders));
+        // genderSelect.append(...populateGenderSelect(genders));
 
-        raceSelect.append(...populateEthnicitySelect(ethnicity));
+        // raceSelect.append(...populateEthnicitySelect(ethnicity));
 
-        StudentapplicationScript();
+        // StudentapplicationScript();
       }
     );
+
+    closeApplicationModal.addEventListener("click", () => {
+      applicationModal.classList.remove("show");
+      documentBody.classList.remove("no-scroll");
+    });
   }
 }
