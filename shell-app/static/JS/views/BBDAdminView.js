@@ -8,6 +8,7 @@ export default class extends AbstractViews {
   constructor() {
     super();
     this.setTitle("University DashBoard");
+    this.setPageHeading("Dashboard");
     this.setCSS("/static/CSS/AdminDashboard.css");
   }
 
