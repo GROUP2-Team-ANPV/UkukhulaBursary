@@ -1,5 +1,4 @@
- export async function getAllUniversities() {
-  
+export async function getAllUniversities() {
   const response = await fetch(
     "http://localhost:5263/api/BBDAdmin/GetAllUniversities",
     {
@@ -7,6 +6,6 @@
     }
   );
 
-  let result = await response.json();
-  return result
+  const result = await response.json();
+  return result;
 }

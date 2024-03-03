@@ -6,6 +6,6 @@ export async function getAllDepartments() {
     }
   );
 
-  let result = await response.json();
+  const result = await response.json();
   return result;
 }
