@@ -4,8 +4,8 @@ import populateTableWithUniversities from "../helpers/populate_universites_on_ta
 import { getAllUniversities } from "../api/GetUniversities.js";
 import { HeadOfDeaprtmentApplicationScript } from "../HeadOfDepartment.js";
 
-
-export default class extends AbstractViews {  constructor() {
+export default class extends AbstractViews {
+  constructor() {
     super();
     this.setTitle("Universities");
     this.setPageHeading("Universities");
@@ -22,10 +22,10 @@ export default class extends AbstractViews {  constructor() {
 
   async getJS() {
     const newUniversity = document.getElementById("new-university");
-    const newHod = document.getElementById("new-hod")
+    const newHod = document.getElementById("new-hod");
     const documentBody = document.querySelector("body");
     const ApplicationModal = document.querySelector(".application-modal");
-    const HodModal = document.querySelector(".hod-modal")
+    const HodModal = document.querySelector(".hod-modal");
     const closeInfoModal = document.querySelectorAll(".close-button");
     const universities = await getAllUniversities();
     await populateTableWithUniversities(universities);
@@ -35,14 +35,14 @@ export default class extends AbstractViews {  constructor() {
       documentBody.classList.add("no-scroll");
     });
 
-    closeInfoModal.forEach(button => {
+    closeInfoModal.forEach((button) => {
       button.addEventListener("click", () => {
         if (ApplicationModal.classList.contains("show")) {
           ApplicationModal.classList.remove("show");
         } else {
           HodModal.classList.remove("show");
         }
-    
+
         documentBody.classList.remove("no-scroll");
       });
     });
@@ -52,8 +52,7 @@ export default class extends AbstractViews {  constructor() {
       documentBody.classList.add("no-scroll");
     });
 
-
     UniversityApplicationScript();
-    await HeadOfDeaprtmentApplicationScript(universities);
+    HeadOfDeaprtmentApplicationScript(universities);
   }
 }
