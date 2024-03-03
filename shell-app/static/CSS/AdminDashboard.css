@@ -212,6 +212,14 @@
   border-bottom: 1px solid var(--secondary-color-transparent);
 }
 
+.info select {
+  padding: 0.75rem;
+  border: 0;
+  border-radius: 0.25rem;
+
+  outline: none;
+}
+
 .name {
   font-size: 1.75rem;
   font-weight: 700;
