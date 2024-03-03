@@ -355,6 +355,7 @@ button {
 
 /* Modal */
 .student__info-modal,
+.hod-modal,
 .application-modal {
   position: absolute;
   top: 0;
@@ -372,12 +373,14 @@ button {
 }
 
 .student__info-modal.show,
+.hod-modal.show,
 .application-modal.show {
   transform: scale(1);
   z-index: 10;
 }
 
 .student__info-container,
+.hod-container,
 .application-container {
   position: relative;
 
@@ -394,6 +397,7 @@ button {
 }
 
 .student__info-modal.show .student__info-container,
+.hod-modal.show .hod-container,
 .application-modal.show .application-container {
   transform: translateY(0);
   opacity: 1;
