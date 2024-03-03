@@ -6,16 +6,17 @@ function renderHODs(universityHODs) {
     hodItem.classList.add("hod");
     const hodName = document.createElement("h3");
     hodName.classList.add("hod__name");
-    const hodEmail = document.createElement("p");
-    hodEmail.classList.add("email");
+    const department = document.createElement("p");
+    department.classList.add("department");
     const email = document.createElement("a");
     email.href = `mailto:${hod.email}`;
-    email.textContent = hod.email;
 
     hodName.textContent = `${hod.firstName} ${hod.lastName}`;
-    hodEmail.textContent = hod.email;
+    department.textContent = hod.departmentName;
+    email.textContent = hod.email;
+
     hodItem.appendChild(hodName);
-    hodItem.appendChild(hodEmail);
+    hodItem.appendChild(department);
     hodItem.appendChild(email);
     HODsList.push(hodItem);
   });
