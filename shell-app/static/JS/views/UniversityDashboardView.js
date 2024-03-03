@@ -32,8 +32,9 @@ export default class extends AbstractViews {
     const documentBody = document.querySelector("body");
     const studentInfoModal = document.querySelector(".student__info-modal");
     const closeStudentInfoModal = document.querySelector(".close-button");
+    const universityID = sessionStorage.getItem("universityID");
 
-    getUniversityData(1).then((data) => {
+    getUniversityData(universityID).then(({ data }) => {
       universityStudents.append(
         ...renderStudents(
           data.students,

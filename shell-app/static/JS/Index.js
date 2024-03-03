@@ -1,9 +1,9 @@
-import StudentApplicationView from "./views/StudentApplicationView.js";
 import UniversityDashboardView from "./views/UniversityDashboardView.js";
 import BBDAdminView from "./views/BBDAdminView.js";
 import { parseJwt } from "./JwtDecoder.js";
 import UniversitiesView from "./views/UniversitiesView.js";
 import populateDashboard from "./helpers/populate_dashboard.js";
+import UniversityApplicationsView from "./views/UniversityApplicationsView.js";
 const menuComtainer = document.querySelector("#sidebar ul");
 
 if (sessionStorage.getItem("token") == null) {
@@ -29,7 +29,7 @@ const router = async () => {
   } else if (userRole == "University Admin") {
     routes = [
       { path: "/", view: UniversityDashboardView },
-      { path: "/applications", view: StudentApplicationView },
+      { path: "/applications", view: UniversityApplicationsView },
     ];
   }
   // Test each route for potential match

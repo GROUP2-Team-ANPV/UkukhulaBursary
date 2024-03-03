@@ -19,7 +19,7 @@ function renderStudents(
     university.textContent = student.university;
 
     const application = document.createElement("p");
-    application.classList.add("student__application");
+    application.classList.add("view__application");
     application.textContent = "Application";
     const seeApplication = document.createElement("i");
     seeApplication.classList.add("bx", "bx-right-top-arrow-circle", "bx-sm");

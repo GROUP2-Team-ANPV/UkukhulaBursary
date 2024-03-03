@@ -415,3 +415,24 @@ button {
   box-shadow: 0 0 0.5rem var(--secondary-color);
   border-radius: 50%;
 }
+
+/* View application button */
+.edit__application,
+.view__application {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--main-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--light-color);
+  width: max-content;
+
+  cursor: pointer;
+}
+
+.view__application.dark,
+.edit__application.dark {
+  color: var(--light-color);
+  background-color: var(--main-color);
+}
