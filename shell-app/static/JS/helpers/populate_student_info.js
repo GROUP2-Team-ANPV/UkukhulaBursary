@@ -1,9 +1,9 @@
-import getApplicationConstants from "../api/GetApplicationConstants.js";
+import { getStatus } from "../api/GetStatus.js";
 import { updateApplicationStatus } from "../api/UpdateApplicationStatus.js";
 import formatMoney from "./format_money.js";
 import populateStatusSelect from "./populate_status_select.js";
 
-function populateStudentModal(student) {
+async function populateStudentModal(student) {
   const studentInfo = [];
   const generateLinkButton = document.createElement("button");
   generateLinkButton.textContent = "Generate Link";
@@ -35,10 +35,7 @@ function populateStudentModal(student) {
         option.value = "0";
         option.textContent = "Select Status";
         infoValue.appendChild(option);
-
-        getApplicationConstants().then(({ status }) => {
-          infoValue.append(...populateStatusSelect(status));
-        });
+        infoValue.append(...populateStatusSelect(await getStatus()));
       } else {
         infoLabel = document.createElement("p");
         infoLabel.classList.add("label");
@@ -83,21 +80,27 @@ function populateStudentModal(student) {
   // to be moved to helpers
   generateLinkButton.addEventListener("click", () => {
     // Define the expiration time in minutes
-    const expirationTimeInMinutes = 60; 
-    
-    // Generate a random upload token 
+    const expirationTimeInMinutes = 60;
+
+    // Generate a random upload token
     const uploadToken = Math.random().toString(36).substring(2, 15);
-    
-    
+
     const requestId = student.requestID;
     console.log(requestId);
-   
+
     // Calculate the expiration timestamp
-    const expirationTimestamp = Date.now() + expirationTimeInMinutes * 60 * 1000; // Current time + expiration time
-    
+    const expirationTimestamp =
+      Date.now() + expirationTimeInMinutes * 60 * 1000; // Current time + expiration time
+
     // Generate the upload link with the token, expiration timestamp, and request ID
-    const uploadLink = 'https://blue-glacier-0afa9fa10.5.azurestaticapps.net?token=' + uploadToken + '&expires=' + expirationTimestamp + '&requestId=' + requestId;
-    
+    const uploadLink =
+      "https://blue-glacier-0afa9fa10.5.azurestaticapps.net?token=" +
+      uploadToken +
+      "&expires=" +
+      expirationTimestamp +
+      "&requestId=" +
+      requestId;
+
     // Add the link element to the page
     console.log(uploadLink);
   });
