@@ -1,8 +1,10 @@
 import AbstractViews from "./AbstractViews.js";
 import { UniversityApplicationScript } from "../UniversityApplication.js";
+import populateTableWithUniversities from "../helpers/populate_universites_on_table.js";
+import { getAllUniversities } from "../api/GetUniversities.js";
 
-export default class extends AbstractViews {
-  constructor() {
+
+export default class extends AbstractViews {  constructor() {
     super();
     this.setTitle("Universities");
     this.setPageHeading("Universities");
@@ -22,7 +24,8 @@ export default class extends AbstractViews {
     const documentBody = document.querySelector("body");
     const ApplicationModal = document.querySelector(".application-modal");
     const closeInfoModal = document.querySelector(".close-button");
-
+    const universities = await getAllUniversities();
+    await populateTableWithUniversities(universities);
     newUniversity.addEventListener("click", () => {
       ApplicationModal.classList.add("show");
       window.scrollTo(0, 0);
