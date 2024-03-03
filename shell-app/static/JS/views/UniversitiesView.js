@@ -21,9 +21,11 @@ export default class extends AbstractViews {  constructor() {
 
   async getJS() {
     const newUniversity = document.getElementById("new-university");
+    const newHod = document.getElementById("new-hod")
     const documentBody = document.querySelector("body");
     const ApplicationModal = document.querySelector(".application-modal");
-    const closeInfoModal = document.querySelector(".close-button");
+    const HodModal = document.querySelector(".hod-modal")
+    const closeInfoModal = document.querySelectorAll(".close-button");
     const universities = await getAllUniversities();
     await populateTableWithUniversities(universities);
     newUniversity.addEventListener("click", () => {
@@ -32,10 +34,23 @@ export default class extends AbstractViews {  constructor() {
       documentBody.classList.add("no-scroll");
     });
 
-    closeInfoModal.addEventListener("click", () => {
-      ApplicationModal.classList.remove("show");
-      documentBody.classList.remove("no-scroll");
+    closeInfoModal.forEach(button => {
+      button.addEventListener("click", () => {
+        if (ApplicationModal.classList.contains("show")) {
+          ApplicationModal.classList.remove("show");
+        } else {
+          HodModal.classList.remove("show");
+        }
+    
+        documentBody.classList.remove("no-scroll");
+      });
     });
+    newHod.addEventListener("click", () => {
+      HodModal.classList.add("show");
+      window.scrollTo(0, 0);
+      documentBody.classList.add("no-scroll");
+    });
+
 
     UniversityApplicationScript();
   }
