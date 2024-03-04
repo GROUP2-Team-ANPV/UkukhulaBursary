@@ -5,7 +5,7 @@
    
 
     universities.forEach((university) => {
-      var newRow = tableBody.insertRow(tableBody.rows.length);
+      const  newRow = tableBody.insertRow(tableBody.rows.length);
       const values = Object.values(university);
     
       for (let i = 1; i < values.length-2; i++) {

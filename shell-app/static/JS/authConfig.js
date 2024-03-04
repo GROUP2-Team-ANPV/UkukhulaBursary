@@ -108,7 +108,7 @@ signInBtn.addEventListener('click', () => {
     const logoutRequest = {
         account: myMSALObj.getAccountByUsername(username),
         mainWindowRedirectUri: 'http://localhost:5000/signout',
-        redirectUri: 'http://localhost:5000/login',
+        redirectUri: 'http://localhost:5000/login' || 'https://ukukhula.azurewebsites.net/login',
     };
 
     myMSALObj.logoutPopup(logoutRequest);
