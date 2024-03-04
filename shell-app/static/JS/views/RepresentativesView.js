@@ -28,7 +28,6 @@ export default class extends AbstractViews {
     const universities = await getAllUniversities();
 
     getUniversityData(universityID).then(({ data }) => {
-      console.log(representativesTableBody);
       representativesTableBody.append(
         ...populateRepresentativesTable(data.headOfDepartment)
       );
