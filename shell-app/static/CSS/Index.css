@@ -214,6 +214,16 @@ button {
   color: var(--light-color);
 }
 
+#header nav .profile {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+#header nav .profile  span{
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
 #header nav .profile img {
   width: 36px;
   height: 36px;
@@ -275,6 +285,9 @@ button {
 
   #content {
     padding-left: 0;
+  }
+  #profileName {
+    display: none;
   }
 }
 
@@ -474,4 +487,30 @@ button {
 .edit__application.dark {
   color: var(--light-color);
   background-color: var(--main-color);
+}
+
+/* Feedback */
+.feedback {
+  color: var(--light-color);
+  width: 300px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  flex-direction: column;
+  gap: 0.5rem;
+
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  /* transform: translateY(calc(-100% - 1rem)); */
+  transition: all 0.3s ease-in-out;
+
+  .feedback__message {
+    line-height: 1.25rem;
+  }
+}
+
+.feedback.feedback--show {
+  transform: translateY(0);
 }

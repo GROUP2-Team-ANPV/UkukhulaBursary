@@ -1,6 +1,6 @@
 export async function getAllUniversities() {
   const response = await fetch(
-    "http://localhost:5263/api/BBDAdmin/GetAllUniversities",
+    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities",
     {
       method: "GET",
     }

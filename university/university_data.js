@@ -1,6 +1,6 @@
 async function getUniversityData(id) {
   const response = await fetch(
-    `http://localhost:5263/api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`,
+    `https://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`,
     {
       method: "GET",
       mode: "cors",
