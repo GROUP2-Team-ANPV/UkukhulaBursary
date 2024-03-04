@@ -2,7 +2,7 @@ import { AddHOD } from "./api/AddHOD.js";
 
 export function HeadOfDeaprtmentApplicationScript({
   universities,
-  departments,
+  departments = [],
 }) {
   const universitySelect = document.getElementById("university");
   const hodForm = document.querySelector(".hod-form");
@@ -30,7 +30,7 @@ export function HeadOfDeaprtmentApplicationScript({
     for (const [key, value] of formData) {
       hodData[key] = value;
     }
-    console.log(hodData);
+
     if (hodData) {
       await AddHOD(hodData);
       console.log("HOD added successfully");
