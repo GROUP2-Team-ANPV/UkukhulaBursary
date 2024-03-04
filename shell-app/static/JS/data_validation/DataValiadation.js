@@ -13,4 +13,13 @@ function validateName(name) {
   return nameRegex.test(name);
 }
 
-export { validatePhoneNumber, validateEmail, validateName };
+function validateOptionValue(value) {
+  return value !== "0";
+}
+
+export {
+  validatePhoneNumber,
+  validateEmail,
+  validateName,
+  validateOptionValue,
+};
