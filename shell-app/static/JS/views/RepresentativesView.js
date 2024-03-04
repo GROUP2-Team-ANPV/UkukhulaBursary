@@ -1,9 +1,8 @@
 import { HeadOfDeaprtmentApplicationScript } from "../HeadOfDepartment.js";
-import { getAllDepartments } from "../api/GetDepartments.js";
 import { getAllUniversities } from "../api/GetUniversities.js";
+import { getAllDepartments } from "../api/GetDepartments.js";
 import { getUniversityData } from "../api/GetUniversityData.js";
 import populateRepresentativesTable from "../helpers/PopulateRepresentativesTable.js";
-import getDepartments from "../helpers/get_departments.js";
 import AbstractViews from "./AbstractViews.js";
 
 export default class extends AbstractViews {
@@ -27,8 +26,8 @@ export default class extends AbstractViews {
     const closeInfoModal = document.querySelector(".close-button");
     const representativesTableBody = document.querySelector(".table tbody");
     const universityID = sessionStorage.getItem("universityID");
-    const universities = await getAllUniversities();
     const departments = await getAllDepartments();
+    const universities = await getAllUniversities();
 
     getUniversityData(universityID).then(({ data }) => {
       representativesTableBody.append(
