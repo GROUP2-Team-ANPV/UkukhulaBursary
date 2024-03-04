@@ -1,9 +1,12 @@
+import { parseJwt } from "../JwtDecoder.js";
 import { getStatus } from "../api/GetStatus.js";
 import { updateApplicationStatus } from "../api/UpdateApplicationStatus.js";
 import formatMoney from "./format_money.js";
 import populateStatusSelect from "./populate_status_select.js";
 
 async function populateStudentModal(student) {
+  const userRole = parseJwt(sessionStorage.getItem("token"));
+
   const studentInfo = [];
   const generateLinkButton = document.createElement("button");
   generateLinkButton.textContent = "Generate Link";
@@ -105,7 +108,9 @@ async function populateStudentModal(student) {
     console.log(uploadLink);
   });
 
-  studentInfo.push(generateLinkButton);
+  if (userRole === "University Admin") {
+    studentInfo.push(generateLinkButton);
+  }
   return studentInfo;
 }
 export default populateStudentModal;

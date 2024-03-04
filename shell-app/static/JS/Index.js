@@ -26,7 +26,9 @@ const router = async () => {
   if (userRole == "BBD Admin") {
     routes = [
       { path: "/", view: BBDAdminView },
+      { path: "/students", view: AllApprovedStudentsView },
       { path: "/universities", view: UniversitiesView },
+      { path: "/applications", view: AllApplicationsView },
       { path: "/applications", view: AllApplicationsView },
     ];
   } else if (userRole == "University Admin") {
