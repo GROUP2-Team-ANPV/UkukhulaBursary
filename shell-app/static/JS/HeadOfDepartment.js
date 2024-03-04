@@ -1,4 +1,3 @@
-
 import {
   isValidEmail,
   isValidName,
@@ -127,14 +126,14 @@ export function HeadOfDeaprtmentApplicationScript({
 
     try {
       const response = await fetch(
-        "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversityUser",
+        "http://localhost:5263//api/BBDAdmin/AddUniversityUser",
         {
           method: "POST",
           mode: "cors",
           cache: "no-cache",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
 
           body: JSON.stringify(hodData),

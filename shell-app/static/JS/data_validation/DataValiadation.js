@@ -17,4 +17,37 @@ function isValidOptionValue(value) {
   return value !== "0";
 }
 
-export { isValidPhoneNumber, isValidEmail, isValidName, isValidOptionValue };
+function isValidIDNumber(idNumber) {
+  if (!/^\d{13}$/.test(idNumber) || !luhnChecksum(idNumber)) {
+    return false;
+  }
+  return true;
+}
+
+const luhnChecksum = (idNumber) => {
+  let idSequenceSum = 0;
+
+  for (let i = idNumber.length - 1; i >= 0; i--) {
+    if (i % 2 !== 0) {
+      let doubledValue = parseInt(idNumber[i] * 2);
+
+      if (doubledValue > 9) {
+        const stringToNum = doubledValue.toString();
+        doubledValue = parseInt(stringToNum[0]) + parseInt(stringToNum[1]);
+      }
+      idSequenceSum += doubledValue;
+    } else {
+      idSequenceSum += parseInt(idNumber[i]);
+    }
+  }
+
+  return idSequenceSum % 10 === 0;
+};
+
+export {
+  isValidPhoneNumber,
+  isValidEmail,
+  isValidName,
+  isValidOptionValue,
+  isValidIDNumber,
+};

@@ -1,5 +1,9 @@
-import { AddStudent } from "./api/AddStudent.js";
-
+import {
+  isValidPhoneNumber,
+  isValidEmail,
+  isValidIDNumber,
+} from "./data_validation/DataValiadation.js";
+const token = sessionStorage.getItem("token");
 export function StudentapplicationScript() {
   try {
     const form = document.querySelector(".application-form");
@@ -11,23 +15,38 @@ export function StudentapplicationScript() {
     const amountInput = document.getElementById("amount-needed");
     const gradeInput = document.getElementById("grade");
 
-    idNumberInput.addEventListener("input", function () {
-      const idNumber = idNumberInput.value.trim();
-      const idLength = idNumber.length;
+  // idNumberInput.addEventListener("input", function () {
+  //   const idNumber = idNumberInput.value.trim();
 
-      if (idLength === 13 && validateSaId(idNumber)) {
-        const yearPrefix = idNumber.charAt(0) === '0' ? '20' : '19';
-        const year = yearPrefix + idNumber.substring(0, 2);
-        const month = idNumber.substring(2, 4);
-        const day = idNumber.substring(4, 6);
-        const birthdateString = `${year}-${month}-${day}`;
-        birthdateInput.value = birthdateString;
+  //   if (isValidIDNumber(idNumber)) {
+  //     // Extract birthdate from ID number
+  //     const yearPrefix = idNumber.charAt(0) === "0" ? "20" : "19";
+  //     const year = yearPrefix + idNumber.substring(0, 2);
+  //     const month = idNumber.substring(2, 4);
+  //     const day = idNumber.substring(4, 6);
+  //     const birthdateString = `${year}-${month}-${day}`;
 
-        const genderDigit = parseInt(idNumber.charAt(6));
-        const genderValue = genderDigit >= 5 ? 1 : 2; // Female: 2, Male: 1
-        genderSelect.value = genderValue;
-      }
-    });
+  //     // Populate birthdate field
+  //     birthdateInput.value = birthdateString;
+
+  //     // Extract gender from ID number
+  //     const genderDigit = parseInt(idNumber.charAt(6));
+  //     const genderValue = genderDigit >= 5 ? 1 : 2; // Male: 1, Female: 2
+
+  //     // Populate gender select field with gender name
+  //     genderSelect.value = genderValue;
+  //   } else feedbackHeading.textContent = "Error";
+  //   feedbackMessage.textContent = "Invalid ID Number";
+  //   feedbackContainer.style.backgroundColor = "var(--danger)";
+  //   feedbackContainer.classList.add("feedback--show");
+  //   setTimeout(() => {
+  //     feedbackContainer.classList.remove("feedback--show");
+  //     feedbackHeading.textContent = "";
+  //     feedbackMessage.textContent = "";
+  //     feedbackContainer.style.backgroundColor = "";
+  //   }, 3000);
+  //   return;
+  // });
 
     form.addEventListener("submit", async function (event) {
       event.preventDefault();
@@ -68,29 +87,101 @@ export function StudentapplicationScript() {
         }
       });
 
-      try {
-        await AddStudent(studentData);
-      } catch (error) {
-        console.log("Error adding student:", error);
-      }
+    if (!isValidIDNumber(studentData.idNumber)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Invalid ID Number";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    } else {
+      // Extract birthdate from ID number
+      const yearPrefix = studentData.idNumber.charAt(0) === "0" ? "20" : "19";
+      const year = yearPrefix + studentData.idNumber.substring(0, 2);
+      const month = studentData.idNumber.substring(2, 4);
+      const day = studentData.idNumber.substring(4, 6);
+      const birthdateString = `${year}-${month}-${day}`;
 
-      form.reset();
-    });
-  } catch (error) {
-    console.error("Error initializing the application:", error);
-  }
+      // Populate birthdate field
+      birthdateInput.value = birthdateString;
+
+      // Extract gender from ID number
+      const genderDigit = parseInt(studentData.idNumber.charAt(6));
+      const genderValue = genderDigit >= 5 ? 1 : 2; // Male: 1, Female: 2
+
+      // Populate gender select field with gender name
+      genderSelect.value = genderValue;
+    }
+
+    if (!isValidEmail(studentData.email)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Invalid email address";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
+    // Validate phone number
+    if (!isValidPhoneNumber(studentData.phoneNumber)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Invalid phone number";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5263//api/UniversityAdmin/StudentFundRequest",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(studentData),
+        }
+      );
+
+      if (response.statusText === "OK") {
+        form.reset();
+        alert("Student application submitted successfully");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = `An error occurred while submitting the application: ${error}`;
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+    } finally {
+      feedbackContainer.classList.add("feedback--show");
+
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+    }
+  });
 }
 
 function validateSaId(idNumber) {
   return idNumber.length === 13;
-}
-
-function validatePhoneNumber(phoneNumber) {
-    const phoneRegex = /^(\+27|0)?[1678][0-9]{8}$/;
-    return phoneRegex.test(phoneNumber);
-}
-
-function validateEmail(email) {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,4}$/;
-    return emailRegex.test(email);
 }

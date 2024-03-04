@@ -1,13 +1,13 @@
 const token = sessionStorage.getItem("token");
 export async function getAllUniversities() {
   const response = await fetch(
-    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities",
+    "http://localhost:5263//api/BBDAdmin/GetAllUniversities",
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-    },
+        Authorization: `Bearer ${token}`,
+      },
     }
   );
 

@@ -2,27 +2,27 @@ import fetchData from "../helpers/FetchData.js";
 
 export async function getUniversityData(id) {
   const data = await fetchData(
-    `https://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`
+    `http://localhost:5263//api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`
   );
 
   const departments = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment"
+    "http://localhost:5263//api/ConstantTables/GetDepartment"
   );
 
   const universities = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities"
+    "http://localhost:5263//api/BBDAdmin/GetAllUniversities"
   );
 
   const gender = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetGender"
+    "http://localhost:5263//api/ConstantTables/GetGender"
   );
 
   const race = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetRace"
+    "http://localhost:5263//api/ConstantTables/GetRace"
   );
 
   const status = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetStatus"
+    "http://localhost:5263//api/ConstantTables/GetStatus"
   );
 
   return { data, departments, universities, gender, race, status };

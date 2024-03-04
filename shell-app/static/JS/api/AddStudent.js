@@ -12,14 +12,12 @@ export async function AddStudent(student){
    })
      
     if (!response.ok) {
-         throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.statusText;
     console.log("Response data:", data);
-  
-   } catch(error){      
-      console.error('Error:', error);
-   }
-        
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
