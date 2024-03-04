@@ -1,3 +1,5 @@
+import { getfundrequests } from "../api/GetStudfundrequests.js";
+import populateTableWithAppilcation from "../helpers/populate_applications.js";
 import AbstractViews from "./AbstractViews.js";
 
 export default class extends AbstractViews {
@@ -14,5 +16,9 @@ export default class extends AbstractViews {
     );
     return html;
   }
-  async getJS() {}
+  async getJS() {
+    console.log("loaded");
+    const applications = await getfundrequests();
+    await populateTableWithAppilcation(applications);
+  }
 }
