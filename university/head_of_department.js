@@ -6,7 +6,7 @@ const universitySelect = document.getElementById("university");
 
 async function getAllUniversities() {
   const response = await fetch(
-    "http://localhost:5263/api/BBDAdmin/GetAllUniversities",
+    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities",
     {
       method: "GET",
     }
@@ -32,7 +32,7 @@ async function handleAddHOD(event) {
   }
 
   const response = await fetch(
-    "http://localhost:5263/api/BBDAdmin/AddUniversityUser",
+    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversityUser",
     {
       method: "POST",
       mode: "cors",

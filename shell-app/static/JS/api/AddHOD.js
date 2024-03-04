@@ -3,7 +3,7 @@ export async function AddHOD(hodData){
   
     try {
         const response = await fetch(
-            "http://localhost:5263/api/BBDAdmin/AddUniversityUser",
+            "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversityUser",
             {
             method: "POST",
             mode: "cors",
