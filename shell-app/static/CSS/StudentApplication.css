@@ -83,3 +83,9 @@
     cursor: pointer;
   
   }
+
+
+  .readonly {
+    background-color: #e0d2d2;
+    cursor: default;
+  }
