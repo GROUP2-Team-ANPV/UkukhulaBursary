@@ -1,9 +1,10 @@
+import populateStudentModal from "./populate_student_info.js";
+
 function renderStudents(
   allStudents,
   studentInfoModal,
   studentNameContainer,
   documentBody,
-  populateStudentModal,
   studentInfoContainer
 ) {
   const studentsList = allStudents.map((student) => {
@@ -18,16 +19,32 @@ function renderStudents(
     university.classList.add("student__university");
     university.textContent = student.university;
 
-    const application = document.createElement("p");
-    application.classList.add("view__application");
-    application.textContent = "Application";
-    const seeApplication = document.createElement("i");
-    seeApplication.classList.add("bx", "bx-right-top-arrow-circle", "bx-sm");
-    application.append(seeApplication);
+    const applicationStatus = document.createElement("p");
+    applicationStatus.classList.add(
+      "student__status",
+      student.status.toLowerCase()
+    );
+    applicationStatus.textContent = student.status;
 
-    listItem.append(studentName, university, application);
+    const viewApplication = document.createElement("p");
+    viewApplication.classList.add("view__application");
+    viewApplication.textContent = "View";
+    const viewApplicatonIcon = document.createElement("i");
+    viewApplicatonIcon.classList.add(
+      "bx",
+      "bx-right-top-arrow-circle",
+      "bx-sm"
+    );
+    viewApplication.append(viewApplicatonIcon);
 
-    application.addEventListener("click", async () => {
+    listItem.append(
+      studentName,
+      university,
+      applicationStatus,
+      viewApplication
+    );
+
+    viewApplication.addEventListener("click", async () => {
       studentInfoModal.style.transitionDelay = "0s";
 
       studentInfoContainer.textContent = "";
