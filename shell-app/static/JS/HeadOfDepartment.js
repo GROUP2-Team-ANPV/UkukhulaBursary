@@ -137,8 +137,8 @@ export function HeadOfDeaprtmentApplicationScript({
           body: JSON.stringify(hodData),
         }
       );
-      const data = response.statusText;
-      if (data === "OK") {
+
+      if (response.statusText === "OK") {
         hodForm.reset();
         feedbackHeading.textContent = "Success";
         feedbackMessage.textContent = "Head of Department added successfully";

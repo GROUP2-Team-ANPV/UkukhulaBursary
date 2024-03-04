@@ -27,9 +27,7 @@ export function UniversityApplicationScript() {
         }
       );
 
-      const data = response.statusText;
-
-      if (data === "OK") {
+      if (response.statusText === "OK") {
         universityForm.reset();
         feedbackHeading.textContent = "Success";
         feedbackMessage.textContent = "University added successfully";
