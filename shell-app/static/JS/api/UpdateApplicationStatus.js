@@ -1,3 +1,4 @@
+const token = sessionStorage.getItem("token");
 export async function updateApplicationStatus(applicationID, statusUpdate) {
   try {
     const response = await fetch(
@@ -6,6 +7,7 @@ export async function updateApplicationStatus(applicationID, statusUpdate) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify(statusUpdate),
       }

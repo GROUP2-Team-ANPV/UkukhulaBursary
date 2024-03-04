@@ -1,3 +1,4 @@
+const token = sessionStorage.getItem("token");
 export function HeadOfDeaprtmentApplicationScript({
   universities,
   departments = [],
@@ -40,6 +41,7 @@ export function HeadOfDeaprtmentApplicationScript({
           cache: "no-cache",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
 
           body: JSON.stringify(hodData),

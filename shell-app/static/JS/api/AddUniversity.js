@@ -1,3 +1,4 @@
+const token = sessionStorage.getItem("token");
 export async function AddUniversity(university){
     try {
         const response = await fetch("https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversity", {
@@ -6,6 +7,7 @@ export async function AddUniversity(university){
           cache: "no-cache",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
           body: JSON.stringify(university),
         });
