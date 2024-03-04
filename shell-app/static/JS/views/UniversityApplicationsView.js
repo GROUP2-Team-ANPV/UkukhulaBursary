@@ -44,17 +44,18 @@ export default class extends AbstractViews {
     const closeInfoModal = document.querySelectorAll(".close-button");
     const studentNameContainer = document.querySelector(".name");
 
+    // Retrieve university ID from session storage
+    const uID = sessionStorage.getItem('universityID');
+
     getUniversityData(universityID).then(
-      ({ data, universities, departments, gender, race }) => {
-        const allUniversities = universities.map(({ id, universityName }) => {
-          return { id, universityName };
-        });
+      ({ data, universities, departments, race }) => {
+        const allUniversities = universities
+          .filter(university => university.id === parseInt(uID))
+          .map(({ id, universityName }) => {
+            return { id, universityName };
+          });
 
         const allDepartments = departments.map(({ id, name }) => {
-          return { id, name };
-        });
-
-        const genders = gender.map(({ id, name }) => {
           return { id, name };
         });
 
@@ -84,13 +85,12 @@ export default class extends AbstractViews {
 
         departmentSelect.append(...populateDepartmentSelect(allDepartments));
 
-        genderSelect.append(...populateGenderSelect(genders));
-
         raceSelect.append(...populateEthnicitySelect(ethnicity));
 
         StudentapplicationScript();
       }
     );
+
 
     closeInfoModal.forEach((button) => {
       button.addEventListener("click", () => {
