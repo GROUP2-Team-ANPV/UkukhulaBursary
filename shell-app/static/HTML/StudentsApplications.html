@@ -47,12 +47,12 @@
               <input type="text" id="id-number" name="idNumber" required />
             </li>
             <li class="form__control">
-              <label for="birthdate">Birthdate </label>
-              <input type="date" id="birthdate" name="birthdate" readonly required />
+              <label for="birthDate">Birthdate </label>
+              <input type="date" id="birthDate" name="birthDate" readonly required />
             </li>
             <li class="form__control">
               <label for="gender">Gender</label>
-              <select id="gender" name="genderId" required>
+              <select id="gender" name="genderID" required>
                   <option value="0">Select Gender</option>
                   <option value="1">Male</option>
                   <option value="2">Female</option>
@@ -62,10 +62,10 @@
           
             <li class="form__control">
               <label for="race">Ethnicity:</label>
-              <select id="race" name="raceId" required>
+              <select id="race" name="raceID" required>
                 <option value="0">Select Ethnicity</option>
-                <!-- Get from the database -->
-              </select>
+                <!-- Populate from the database -->
+            </select>
             </li>
           </ul>
         </fieldset>
@@ -87,7 +87,7 @@
           <ul class="form__controls">
             <li class="form__control">
               <label for="department">Department</label>
-              <select id="department" name="departmentId">
+              <select id="department" name="departmentID">
                 <option value="0">Select Department</option>
                 <!-- To be populate by data from the server -->
               </select>
