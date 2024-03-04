@@ -1,6 +1,6 @@
 export async function getStatus() {
   const response = await fetch(
-    "http://localhost:5263/api/ConstantTables/GetStatus",
+    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetStatus",
     {
       method: "GET",
     }
