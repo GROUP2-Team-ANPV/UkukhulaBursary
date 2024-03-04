@@ -1,6 +1,6 @@
 export async function getAllDepartments() {
   const response = await fetch(
-    "http://localhost:5263/api/ConstantTables/GetDepartment",
+    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment",
     {
       method: "GET",
     }
