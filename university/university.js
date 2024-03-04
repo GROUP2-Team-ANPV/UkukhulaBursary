@@ -6,11 +6,11 @@ const departmentSelect = document.querySelector("#department");
 
 async function getDataForSelect() {
   const provinces = await getAllProvinces(
-    "http://localhost:5263/api/ConstantTables/GetProvinces"
+    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetProvinces"
   );
 
   const departments = await getAllDepartments(
-    "http://localhost:5263/api/ConstantTables/GetDepartment"
+    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment"
   );
 
   return { provinces, departments };
@@ -46,7 +46,7 @@ async function handleAddUniversity(event) {
   }
 
   const response = await fetch(
-    "http://localhost:5263/api/BBDAdmin/AddUniversity",
+    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversity",
     {
       method: "POST",
       mode: "cors",

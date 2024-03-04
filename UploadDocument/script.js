@@ -51,7 +51,7 @@ function uploadFilesSequentially(filesToUpload, index) {
     formData.append("documentType", filesToUpload[index].documentType);
     
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", `http://localhost:5263/api/Student/${requestId}/UploadDocument`, true); // Pass requestId variable
+    xhr.open("POST", `https://ukukhulaapi2024.azurewebsites.net/api/Student/${requestId}/UploadDocument`, true); // Pass requestId variable
     
     xhr.onload = function () {
       if (xhr.status >= 200 && xhr.status < 300) {
