@@ -8,4 +8,9 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
-export { validatePhoneNumber, validateEmail };
+function validateName(name) {
+  const nameRegex = /^[a-zA-Z]+$/;
+  return nameRegex.test(name);
+}
+
+export { validatePhoneNumber, validateEmail, validateName };
