@@ -48,18 +48,24 @@
             </li>
             <li class="form__control">
               <label for="birthdate">Birthdate </label>
-              <input type="date" id="birthdate" name="birthdate" readonly required />
+              <input
+                type="date"
+                id="birthdate"
+                name="birthdate"
+                readonly
+                required
+              />
             </li>
             <li class="form__control">
               <label for="gender">Gender</label>
               <select id="gender" name="genderId" required>
-                  <option value="0">Select Gender</option>
-                  <option value="1">Male</option>
-                  <option value="2">Female</option>
-                  <option value="3">Other</option>
+                <option value="0">Select Gender</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Other</option>
               </select>
-          </li>
-          
+            </li>
+
             <li class="form__control">
               <label for="race">Ethnicity:</label>
               <select id="race" name="raceId" required>
@@ -150,4 +156,9 @@
     </header>
     <ul class="student__info"></ul>
   </section>
+</section>
+
+<section class="feedback flex">
+  <h4 class="feedback__heading"></h4>
+  <p class="feedback__message"></p>
 </section>
