@@ -23,6 +23,7 @@ export default class extends AbstractViews {
     return html;
   }
   async getJS() {
+    const newSpplication = document.getElementById("new-application");
     const universitySelect = document.getElementById("university");
     const genderSelect = document.getElementById("gender");
     const raceSelect = document.getElementById("race");
@@ -31,23 +32,20 @@ export default class extends AbstractViews {
     const universityID = sessionStorage.getItem("universityID");
     const modalWrapper = document.querySelector(".modal-wrapper");
     const applicationModal = document.querySelector(".application-modal");
+    const applicationContainer = document.querySelector(
+      ".application-container"
+    );
+    const studentApplicationModal = document.querySelector(
+      ".student-application"
+    );
+    const studentInfoContainer = document.querySelector(".student__info");
+    const studentInfoModal = document.querySelector(".student__info-modal");
     const documentBody = document.querySelector("body");
-    const closeApplicationModal = document.querySelector(".close-button");
+    const closeInfoModal = document.querySelectorAll(".close-button");
     const studentNameContainer = document.querySelector(".name");
 
     getUniversityData(universityID).then(
       ({ data, universities, departments, gender, race }) => {
-        studentsTable.append(
-          ...populateStudentsTable(
-            data.students,
-            modalWrapper,
-            applicationModal,
-            documentBody,
-            populateStudentModal,
-            studentNameContainer
-          )
-        );
-
         const allUniversities = universities.map(({ id, universityName }) => {
           return { id, universityName };
         });
@@ -64,21 +62,47 @@ export default class extends AbstractViews {
           return { id, name };
         });
 
-        // universitySelect.append(...populateUniversitySelect(allUniversities));
+        studentsTable.append(
+          ...populateStudentsTable(
+            data.students,
+            modalWrapper,
+            applicationModal,
+            documentBody,
+            populateStudentModal,
+            studentNameContainer,
+            studentInfoModal,
+            studentInfoContainer
+          )
+        );
 
-        // departmentSelect.append(...populateDepartmentSelect(allDepartments));
+        newSpplication.addEventListener("click", () => {
+          applicationModal.classList.add("show");
+          window.scrollTo(0, 0);
+          documentBody.classList.add("no-scroll");
+        });
 
-        // genderSelect.append(...populateGenderSelect(genders));
+        universitySelect.append(...populateUniversitySelect(allUniversities));
 
-        // raceSelect.append(...populateEthnicitySelect(ethnicity));
+        departmentSelect.append(...populateDepartmentSelect(allDepartments));
 
-        // StudentapplicationScript();
+        genderSelect.append(...populateGenderSelect(genders));
+
+        raceSelect.append(...populateEthnicitySelect(ethnicity));
+
+        StudentapplicationScript();
       }
     );
 
-    closeApplicationModal.addEventListener("click", () => {
-      applicationModal.classList.remove("show");
-      documentBody.classList.remove("no-scroll");
+    closeInfoModal.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (applicationModal.classList.contains("show")) {
+          applicationModal.classList.remove("show");
+        } else {
+          studentInfoModal.classList.remove("show");
+        }
+
+        documentBody.classList.remove("no-scroll");
+      });
     });
   }
 }
