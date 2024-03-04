@@ -5,7 +5,6 @@ import UniversitiesView from "./views/UniversitiesView.js";
 import populateDashboard from "./helpers/populate_dashboard.js";
 import UniversityApplicationsView from "./views/UniversityApplicationsView.js";
 import RepresentativesView from "./views/RepresentativesView.js";
-import AllApprovedStudentsView from "./views/AllApprovedStudentsView.js";
 import AllApplicationsView from "./views/AllApplicationsView.js";
 const menuComtainer = document.querySelector("#sidebar ul");
 
@@ -27,7 +26,6 @@ const router = async () => {
   if (userRole == "BBD Admin") {
     routes = [
       { path: "/", view: BBDAdminView },
-      { path: "/students", view: AllApprovedStudentsView },
       { path: "/universities", view: UniversitiesView },
       { path: "/applications", view: AllApplicationsView },
     ];
@@ -108,7 +106,6 @@ const cssLink = document.createElement("link");
 cssLink.setAttribute("id", "content-css");
 cssLink.setAttribute("rel", "stylesheet");
 head.appendChild(cssLink);
-
 
 const profileName = sessionStorage.getItem("name");
 document.getElementById("profileName").textContent = profileName;
