@@ -1,5 +1,5 @@
 function isValidPhoneNumber(phoneNumber) {
-  const phoneRegex = /^\d{10}$/;
+  const phoneRegex = /^(\+27|0)?[1678][0-9]{8}$/;
   return phoneRegex.test(phoneNumber);
 }
 
