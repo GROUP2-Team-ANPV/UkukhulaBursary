@@ -108,3 +108,7 @@ const cssLink = document.createElement("link");
 cssLink.setAttribute("id", "content-css");
 cssLink.setAttribute("rel", "stylesheet");
 head.appendChild(cssLink);
+
+
+const profileName = sessionStorage.getItem("name");
+document.getElementById("profileName").textContent = profileName;
