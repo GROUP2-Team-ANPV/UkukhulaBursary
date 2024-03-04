@@ -121,7 +121,7 @@ export function UniversityApplicationScript() {
 
     try {
       const response = await fetch(
-        "http://localhost:5263/api/BBDAdmin/AddUniversity",
+        "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversity",
         {
           method: "POST",
           mode: "cors",
