@@ -2,7 +2,6 @@ import AbstractViews from "./AbstractViews.js";
 import renderUniversities from "../helpers/render_universities.js";
 import renderStudents from "../helpers/render_students.js";
 import getBBDAllocationsData from "../api/GetBBDAllocationData.js";
-import populateStudentModal from "../helpers/populate_student_info.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -66,13 +65,13 @@ export default class extends AbstractViews {
         allocations
       );
 
-      usedAmount.textContent = formatMoney(selectedYearData.amountUsed);
+      usedAmount.textContent = formatMoney(selectedYearData.remainingBudget);
       displayFunds(selectedYearData);
 
       allocationYear.addEventListener("change", (event) => {
         selectedYearData = getSelectedYearData(event.target.value, allocations);
 
-        usedAmount.textContent = formatMoney(selectedYearData.amountUsed);
+        usedAmount.textContent = formatMoney(selectedYearData.remainingBudget);
         displayFunds(selectedYearData);
       });
 
@@ -83,7 +82,6 @@ export default class extends AbstractViews {
           studentInfoModal,
           studentNameContainer,
           documentBody,
-          populateStudentModal,
           studentInfoContainer
         )
       );

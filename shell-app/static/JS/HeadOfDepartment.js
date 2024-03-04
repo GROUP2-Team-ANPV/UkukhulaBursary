@@ -1,3 +1,12 @@
+
+import {
+  isValidEmail,
+  isValidName,
+  isValidOptionValue,
+  isValidPhoneNumber,
+} from "./data_validation/DataValiadation.js";
+
+const token = sessionStorage.getItem("token");
 export function HeadOfDeaprtmentApplicationScript({
   universities,
   departments = [],
@@ -31,6 +40,91 @@ export function HeadOfDeaprtmentApplicationScript({
     for (const [key, value] of formData) {
       hodData[key] = value;
     }
+
+    if (!isValidEmail(hodData.email)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Invalid email address";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
+    if (!isValidPhoneNumber(hodData.phoneNumber)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Invalid phone number";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
+    if (!isValidName(hodData.firstName)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Invalid first name";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
+    if (!isValidName(hodData.lastName)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Invalid last name";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
+    if (!isValidOptionValue(hodData.departmentID)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Please select a department";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
+    if (!isValidOptionValue(hodData.universityID)) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent = "Please select a university";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+      feedbackContainer.classList.add("feedback--show");
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+      return;
+    }
+
     try {
       const response = await fetch(
         "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversityUser",
@@ -40,13 +134,15 @@ export function HeadOfDeaprtmentApplicationScript({
           cache: "no-cache",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
 
           body: JSON.stringify(hodData),
         }
       );
-      const data = response.statusText;
-      if (data === "OK") {
+
+      if (response.statusText === "OK") {
+        hodForm.reset();
         feedbackHeading.textContent = "Success";
         feedbackMessage.textContent = "Head of Department added successfully";
 

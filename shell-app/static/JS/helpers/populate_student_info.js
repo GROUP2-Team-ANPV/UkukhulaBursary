@@ -105,7 +105,7 @@ async function populateStudentModal(student) {
       requestId;
 
     // Add the link element to the page
-    console.log(uploadLink);
+    alert(uploadLink);
   });
 
   if (userRole === "University Admin") {

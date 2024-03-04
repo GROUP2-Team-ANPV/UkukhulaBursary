@@ -1,4 +1,4 @@
-
+const token = sessionStorage.getItem("token");
 export async function AddHOD(hodData){
   
     try {
@@ -10,8 +10,8 @@ export async function AddHOD(hodData){
             cache: "no-cache",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
             },
-    
             body: JSON.stringify(hodData),
             }
         );

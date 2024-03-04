@@ -1,7 +1,7 @@
 const token = sessionStorage.getItem("token");
-export async function getAllDepartments() {
+export async function getfundrequests() {
   const response = await fetch(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment",
+    "https://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/GetAllFundRequests",
     {
       method: "GET",
       headers: {
@@ -11,6 +11,6 @@ export async function getAllDepartments() {
     }
   );
 
-  const result = await response.json();
+  let result = await response.json();
   return result;
 }
