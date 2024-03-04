@@ -49,9 +49,8 @@ export default class extends AbstractViews {
       fundedStudents.textContent = getFundedStudents(data.students);
       hods.append(...renderHODs(data.headOfDepartment));
 
-      // year to be replaced with current year
       const funds = data.fundAllocation.filter(
-        (funds) => funds.year === 2023
+        (funds) => funds.year === new Date().getFullYear()
       )[0];
       renderFundsBalance(funds ? funds.balance : 0);
 
