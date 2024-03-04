@@ -1,12 +1,23 @@
-export function HeadOfDeaprtmentApplicationScript(result) {
+export function HeadOfDeaprtmentApplicationScript({
+  universities,
+  departments = [],
+}) {
   const universitySelect = document.getElementById("university");
   const hodForm = document.querySelector(".hod-form");
 
-  for (const university of result) {
+  for (const university of universities) {
     const option = document.createElement("option");
     option.value = university.id;
     option.textContent = university.universityName;
     universitySelect.appendChild(option);
+  }
+
+  const departmentSelect = document.getElementById("department");
+  for (const department of departments) {
+    const option = document.createElement("option");
+    option.value = department.id;
+    option.textContent = department.name;
+    departmentSelect.appendChild(option);
   }
 
   async function handleAddHOD(event) {

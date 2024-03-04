@@ -27,12 +27,12 @@ function renderStudents(
 
     listItem.append(studentName, university, application);
 
-    application.addEventListener("click", () => {
+    application.addEventListener("click", async () => {
       studentInfoModal.style.transitionDelay = "0s";
 
       studentInfoContainer.textContent = "";
       studentNameContainer.textContent = `${student.firstName} ${student.lastName}`;
-      studentInfoContainer.append(...populateStudentModal(student));
+      studentInfoContainer.append(...(await populateStudentModal(student)));
 
       studentInfoModal.classList.add("show");
       window.scrollTo(0, 0);

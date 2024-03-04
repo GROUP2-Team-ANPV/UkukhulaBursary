@@ -1,6 +1,6 @@
-export async function getAllUniversities() {
+export async function getGender() {
   const response = await fetch(
-    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities",
+    "http://localhost:5263/api/ConstantTables/GetGender",
     {
       method: "GET",
     }

@@ -1,5 +1,6 @@
 import { HeadOfDeaprtmentApplicationScript } from "../HeadOfDepartment.js";
 import { getAllUniversities } from "../api/GetUniversities.js";
+import { getAllDepartments } from "../api/GetDepartments.js";
 import { getUniversityData } from "../api/GetUniversityData.js";
 import populateRepresentativesTable from "../helpers/PopulateRepresentativesTable.js";
 import AbstractViews from "./AbstractViews.js";
@@ -25,6 +26,7 @@ export default class extends AbstractViews {
     const closeInfoModal = document.querySelector(".close-button");
     const representativesTableBody = document.querySelector(".table tbody");
     const universityID = sessionStorage.getItem("universityID");
+    const departments = await getAllDepartments();
     const universities = await getAllUniversities();
 
     getUniversityData(universityID).then(({ data }) => {
@@ -46,6 +48,6 @@ export default class extends AbstractViews {
       documentBody.classList.remove("no-scroll");
     });
 
-    await HeadOfDeaprtmentApplicationScript(universities);
+    HeadOfDeaprtmentApplicationScript({ universities, departments });
   }
 }

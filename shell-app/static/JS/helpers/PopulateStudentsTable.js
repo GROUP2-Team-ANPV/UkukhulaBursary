@@ -1,6 +1,5 @@
 function populateStudentsTable(
   students,
-  modalWrapper,
   applicationModal,
   documentBody,
   populateStudentModal,
@@ -34,13 +33,12 @@ function populateStudentsTable(
     editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
     edit.append(editApplication);
     actions.appendChild(edit);
-
-    application.addEventListener("click", () => {
+    application.addEventListener("click", async () => {
       studentInfoModal.style.transitionDelay = "0s";
 
       studentInfoContainer.textContent = "";
       studentNameContainer.textContent = `${student.firstName} ${student.lastName}`;
-      studentInfoContainer.append(...populateStudentModal(student));
+      studentInfoContainer.append(...(await populateStudentModal(student)));
 
       studentInfoModal.classList.add("show");
       window.scrollTo(0, 0);
