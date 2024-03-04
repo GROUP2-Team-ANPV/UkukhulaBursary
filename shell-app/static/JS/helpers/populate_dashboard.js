@@ -26,19 +26,6 @@ function populateDashboard(role) {
     hodAnchor.append(i, hodText);
     hodItem.append(hodAnchor);
     menuItems.push(hodItem);
-
-    const profileItem = document.createElement("li");
-    const profileAnchor = document.createElement("a");
-    profileAnchor.href = "/profile";
-    profileAnchor.setAttribute("data-link", "");
-    const i2 = document.createElement("i");
-    i2.classList.add("bx", "bxs-info-circle");
-    const span2 = document.createElement("span");
-    span2.classList.add("text");
-    span2.textContent = "Profile";
-    profileAnchor.append(i2, span2);
-    profileItem.append(profileAnchor);
-    menuItems.push(profileItem);
   }
   return menuItems;
 }
