@@ -1,10 +1,7 @@
-import { AddHOD } from "./api/AddHOD.js";
+export function HeadOfDeaprtmentApplicationScript(result) {
+  const universitySelect = document.getElementById("university");
+  const hodForm = document.querySelector(".hod-form");
 
-export  function HeadOfDeaprtmentApplicationScript(result) {
-    const universitySelect = document.getElementById("university");
-    const hodForm = document.querySelector(".hod-form")
-
-  
   for (const university of result) {
     const option = document.createElement("option");
     option.value = university.id;
@@ -12,28 +9,53 @@ export  function HeadOfDeaprtmentApplicationScript(result) {
     universitySelect.appendChild(option);
   }
 
-  
+  async function handleAddHOD(event) {
+    const feedbackContainer = document.querySelector(".feedback");
+    const feedbackHeading = document.querySelector(".feedback__heading");
+    const feedbackMessage = document.querySelector(".feedback__message");
+    event.preventDefault();
+    const hodData = {};
+    const formData = new FormData(hodForm);
 
-    async function handleAddHOD(event) {
-        event.preventDefault();
-        const hodData = {};
-        const formData = new FormData(hodForm);
-
-        for (const [key, value] of formData) {
-            hodData[key] = value;
-        }
-        console.log(hodData)
-        if (hodData) {
-            await AddHOD(hodData);
-            console.log("HOD added successfully");
-        }else{
-            console.log("Error adding HOD:", error);
-        }
-        
-        hodForm.reset();
-
-
+    for (const [key, value] of formData) {
+      hodData[key] = value;
     }
-    hodForm.addEventListener("submit", handleAddHOD);
+    try {
+      const response = await fetch(
+        "http://localhost:5263/api/BBDAdmin/AddUniversityUser",
+        {
+          method: "POST",
+          mode: "cors",
+          cache: "no-cache",
+          headers: {
+            "Content-Type": "application/json",
+          },
 
+          body: JSON.stringify(hodData),
+        }
+      );
+      const data = response.statusText;
+      if (data === "OK") {
+        feedbackHeading.textContent = "Success";
+        feedbackMessage.textContent = "Head of Department added successfully";
+
+        feedbackContainer.style.backgroundColor = "var(--success)";
+      }
+    } catch (error) {
+      feedbackHeading.textContent = "Error";
+      feedbackMessage.textContent =
+        "An error occured while adding the Head of Department";
+      feedbackContainer.style.backgroundColor = "var(--danger)";
+    } finally {
+      feedbackContainer.classList.add("feedback--show");
+
+      setTimeout(() => {
+        feedbackContainer.classList.remove("feedback--show");
+        feedbackHeading.textContent = "";
+        feedbackMessage.textContent = "";
+        feedbackContainer.style.backgroundColor = "";
+      }, 3000);
+    }
+  }
+  hodForm.addEventListener("submit", handleAddHOD);
 }
