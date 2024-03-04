@@ -6,23 +6,23 @@ import getStatus from "../helpers/get_status.js";
 
 async function getApplicationConstants() {
   const departments = await getDepartments(
-    "http://localhost:5263//api/ConstantTables/GetDepartment"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment"
   );
 
   const universities = await getAllUniversities(
-    "http://localhost:5263//api/BBDAdmin/GetAllUniversities"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities"
   );
 
   const gender = await getGender(
-    "http://localhost:5263//api/ConstantTables/GetGender"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetGender"
   );
 
   const race = await getEthnicity(
-    "http://localhost:5263//api/ConstantTables/GetRace"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetRace"
   );
 
   const status = await getStatus(
-    "http://localhost:5263//api/ConstantTables/GetStatus"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetStatus"
   );
 
   return { departments, universities, gender, race, status };

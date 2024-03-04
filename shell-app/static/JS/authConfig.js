@@ -66,7 +66,7 @@ async function handleResponse(response) {
 
     try {
       const res = await fetch(
-        `http://localhost:5263//api/Auth/Login?email=${data.email.toLowerCase()}`,
+        `hhttps://ukukhulaapi2024.azurewebsites.net/api/Auth/Login?email=${data.email.toLowerCase()}`,
         {
           method: "POST",
           headers: {

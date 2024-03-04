@@ -2,7 +2,7 @@ const token = sessionStorage.getItem("token");
 export async function updateApplicationStatus(applicationID, statusUpdate) {
   try {
     const response = await fetch(
-      `http://localhost:5263//api/BBDAdmin/${applicationID}/UpdateStatus`,
+      `hhttps://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/${applicationID}/UpdateStatus`,
       {
         method: "PUT",
         headers: {

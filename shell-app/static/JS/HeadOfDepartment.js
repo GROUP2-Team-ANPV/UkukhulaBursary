@@ -126,7 +126,7 @@ export function HeadOfDeaprtmentApplicationScript({
 
     try {
       const response = await fetch(
-        "http://localhost:5263//api/BBDAdmin/AddUniversityUser",
+        "hhttps://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversityUser",
         {
           method: "POST",
           mode: "cors",

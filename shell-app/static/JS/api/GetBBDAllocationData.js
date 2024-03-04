@@ -4,15 +4,15 @@ import getAllUniversities from "../helpers/get_all_universities.js";
 
 async function getBBDAllocationsData() {
   const allocations = await getBBDFunds(
-    "http://localhost:5263//api/BBDAdmin/GetAllBBDFunds"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllBBDFunds"
   );
 
   const universities = await getAllUniversities(
-    "http://localhost:5263//api/BBDAdmin/GetAllUniversities"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities"
   );
 
   const students = await getAllStudents(
-    "http://localhost:5263//api/UniversityAdmin/GetAllFundRequests"
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/GetAllFundRequests"
   );
 
   return { allocations, universities, students };

@@ -149,7 +149,7 @@ export function StudentapplicationScript() {
 
     try {
       const response = await fetch(
-        "http://localhost:5263//api/UniversityAdmin/StudentFundRequest",
+        "hhttps://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/StudentFundRequest",
         {
           method: "POST",
           headers: {

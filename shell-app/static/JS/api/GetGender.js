@@ -1,7 +1,7 @@
 const token = sessionStorage.getItem("token");
 export async function getGender() {
   const response = await fetch(
-    "http://localhost:5263//api/ConstantTables/GetGender",
+    "hhttps://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetGender",
     {
       method: "GET",
       headers: {

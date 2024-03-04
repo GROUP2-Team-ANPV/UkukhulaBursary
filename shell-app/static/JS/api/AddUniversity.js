@@ -2,7 +2,7 @@ const token = sessionStorage.getItem("token");
 export async function AddUniversity(university) {
   try {
     const response = await fetch(
-      "http://localhost:5263//api/BBDAdmin/AddUniversity",
+      "hhttps://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/AddUniversity",
       {
         method: "POST",
         mode: "cors",
