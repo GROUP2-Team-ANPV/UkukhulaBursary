@@ -65,13 +65,13 @@ export default class extends AbstractViews {
         allocations
       );
 
-      usedAmount.textContent = formatMoney(selectedYearData.amountUsed);
+      usedAmount.textContent = formatMoney(selectedYearData.remainingBudget);
       displayFunds(selectedYearData);
 
       allocationYear.addEventListener("change", (event) => {
         selectedYearData = getSelectedYearData(event.target.value, allocations);
 
-        usedAmount.textContent = formatMoney(selectedYearData.amountUsed);
+        usedAmount.textContent = formatMoney(selectedYearData.remainingBudget);
         displayFunds(selectedYearData);
       });
 
