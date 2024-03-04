@@ -6,6 +6,7 @@ import populateDashboard from "./helpers/populate_dashboard.js";
 import UniversityApplicationsView from "./views/UniversityApplicationsView.js";
 import RepresentativesView from "./views/RepresentativesView.js";
 import AllApplicationsView from "./views/AllApplicationsView.js";
+import  AllApprovedStudentsView from "./views/AllApprovedStudentsView.js"
 const menuComtainer = document.querySelector("#sidebar ul");
 
 if (sessionStorage.getItem("token") == null) {
@@ -28,7 +29,6 @@ const router = async () => {
       { path: "/", view: BBDAdminView },
       { path: "/students", view: AllApprovedStudentsView },
       { path: "/universities", view: UniversitiesView },
-      { path: "/applications", view: AllApplicationsView },
       { path: "/applications", view: AllApplicationsView },
     ];
   } else if (userRole == "University Admin") {

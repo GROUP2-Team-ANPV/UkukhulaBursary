@@ -65,10 +65,7 @@ export default class extends AbstractViews {
         studentsTable.append(
           ...populateStudentsTable(
             data.students,
-<<<<<<< HEAD
-=======
             modalWrapper,
->>>>>>> 19afce5e417f97c933ac327b8fab719e70b88e13
             applicationModal,
             documentBody,
             populateStudentModal,
