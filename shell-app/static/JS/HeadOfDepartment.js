@@ -1,4 +1,3 @@
-
 import {
   isValidEmail,
   isValidName,
@@ -134,7 +133,7 @@ export function HeadOfDeaprtmentApplicationScript({
           cache: "no-cache",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
 
           body: JSON.stringify(hodData),
