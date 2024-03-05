@@ -5,6 +5,7 @@ import formatMoney from "../helpers/format_money.js";
 import renderHODs from "../helpers/render_HODs.js";
 import renderStudents from "../helpers/render_university_students.js";
 
+
 export default class extends AbstractViews {
   constructor() {
     super();
@@ -22,6 +23,7 @@ export default class extends AbstractViews {
   }
 
   async getJS() {
+    console.log("univeristy")
     const universityStudents = document.querySelector(".students");
     const fundedStudents = document.querySelector(".funded");
     const hods = document.querySelector(".hods");
@@ -32,9 +34,14 @@ export default class extends AbstractViews {
     const documentBody = document.querySelector("body");
     const studentInfoModal = document.querySelector(".student__info-modal");
     const closeStudentInfoModal = document.querySelector(".close-button");
+    
     const universityID = sessionStorage.getItem("universityID");
+    
+    console.log(universityID)
+    
 
-    getUniversityData(universityID).then(({ data }) => {
+     await getUniversityData(universityID).then(({ data }) => {
+      console.log(data)
       universityStudents.append(
         ...renderStudents(
           data.students,
@@ -45,6 +52,8 @@ export default class extends AbstractViews {
           documentBody
         )
       );
+
+      
 
       fundedStudents.textContent = getFundedStudents(data.students);
       hods.append(...renderHODs(data.headOfDepartment));
@@ -84,5 +93,8 @@ export default class extends AbstractViews {
     function renderUsedFunds(funds) {
       usedFunds.textContent = formatMoney(funds);
     }
+   
+  
   }
+ 
 }
