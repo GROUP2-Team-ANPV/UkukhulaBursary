@@ -1,39 +1,46 @@
+import populateStudentModal from "./populate_student_info.js";
+
 function populateStudentsTable(
-  students,
-  applicationModal,
-  documentBody,
-  populateStudentModal,
-  studentNameContainer,
+  allStudents,
   studentInfoModal,
-  studentInfoContainer
+  studentInfoContainer,
+  studentNameContainer,
+  populateStudentModal,
+  documentBody
 ) {
-  const rows = [];
+  const studentsList = allStudents.map((student) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("student");
 
-  students.forEach((student) => {
-    const row = document.createElement("tr");
-    const firstName = document.createElement("td");
-    const lastName = document.createElement("td");
-    const gender = document.createElement("td");
-    const race = document.createElement("td");
-    const status = document.createElement("td");
-    const actions = document.createElement("td");
-    actions.classList.add("actions");
-    const application = document.createElement("p");
-    application.classList.add("view__application", "dark");
-    application.textContent = "view";
-    const seeApplication = document.createElement("i");
-    seeApplication.classList.add("bx", "bx-right-top-arrow-circle", "bx-sm");
-    application.append(seeApplication);
-    actions.appendChild(application);
+    const studentName = document.createElement("h3");
+    studentName.classList.add("student__name");
+    studentName.textContent = `${student.firstName} ${student.lastName}`;
 
-    const edit = document.createElement("p");
-    edit.classList.add("edit__application", "dark");
-    edit.textContent = "edit";
-    const editApplication = document.createElement("i");
-    editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
-    edit.append(editApplication);
-    actions.appendChild(edit);
-    application.addEventListener("click", async () => {
+    const university = document.createElement("p");
+    university.classList.add("student__university");
+    university.textContent = student.university;
+
+    const status = document.createElement("p");
+    status.classList.add(
+      "student__status",
+      student.applicationStatus.toLowerCase()
+    );
+    status.textContent = student.applicationStatus;
+
+    const viewApplication = document.createElement("p");
+    viewApplication.classList.add("view__application");
+    viewApplication.textContent = "View";
+    const viewApplicatonIcon = document.createElement("i");
+    viewApplicatonIcon.classList.add(
+      "bx",
+      "bx-right-top-arrow-circle",
+      "bx-sm"
+    );
+    viewApplication.append(viewApplicatonIcon);
+
+    listItem.append(studentName, university, status, viewApplication);
+
+    viewApplication.addEventListener("click", async () => {
       studentInfoModal.style.transitionDelay = "0s";
 
       studentInfoContainer.textContent = "";
@@ -45,31 +52,10 @@ function populateStudentsTable(
       documentBody.classList.add("no-scroll");
     });
 
-    edit.addEventListener("click", () => {
-      applicationModal.style.transitionDelay = "0s";
-
-      applicationModal.classList.add("show");
-      window.scrollTo(0, 0);
-      documentBody.classList.add("no-scroll");
-    });
-
-    firstName.textContent = student.firstName;
-    lastName.textContent = student.lastName;
-    gender.textContent = student.gender;
-    race.textContent = student.race;
-    status.textContent = student.applicationStatus;
-
-    row.appendChild(firstName);
-    row.appendChild(lastName);
-    row.appendChild(gender);
-    row.appendChild(race);
-    row.appendChild(status);
-    row.appendChild(actions);
-
-    rows.push(row);
+    return listItem;
   });
 
-  return rows;
+  return studentsList;
 }
 
 export default populateStudentsTable;

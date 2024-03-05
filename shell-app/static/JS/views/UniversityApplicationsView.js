@@ -105,7 +105,7 @@ export default class extends AbstractViews {
 
     getUniversityData(universityID).then(({ data }) => {
       universityStudents.append(
-        ...renderStudents(
+        ...populateStudentsTable(
           data.students,
           studentInfoModal,
           studentInfoContainer,
