@@ -27,6 +27,9 @@ function populateStudentsTable(
     );
     status.textContent = student.applicationStatus;
 
+    const actions = document.createElement("section");
+    actions.classList.add("actions");
+
     const viewApplication = document.createElement("p");
     viewApplication.classList.add("view__application");
     viewApplication.textContent = "View";
@@ -38,7 +41,17 @@ function populateStudentsTable(
     );
     viewApplication.append(viewApplicatonIcon);
 
-    listItem.append(studentName, university, status, viewApplication);
+    const edit = document.createElement("p");
+    edit.classList.add("edit__application", "transparent");
+    edit.textContent = "edit";
+    const editApplication = document.createElement("i");
+    editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
+    edit.append(editApplication);
+
+    actions.appendChild(viewApplication);
+    actions.appendChild(edit);
+
+    listItem.append(studentName, university, status, actions);
 
     viewApplication.addEventListener("click", async () => {
       studentInfoModal.style.transitionDelay = "0s";
@@ -48,6 +61,14 @@ function populateStudentsTable(
       studentInfoContainer.append(...(await populateStudentModal(student)));
 
       studentInfoModal.classList.add("show");
+      window.scrollTo(0, 0);
+      documentBody.classList.add("no-scroll");
+    });
+
+    edit.addEventListener("click", () => {
+      applicationModal.style.transitionDelay = "0s";
+
+      applicationModal.classList.add("show");
       window.scrollTo(0, 0);
       documentBody.classList.add("no-scroll");
     });
