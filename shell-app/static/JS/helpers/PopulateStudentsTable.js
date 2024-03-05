@@ -46,15 +46,8 @@ function populateStudentsTable(
     );
     viewApplication.append(viewApplicatonIcon);
 
-    // const edit = document.createElement("p");
-    // edit.classList.add("edit__application", "transparent");
-    // edit.textContent = "edit";
-    // const editApplication = document.createElement("i");
-    // editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
-    // edit.append(editApplication);
 
     actions.appendChild(viewApplication);
-    // actions.appendChild(edit);
 
     listItem.append(studentName, email, BursaryAmount, status, actions);
 

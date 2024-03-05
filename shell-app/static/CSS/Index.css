@@ -17,8 +17,8 @@
   --light-transparent: rgba(231, 229, 229, 0.85);
   --dark-color: rgb(22, 20, 20);
   --dark-transparent: rgba(22, 20, 20, 0.5);
-  --success: rgb(0, 128, 0);
-  --danger: rgb(255, 0, 0);
+  --success: rgba(3, 120, 3, 0.75);
+  --danger: rgba(215, 10, 10, 0.75);
 }
 
 html {
@@ -400,7 +400,6 @@ li.hidden {
   color: var(--main-color);
   padding: 0.25rem 0.5rem;
   text-align: center;
-  border-radius: 0.5rem;
 }
 
 .student__status.approved {
