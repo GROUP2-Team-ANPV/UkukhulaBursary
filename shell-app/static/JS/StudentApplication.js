@@ -3,19 +3,16 @@ import {
   isValidEmail,
   isValidIDNumber,
   isValidOptionValue,
+  isValidName,
 } from "./data_validation/DataValiadation.js";
+import displayNotification from "./data_validation/Notification.js";
 const token = sessionStorage.getItem("token");
 export function StudentapplicationScript() {
   const form = document.querySelector(".application-form");
   const birthdateInput = document.getElementById("birthDate");
   const genderSelect = document.getElementById("gender");
-  const phoneInput = document.getElementById("phone");
-  const emailInput = document.getElementById("email");
   const amountInput = document.getElementById("amount-needed");
   const gradeInput = document.getElementById("grade");
-  const feedbackContainer = document.querySelector(".feedback");
-  const feedbackHeading = document.querySelector(".feedback__heading");
-  const feedbackMessage = document.querySelector(".feedback__message");
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -50,45 +47,33 @@ export function StudentapplicationScript() {
       }
     });
 
+    if (!isValidName(studentData.firstName)) {
+      displayNotification("Error", "Invalid first name", "danger");
+      return;
+    }
+
+    if (!isValidName(studentData.lastName)) {
+      displayNotification("Error", "Invalid last name", "danger");
+      return;
+    }
+
+    if (!isValidOptionValue(studentData.raceID)) {
+      displayNotification("Error", "Please select Ethnicity", "danger");
+      return;
+    }
+
     if (!isValidOptionValue(studentData.universityID)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Please select a university";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Please select a university", "danger");
       return;
     }
 
     if (!isValidOptionValue(studentData.departmentID)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Please select a department";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Please select a department", "danger");
       return;
     }
 
     if (!isValidIDNumber(studentData.idNumber)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid ID Number";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid ID Number", "danger");
       return;
     } else {
       const yearPrefix = studentData.idNumber.charAt(0) === "0" ? "20" : "19";
@@ -105,30 +90,12 @@ export function StudentapplicationScript() {
     }
 
     if (!isValidEmail(studentData.email)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid email address";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid email address", "danger");
       return;
     }
 
     if (!isValidPhoneNumber(studentData.phoneNumber)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid phone number";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid phone number", "danger");
       return;
     }
 
@@ -147,22 +114,21 @@ export function StudentapplicationScript() {
 
       if (response.statusText === "OK") {
         form.reset();
-        alert("Student application submitted successfully");
+        displayNotification(
+          "Success",
+          "Application submitted successfully",
+          "success"
+        );
       }
     } catch (error) {
       console.error("Error:", error);
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = `An error occurred while submitting the application: ${error}`;
-      feedbackContainer.style.backgroundColor = "var(--danger)";
+      displayNotification(
+        "Error",
+        `An error occurred while submitting the application: ${error}`,
+        "danger"
+      );
     } finally {
-      feedbackContainer.classList.add("feedback--show");
-
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("", "", "");
     }
   });
 }
