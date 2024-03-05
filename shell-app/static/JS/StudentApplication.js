@@ -70,6 +70,7 @@ export function StudentapplicationScript() {
       });
 
       try {
+        console.log(studentData)
         await AddStudent(studentData);
         console.log("Student added successfully");
       } catch (error) {

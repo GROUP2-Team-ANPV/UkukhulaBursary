@@ -20,7 +20,7 @@ export function parseJwt(token) {
     ];
 
   if (userRole == "University Admin") {
-    sessionStorage.setItem("universityID", userUniversity);
+    sessionStorage.setItem("universityID", 1);
   }
   const usertimeStamp = userdata["exp"];
   const expirationDate = new Date(usertimeStamp * 1000);

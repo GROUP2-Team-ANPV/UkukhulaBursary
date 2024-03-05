@@ -1,6 +1,7 @@
 const token = sessionStorage.getItem("token");
 export async function AddStudent(student){
   
+   console.log(JSON.stringify(student))
    try {
     const response =  await fetch('https://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/StudentFundRequest', {
       method: 'POST',
