@@ -9,10 +9,27 @@ import displayNotification from "./data_validation/Notification.js";
 const token = sessionStorage.getItem("token");
 export function StudentapplicationScript() {
   const form = document.querySelector(".application-form");
+  const idNumberInput = document.getElementById("id-number");
   const birthdateInput = document.getElementById("birthDate");
   const genderSelect = document.getElementById("gender");
   const amountInput = document.getElementById("amount-needed");
   const gradeInput = document.getElementById("grade");
+
+  idNumberInput.addEventListener("input", function () {
+    const idNumber = idNumberInput.value.trim();
+
+    if (isValidIDNumber(idNumber)) {
+      const yearPrefix = idNumber.charAt(0) === "0" ? "20" : "19";
+      const year = yearPrefix + idNumber.substring(0, 2);
+      const month = idNumber.substring(2, 4);
+      const day = idNumber.substring(4, 6);
+      const birthdateString = `${year}-${month}-${day}`;
+      birthdateInput.value = birthdateString;
+      const genderDigit = parseInt(idNumber.charAt(6));
+      const genderValue = genderDigit >= 5 ? 1 : 2;
+      genderSelect.value = genderValue;
+    }
+  });
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -32,19 +49,7 @@ export function StudentapplicationScript() {
     const formData = new FormData(form);
     const studentData = {};
     formData.forEach((value, key) => {
-      if (
-        key === "genderID" ||
-        key === "departmentID" ||
-        key === "raceID" ||
-        key === "universityID" ||
-        key === "grade"
-      ) {
-        studentData[key] = parseInt(value);
-      } else if (key === "amount") {
-        studentData[key] = parseFloat(value);
-      } else {
-        studentData[key] = value;
-      }
+      studentData[key] = value;
     });
 
     if (!isValidName(studentData.firstName)) {
@@ -113,22 +118,19 @@ export function StudentapplicationScript() {
       );
 
       if (response.statusText === "OK") {
-        form.reset();
         displayNotification(
           "Success",
           "Application submitted successfully",
           "success"
         );
+        form.reset();
       }
     } catch (error) {
-      console.error("Error:", error);
       displayNotification(
         "Error",
         `An error occurred while submitting the application: ${error}`,
         "danger"
       );
-    } finally {
-      displayNotification("", "", "");
     }
   });
 }
