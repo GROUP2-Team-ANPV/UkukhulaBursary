@@ -265,6 +265,180 @@ li.hidden {
   color: var(--light-color);
 }
 
+/* Main Content */
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  margin: 0 auto;
+  gap: 1rem;
+  color: var(--light-color);
+  grid-area: main;
+}
+
+.content__primary,
+.content__secondary {
+  max-height: 600px;
+}
+
+.content__primary {
+  flex: 1.5 200px;
+  display: flex;
+}
+
+.content__secondary {
+  flex: 1 200px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.content__students,
+.content__hods {
+  flex: 1;
+  border-radius: 1rem;
+  overflow: auto;
+}
+
+.content__hods {
+  background-color: var(--light-transparent);
+  color: var(--main-color);
+}
+
+.content__students .content__header,
+.content__hods .content__header {
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  background-color: var(--light-color);
+  color: var(--main-color);
+}
+
+.content__hods .content__header {
+  background-color: var(--main-color);
+  color: var(--light-color);
+}
+
+.content__students {
+  background-color: var(--main-color-transparent);
+}
+
+.content__funds {
+  background-color: var(--secondary-color);
+  border-radius: 1rem;
+}
+
+.department {
+  font-weight: 600;
+}
+
+.students,
+.hods,
+.universities {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  cursor: pointer;
+}
+
+.student,
+.hod,
+.university {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.university__name,
+.university__contact,
+.university__email,
+.student__name,
+.student__gender,
+.student__race,
+.student__status,
+.student__amount,
+.student__university {
+  flex: 1 1 200px;
+  justify-self: flex-start;
+}
+
+.student:nth-child(even) {
+  background-color: var(--main-color-transparent);
+}
+
+.hod:nth-child(even),
+.university:nth-child(even) {
+  background-color: var(--light-transparent);
+}
+
+.student__amount {
+  font-size: 0.83rem;
+  font-weight: 600;
+  text-align: end;
+}
+
+.content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  font-size: 1.25rem;
+}
+
+.student__status {
+  background-color: var(--light-transparent);
+  color: var(--main-color);
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+.student__status.approved {
+  background-color: var(--success);
+  color: var(--light-color);
+}
+
+.student__status.rejected {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+}
+
+.email a {
+  color: var(--light-color);
+}
+
+/* Student info modal */
+.student__info-header,
+.modal__header {
+  position: sticky;
+  top: 0;
+  background-color: var(--light-color);
+  z-index: 20;
+  padding-top: 1rem;
+}
+
+.student__info {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  /* gap: 1rem; */
+}
+
+.update-status {
+  background-color: var(--main-color);
+  color: var(--light-color);
+  padding: 0.5rem 1rem;
+  width: max-content;
+}
+
 @media screen and (max-width: 768px) {
   #header {
     width: 100%;
