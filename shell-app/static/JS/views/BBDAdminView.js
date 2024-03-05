@@ -2,6 +2,7 @@ import AbstractViews from "./AbstractViews.js";
 import renderUniversities from "../helpers/render_universities.js";
 import renderStudents from "../helpers/render_students.js";
 import getBBDAllocationsData from "../api/GetBBDAllocationData.js";
+import { allocateFunds } from "../api/Allocatefunds.js";
 
 export default class extends AbstractViews {
   constructor() {
@@ -31,6 +32,7 @@ export default class extends AbstractViews {
     const documentBody = document.querySelector("body");
     const studentInfoModal = document.querySelector(".student__info-modal");
     const closeStudentInfoModal = document.querySelector(".close-button");
+    const allocationbutton = documentBody.querySelector(".allocate-fund-button")
 
     function populateAllocationsSelect(data) {
       data.forEach((allocation) => {
@@ -92,5 +94,10 @@ export default class extends AbstractViews {
       studentInfoModal.classList.remove("show");
       documentBody.classList.remove("no-scroll");
     });
+
+    allocationbutton.addEventListener("click", async () => {
+      await allocateFunds();
+    
+  });
   }
 }

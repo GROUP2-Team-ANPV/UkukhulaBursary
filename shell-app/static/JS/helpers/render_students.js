@@ -24,6 +24,7 @@ function renderStudents(
       "student__status",
       student.status.toLowerCase()
     );
+    
     applicationStatus.textContent = student.status;
 
     const viewApplication = document.createElement("p");
