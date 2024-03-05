@@ -46,15 +46,15 @@ function populateStudentsTable(
     );
     viewApplication.append(viewApplicatonIcon);
 
-    const edit = document.createElement("p");
-    edit.classList.add("edit__application", "transparent");
-    edit.textContent = "edit";
-    const editApplication = document.createElement("i");
-    editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
-    edit.append(editApplication);
+    // const edit = document.createElement("p");
+    // edit.classList.add("edit__application", "transparent");
+    // edit.textContent = "edit";
+    // const editApplication = document.createElement("i");
+    // editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
+    // edit.append(editApplication);
 
     actions.appendChild(viewApplication);
-    actions.appendChild(edit);
+    // actions.appendChild(edit);
 
     listItem.append(studentName, email, BursaryAmount, status, actions);
 
@@ -70,13 +70,13 @@ function populateStudentsTable(
       documentBody.classList.add("no-scroll");
     });
 
-    edit.addEventListener("click", () => {
-      applicationModal.style.transitionDelay = "0s";
+    // edit.addEventListener("click", () => {
+    //   applicationModal.style.transitionDelay = "0s";
 
-      applicationModal.classList.add("show");
-      window.scrollTo(0, 0);
-      documentBody.classList.add("no-scroll");
-    });
+    //   applicationModal.classList.add("show");
+    //   window.scrollTo(0, 0);
+    //   documentBody.classList.add("no-scroll");
+    // });
 
     return listItem;
   });
