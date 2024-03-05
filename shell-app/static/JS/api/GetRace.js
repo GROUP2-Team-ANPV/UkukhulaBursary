@@ -1,7 +1,7 @@
 const token = sessionStorage.getItem("token");
 export async function getRace() {
   const response = await fetch(
-    "hhttps://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetRace",
+    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetRace",
     {
       method: "GET",
       headers: {

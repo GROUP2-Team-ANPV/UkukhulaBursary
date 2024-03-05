@@ -1,7 +1,7 @@
 const token = sessionStorage.getItem("token");
 export async function getAllUniversities() {
   const response = await fetch(
-    "hhttps://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities",
+    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities",
     {
       method: "GET",
       headers: {

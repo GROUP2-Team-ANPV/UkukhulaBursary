@@ -1,7 +1,7 @@
 const token = sessionStorage.getItem("token");
 export async function getAllDepartments() {
   const response = await fetch(
-    "hhttps://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment",
+    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment",
     {
       method: "GET",
       headers: {

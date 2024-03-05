@@ -59,7 +59,7 @@ function uploadFilesSequentially(filesToUpload, index) {
   const xhr = new XMLHttpRequest();
   xhr.open(
     "POST",
-    `hhttps://ukukhulaapi2024.azurewebsites.net/api/Student/${requestId}/UploadDocument`,
+    `https://ukukhulaapi2024.azurewebsites.net/api/Student/${requestId}/UploadDocument`,
     true
   ); // Pass requestId variable
 
