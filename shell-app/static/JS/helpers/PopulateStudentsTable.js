@@ -1,8 +1,9 @@
-import populateStudentModal from "./populate_student_info.js";
+import formatMoney from "./format_money.js";
 
 function populateStudentsTable(
   allStudents,
   studentInfoModal,
+  applicationModal,
   studentInfoContainer,
   studentNameContainer,
   populateStudentModal,
@@ -16,9 +17,13 @@ function populateStudentsTable(
     studentName.classList.add("student__name");
     studentName.textContent = `${student.firstName} ${student.lastName}`;
 
-    const university = document.createElement("p");
-    university.classList.add("student__university");
-    university.textContent = student.university;
+    const BursaryAmount = document.createElement("p");
+    BursaryAmount.textContent = formatMoney(student.amount);
+
+    const email = document.createElement("a");
+    email.classList.add("student__email");
+    email.textContent = student.email;
+    email.href = `mailto:${student.email}`;
 
     const status = document.createElement("p");
     status.classList.add(
@@ -51,7 +56,7 @@ function populateStudentsTable(
     actions.appendChild(viewApplication);
     actions.appendChild(edit);
 
-    listItem.append(studentName, university, status, actions);
+    listItem.append(studentName, email, BursaryAmount, status, actions);
 
     viewApplication.addEventListener("click", async () => {
       studentInfoModal.style.transitionDelay = "0s";
