@@ -8,10 +8,78 @@ async function populateStudentModal(student) {
   const userRole = parseJwt(sessionStorage.getItem("token"));
 
   const studentInfo = [];
+
+  // Create the button for generating links
   const generateLinkButton = document.createElement("button");
   generateLinkButton.textContent = "Generate Link";
   generateLinkButton.classList.add("button");
   generateLinkButton.classList.add("generate-link");
+
+
+  // Create the button for getting links
+  const getLinkButton = document.createElement("button");
+  getLinkButton.textContent = "Get Links";
+  getLinkButton.classList.add("button");
+  getLinkButton.classList.add("get-link");
+
+  // Event listener for the get link button
+getLinkButton.addEventListener("click", async () => {
+  try {
+    const linksResponse = await fetch(`http://localhost:5263/api/UniversityAdmin/GetDocumentByFundRequestID?FundID=${student.requestID}`);
+
+    // Check if response status is ok
+    if (!linksResponse.ok) {
+      throw new Error(`Failed to fetch links. Status: ${linksResponse.status}`);
+    }
+
+    const reader = linksResponse.body.getReader();
+    const { value, done } = await reader.read();
+
+    // Check if response body is empty
+    if (done || !value) {
+      alert("The document is pending");
+      return;
+    }
+
+    const linksText = new TextDecoder("utf-8").decode(value); // Decode response body
+
+    console.log("Response:", linksText); // Log the response text
+
+    const linksData = JSON.parse(linksText); // Attempt to parse the response as JSON
+
+    // Check if linksData is empty or not an array
+    if (!Array.isArray(linksData) || linksData.length === 0) {
+      console.error("Error: Empty or invalid JSON response");
+      return;
+    }
+
+    // Show an alert with the response data
+    alert(`Received ${linksData.length} links from the server`);
+
+    // Assuming linksData contains an array of links
+    linksData.forEach(link => {
+      const linkButton = document.createElement("button");
+      linkButton.textContent = `${link.documentType}`;
+      linkButton.classList.add("button");
+      linkButton.classList.add("link-button");
+
+      // Event listener for each link button
+      linkButton.addEventListener("click", () => {
+        // Handle click event for this specific link button
+        // For example, open the document using link.documentPath
+        window.open(link.documentPath);
+      });
+
+      studentInfo.push(linkButton);
+    });
+  } catch (error) {
+    console.error("Error getting links:", error);
+  }
+});
+
+
+  // Append getLinkButton to studentInfo array
+  studentInfo.push(getLinkButton);
 
   for (let [key, value] of Object.entries(student)) {
     const label = key.replace(/([A-Z])/g, " $1").toLowerCase();
@@ -100,15 +168,12 @@ async function populateStudentModal(student) {
     // Open the default email client
     window.location.href = mailtoLink;
   });
-  
-  
-  
-
-
 
   if (userRole === "University Admin") {
     studentInfo.push(generateLinkButton);
   }
+  
   return studentInfo;
 }
+
 export default populateStudentModal;
