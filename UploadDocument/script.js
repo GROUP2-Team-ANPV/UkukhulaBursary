@@ -8,10 +8,10 @@ function getUrlParameter(name) {
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-// Get the request ID from the URL
 const requestId = getUrlParameter("requestId");
+const token = getUrlParameter("token");
 
-// Add event listener to the form
+
 document
   .getElementById("uploadForm")
   .addEventListener("submit", function (event) {
@@ -61,16 +61,17 @@ function uploadFilesSequentially(filesToUpload, index) {
     "POST",
     `https://ukukhulaapi2024.azurewebsites.net/api/Student/${requestId}/UploadDocument`,
     true
-  ); // Pass requestId variable
+  ); 
+  
+  xhr.setRequestHeader("Authorization", `Bearer ${token}`);
 
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
-      // Request was successful
       document.getElementById("message").innerHTML =
         "<span style='color: green; font-weight: bold;'>" +
         xhr.responseText +
         "</span>";
-      uploadFilesSequentially(filesToUpload, index + 1); // Upload next file
+      uploadFilesSequentially(filesToUpload, index + 1); 
     } else {
       // Request failed
       document.getElementById("message").innerHTML =
