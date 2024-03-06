@@ -26,13 +26,14 @@ function populateStudentsTable(
     application.append(seeApplication);
     actions.appendChild(application);
 
-    const edit = document.createElement("p");
-    edit.classList.add("edit__application", "dark");
-    edit.textContent = "edit";
-    const editApplication = document.createElement("i");
-    editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
-    edit.append(editApplication);
-    actions.appendChild(edit);
+    // To be completed
+    // const edit = document.createElement("p");
+    // edit.classList.add("edit__application", "dark");
+    // edit.textContent = "edit";
+    // const editApplication = document.createElement("i");
+    // editApplication.classList.add("bx", "bx-edit-alt", "bx-sm");
+    // edit.append(editApplication);
+    // actions.appendChild(edit);
     application.addEventListener("click", async () => {
       studentInfoModal.style.transitionDelay = "0s";
 
@@ -45,13 +46,13 @@ function populateStudentsTable(
       documentBody.classList.add("no-scroll");
     });
 
-    edit.addEventListener("click", () => {
-      applicationModal.style.transitionDelay = "0s";
+    // edit.addEventListener("click", () => {
+    //   applicationModal.style.transitionDelay = "0s";
 
-      applicationModal.classList.add("show");
-      window.scrollTo(0, 0);
-      documentBody.classList.add("no-scroll");
-    });
+    //   applicationModal.classList.add("show");
+    //   window.scrollTo(0, 0);
+    //   documentBody.classList.add("no-scroll");
+    // });
 
     firstName.textContent = student.firstName;
     lastName.textContent = student.lastName;

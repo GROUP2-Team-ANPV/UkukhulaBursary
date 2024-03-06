@@ -4,6 +4,7 @@ import {
   isValidOptionValue,
   isValidPhoneNumber,
 } from "./data_validation/DataValiadation.js";
+import displayNotification from "./data_validation/Notification.js";
 
 const token = sessionStorage.getItem("token");
 export function HeadOfDeaprtmentApplicationScript({
@@ -41,86 +42,40 @@ export function HeadOfDeaprtmentApplicationScript({
     }
 
     if (!isValidEmail(hodData.email)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid email address";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid email address", "danger");
       return;
     }
 
     if (!isValidPhoneNumber(hodData.phoneNumber)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid phone number";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid phone number", "danger");
       return;
     }
 
     if (!isValidName(hodData.firstName)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid first name";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification(
+        "Error",
+        "First name must contain letters only",
+        "danger"
+      );
       return;
     }
 
     if (!isValidName(hodData.lastName)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid last name";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification(
+        "Error",
+        "Last name must contain letters only",
+        "danger"
+      );
       return;
     }
 
     if (!isValidOptionValue(hodData.departmentID)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Please select a department";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Please select a department", "danger");
       return;
     }
 
     if (!isValidOptionValue(hodData.universityID)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Please select a university";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Please select a university", "danger");
       return;
     }
 
@@ -141,26 +96,19 @@ export function HeadOfDeaprtmentApplicationScript({
       );
 
       if (response.statusText === "OK") {
+        displayNotification(
+          "Success",
+          "HUniversity Representative added successfully",
+          "success"
+        );
         hodForm.reset();
-        feedbackHeading.textContent = "Success";
-        feedbackMessage.textContent = "Head of Department added successfully";
-
-        feedbackContainer.style.backgroundColor = "var(--success)";
       }
     } catch (error) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent =
-        "An error occured while adding the Head of Department";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-    } finally {
-      feedbackContainer.classList.add("feedback--show");
-
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification(
+        "Error",
+        "An error occured while adding the Head of Department",
+        "danger"
+      );
     }
   }
   hodForm.addEventListener("submit", handleAddHOD);

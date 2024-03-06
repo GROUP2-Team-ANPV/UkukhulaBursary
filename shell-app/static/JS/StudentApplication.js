@@ -6,7 +6,9 @@ import {
   isValidName,
 } from "./data_validation/DataValiadation.js";
 import displayNotification from "./data_validation/Notification.js";
+
 const token = sessionStorage.getItem("token");
+
 export function StudentapplicationScript() {
   const form = document.querySelector(".application-form");
   const idNumberInput = document.getElementById("id-number");
