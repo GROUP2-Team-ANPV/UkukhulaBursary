@@ -23,7 +23,6 @@ export default class extends AbstractViews {
   }
 
   async getJS() {
-    console.log("univeristy")
     const universityStudents = document.querySelector(".students");
     const fundedStudents = document.querySelector(".funded");
     const hods = document.querySelector(".hods");
@@ -41,7 +40,6 @@ export default class extends AbstractViews {
     
 
      await getUniversityData(universityID).then(({ data }) => {
-      console.log(data)
       universityStudents.append(
         ...renderStudents(
           data.students,
