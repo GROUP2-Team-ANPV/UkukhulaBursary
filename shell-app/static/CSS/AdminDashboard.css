@@ -1,13 +1,12 @@
-.allocate-fund-section{
+.allocate-fund-section {
   display: flex;
   flex-direction: row-reverse;
 }
-.allocate-fund-button{
+.allocate-fund-button {
   display: flex;
   margin-bottom: 1rem;
   margin-right: 3rem;
   padding: 1rem;
-  
 }
 /* Main Content */
 .content {
@@ -93,10 +92,11 @@
 .university {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0.5rem;
+  margin: 1rem 0;
   border-radius: 0.5rem;
 }
 
@@ -104,6 +104,9 @@
 .university__contact,
 .university__email,
 .student__name,
+.hod__name,
+.hod__email,
+.department,
 .student__gender,
 .student__race,
 .student__status,
@@ -113,12 +116,12 @@
   justify-self: flex-start;
 }
 
-.student:nth-child(even) {
+.student {
   background-color: var(--main-color-transparent);
 }
 
-.hod:nth-child(even),
-.university:nth-child(even) {
+.hod,
+.university {
   background-color: var(--light-transparent);
 }
 
