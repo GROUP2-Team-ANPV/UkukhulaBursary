@@ -34,11 +34,6 @@ async function populateStudentModal(student) {
       const reader = linksResponse.body.getReader();
       const { value } = await reader.read();
 
-      // if (done || !value) {
-      //   alert("The document is pending");
-      //   return;
-      // }
-
       const linksText = new TextDecoder("utf-8").decode(value);
       const linksData = JSON.parse(linksText);
 
@@ -152,26 +147,36 @@ async function populateStudentModal(student) {
 
   // to be moved to helpers
   generateLinkButton.addEventListener("click", () => {
-    const recipientEmail = student.email; // Assuming student is an object with email property
-    const expirationTimeInMinutes = 60;
-    const uploadToken = Math.random().toString(36).substring(2, 15);
-    const requestId = student.requestID;
-    const expirationTimestamp = Date.now() + expirationTimeInMinutes * 60 * 1000;
-    const uploadLink = "https://blue-glacier-0afa9fa10.5.azurestaticapps.net?token=" +
-      uploadToken +
-      "&expires=" +
-      expirationTimestamp +
-      "&requestId=" +
-      requestId;
+    const recipientEmail = student.email;
+    let message;
+    fetch(`http://localhost:5263/api/Auth/Login?email=${recipientEmail}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      }
+    })
+      .then(response => response.json())
 
-    // Construct the mailto link with the message and embedded link
-    const recipientEmailEncoded = encodeURIComponent(recipientEmail);
-    const subjectEncoded = encodeURIComponent(`Upload Document - ${student.firstName} ${student.lastName}`);    
-    const bodyEncoded = encodeURIComponent(`Dear ${student.firstName} ${student.lastName},\n\nPlease upload the required documents for your application by clicking the link below:\n ${uploadLink}\n\nThank you.`);
+      .then(responseData => {
+        console.log(responseData);
+        message = responseData.message;
+        const requestId = student.requestID;
+        const uploadLink = "https://blue-glacier-0afa9fa10.5.azurestaticapps.net?token=" +
+          message +
+          "&requestId=" +
+          requestId;
+        const recipientEmailEncoded = encodeURIComponent(recipientEmail);
+        const subjectEncoded = encodeURIComponent(`Upload Document - ${student.firstName} ${student.lastName}`);
+        const bodyEncoded = encodeURIComponent(`Dear ${student.firstName} ${student.lastName},\n\nPlease upload the required documents for your application by clicking the link below:\n ${uploadLink}\n\nThank you.`);
 
-    const mailtoLink = `mailto:${recipientEmailEncoded}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+        const mailtoLink = `mailto:${recipientEmailEncoded}?subject=${subjectEncoded}&body=${bodyEncoded}`;
 
-    window.location.href = mailtoLink;
+        window.location.href = mailtoLink;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
 
   });
 
