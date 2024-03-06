@@ -8,10 +8,69 @@ async function populateStudentModal(student) {
   const userRole = parseJwt(sessionStorage.getItem("token"));
 
   const studentInfo = [];
+
+  // Create the button for generating links
   const generateLinkButton = document.createElement("button");
   generateLinkButton.textContent = "Generate Link";
   generateLinkButton.classList.add("button");
   generateLinkButton.classList.add("generate-link");
+
+  const token = sessionStorage.getItem("token");
+
+  const fetchLinksAndPopulateInfo = async () => {
+    try {
+      const linksResponse = await fetch(`https://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/GetDocumentByFundRequestID?FundID=${student.requestID}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+
+      if (!linksResponse.ok) {
+        throw new Error(`Failed to fetch links. Status: ${linksResponse}`);
+      }
+
+      const reader = linksResponse.body.getReader();
+      const { value } = await reader.read();
+
+      // if (done || !value) {
+      //   alert("The document is pending");
+      //   return;
+      // }
+
+      const linksText = new TextDecoder("utf-8").decode(value);
+      const linksData = JSON.parse(linksText);
+
+      if (!Array.isArray(linksData) || linksData.length === 0) {
+        const linkButton = document.createElement("li");
+        linkButton.textContent = `The document is pending`;
+        linkButton.classList.add("info");
+        studentInfo.push(linkButton);
+        if (userRole === "University Admin") {
+          studentInfo.push(generateLinkButton);
+        }
+        return;
+      }
+
+      linksData.forEach(link => {
+        const linkButton = document.createElement("li");
+        linkButton.textContent = `Download ${link.documentType}`;
+        linkButton.classList.add("link-info");
+
+        linkButton.addEventListener("click", () => {
+          window.open(link.documentPath);
+        });
+
+        studentInfo.push(linkButton);
+      });
+    } catch (error) {
+      console.error("Error getting links:", error);
+    }
+  };
+
+
+
 
   for (let [key, value] of Object.entries(student)) {
     const label = key.replace(/([A-Z])/g, " $1").toLowerCase();
@@ -64,9 +123,9 @@ async function populateStudentModal(student) {
         saveButton.textContent = "Save";
         saveButton.type = "submit";
         saveButton.addEventListener("click", (e) => {
-          e.preventDefault(); 
-          location.href = "/"; 
-      });
+          e.preventDefault();
+          location.href = "/";
+        });
         saveButton.classList.add("button");
         saveButton.classList.add("update-status");
         infoItem.appendChild(saveButton);
@@ -84,6 +143,13 @@ async function populateStudentModal(student) {
     }
   }
 
+  const downloadAllHeader = document.createElement("p");
+  downloadAllHeader.classList.add("label");
+  downloadAllHeader.textContent = "Documents";
+  studentInfo.push(downloadAllHeader);
+
+  await fetchLinksAndPopulateInfo();
+
   // to be moved to helpers
   generateLinkButton.addEventListener("click", () => {
     const recipientEmail = student.email; // Assuming student is an object with email property
@@ -97,22 +163,21 @@ async function populateStudentModal(student) {
       expirationTimestamp +
       "&requestId=" +
       requestId;
-  
+
     // Construct the mailto link with the message and embedded link
-    const mailtoLink = `mailto:${recipientEmail}?subject=Upload Document&body=Dear ${student.firstName + " " + student.lastName}, Please click the following link to upload your document: ${uploadLink}`;
-  
-    // Open the default email client
+    const recipientEmailEncoded = encodeURIComponent(recipientEmail);
+    const subjectEncoded = encodeURIComponent(`Upload Document - ${student.firstName} ${student.lastName}`);    
+    const bodyEncoded = encodeURIComponent(`Dear ${student.firstName} ${student.lastName},\n\nPlease upload the required documents for your application by clicking the link below:\n ${uploadLink}\n\nThank you.`);
+
+    const mailtoLink = `mailto:${recipientEmailEncoded}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+
     window.location.href = mailtoLink;
+
   });
-  
-  
-  
 
 
 
-  if (userRole === "University Admin") {
-    studentInfo.push(generateLinkButton);
-  }
   return studentInfo;
 }
+
 export default populateStudentModal;
