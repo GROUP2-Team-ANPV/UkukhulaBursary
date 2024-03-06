@@ -63,6 +63,10 @@ async function populateStudentModal(student) {
         const saveButton = document.createElement("button");
         saveButton.textContent = "Save";
         saveButton.type = "submit";
+        saveButton.addEventListener("click", (e) => {
+          e.preventDefault(); 
+          location.href = "/"; 
+      });
         saveButton.classList.add("button");
         saveButton.classList.add("update-status");
         infoItem.appendChild(saveButton);
@@ -82,31 +86,29 @@ async function populateStudentModal(student) {
 
   // to be moved to helpers
   generateLinkButton.addEventListener("click", () => {
-    // Define the expiration time in minutes
+    const recipientEmail = student.email; // Assuming student is an object with email property
     const expirationTimeInMinutes = 60;
-
-    // Generate a random upload token
     const uploadToken = Math.random().toString(36).substring(2, 15);
-
     const requestId = student.requestID;
-    console.log(requestId);
-
-    // Calculate the expiration timestamp
-    const expirationTimestamp =
-      Date.now() + expirationTimeInMinutes * 60 * 1000; // Current time + expiration time
-
-    // Generate the upload link with the token, expiration timestamp, and request ID
-    const uploadLink =
-      "https://blue-glacier-0afa9fa10.5.azurestaticapps.net?token=" +
+    const expirationTimestamp = Date.now() + expirationTimeInMinutes * 60 * 1000;
+    const uploadLink = "https://blue-glacier-0afa9fa10.5.azurestaticapps.net?token=" +
       uploadToken +
       "&expires=" +
       expirationTimestamp +
       "&requestId=" +
       requestId;
-
-    // Add the link element to the page
-    alert(uploadLink);
+  
+    // Construct the mailto link with the message and embedded link
+    const mailtoLink = `mailto:${recipientEmail}?subject=Upload Document&body=Dear ${student.firstName + " " + student.lastName}, Please click the following link to upload your document: ${uploadLink}`;
+  
+    // Open the default email client
+    window.location.href = mailtoLink;
   });
+  
+  
+  
+
+
 
   if (userRole === "University Admin") {
     studentInfo.push(generateLinkButton);
