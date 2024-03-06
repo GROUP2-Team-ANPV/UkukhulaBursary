@@ -4,6 +4,7 @@ import {
   isValidPhoneNumber,
   isValidOptionValue,
 } from "./data_validation/DataValiadation.js";
+import displayNotification from "./data_validation/Notification.js";
 export function UniversityApplicationScript() {
   const universityForm = document.querySelector(".university-form");
 
@@ -16,106 +17,41 @@ export function UniversityApplicationScript() {
     const formData = new FormData(universityForm);
 
     for (const [key, value] of formData) {
-      universityData[key] = value;
+      universityData[key] = value.trim();
     }
 
-    console.log(universityData);
-
     if (!isValidEmail(universityData.email)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid email address";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid email address", "danger");
       return;
     }
 
     if (!isValidPhoneNumber(universityData.phoneNumber)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid phone number";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid phone number", "danger");
       return;
     }
 
     if (!isValidName(universityData.universityName)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid university name";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid university name", "danger");
       return;
     }
 
     if (!isValidName(universityData.firstName)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid first name";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid first name", "danger");
       return;
     }
 
     if (!isValidName(universityData.lastName)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Invalid last name";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Invalid last name", "danger");
       return;
     }
 
     if (!isValidOptionValue(universityData.provinceID)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Please select a province";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Please select a province", "danger");
       return;
     }
 
     if (!isValidOptionValue(universityData.departmentID)) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent = "Please select a department";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-      feedbackContainer.classList.add("feedback--show");
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification("Error", "Please select a department", "danger");
       return;
     }
 
@@ -134,26 +70,19 @@ export function UniversityApplicationScript() {
       );
 
       if (response.statusText === "OK") {
+        displayNotification(
+          "Success",
+          "University added successfully",
+          "success"
+        );
         universityForm.reset();
-        feedbackHeading.textContent = "Success";
-        feedbackMessage.textContent = "University added successfully";
-
-        feedbackContainer.style.backgroundColor = "var(--success)";
       }
     } catch (error) {
-      feedbackHeading.textContent = "Error";
-      feedbackMessage.textContent =
-        "An error occured while adding the University";
-      feedbackContainer.style.backgroundColor = "var(--danger)";
-    } finally {
-      feedbackContainer.classList.add("feedback--show");
-
-      setTimeout(() => {
-        feedbackContainer.classList.remove("feedback--show");
-        feedbackHeading.textContent = "";
-        feedbackMessage.textContent = "";
-        feedbackContainer.style.backgroundColor = "";
-      }, 3000);
+      displayNotification(
+        "Error",
+        "An error occured while adding the University",
+        "danger"
+      );
     }
   }
   universityForm.addEventListener("submit", handleAddUniversity);
