@@ -9,6 +9,7 @@ function renderHODs(universityHODs) {
     const department = document.createElement("p");
     department.classList.add("department");
     const email = document.createElement("a");
+    email.classList.add("hod__email");
     email.href = `mailto:${hod.email}`;
 
     hodName.textContent = `${hod.firstName} ${hod.lastName}`;
