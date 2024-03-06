@@ -460,7 +460,7 @@ li.hidden {
 .name {
   font-size: 1.75rem;
   font-weight: 700;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
 }
 
 .label {
@@ -517,4 +517,19 @@ li.hidden {
 
 .feedback.feedback--show {
   transform: translateY(0);
+}
+
+.link-info{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .8rem;
+  width: fit-content;
+}
+
+.link-info:hover {
+  color: #3c7691;
 }
