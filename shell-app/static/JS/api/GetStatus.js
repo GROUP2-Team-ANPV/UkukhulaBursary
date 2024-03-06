@@ -6,8 +6,8 @@ export async function getStatus() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-    },
+        Authorization: `Bearer ${token}`,
+      },
     }
   );
 

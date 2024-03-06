@@ -131,6 +131,10 @@ getLinkButton.addEventListener("click", async () => {
         const saveButton = document.createElement("button");
         saveButton.textContent = "Save";
         saveButton.type = "submit";
+        saveButton.addEventListener("click", (e) => {
+          e.preventDefault(); 
+          location.href = "/"; 
+      });
         saveButton.classList.add("button");
         saveButton.classList.add("update-status");
         infoItem.appendChild(saveButton);
