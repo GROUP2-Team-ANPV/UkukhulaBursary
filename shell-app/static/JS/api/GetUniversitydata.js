@@ -1,29 +1,24 @@
 import fetchData from "../helpers/FetchData.js";
+import { getAllDepartments } from "./GetDepartments.js";
+import { getGender } from "./GetGender.js";
+import { getRace } from "./GetRace.js";
+import { getStatus } from "./GetStatus.js";
+import { getAllUniversities } from "./GetUniversities.js";
 
 export async function getUniversityData(id) {
   const data = await fetchData(
     `https://ukukhulaapi2024.azurewebsites.net/api/UniversityAdmin/GetUniversityAndTheirStudents?universityID=${id}`
   );
 
-  const departments = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetDepartment"
-  );
+  const departments = await getAllDepartments();
 
-  const universities = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/BBDAdmin/GetAllUniversities"
-  );
+  const universities = await getAllUniversities();
 
-  const gender = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetGender"
-  );
+  const gender = await getGender();
 
-  const race = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetRace"
-  );
+  const race = await getRace();
 
-  const status = await fetchData(
-    "https://ukukhulaapi2024.azurewebsites.net/api/ConstantTables/GetStatus"
-  );
+  const status = await getStatus();
 
   return { data, departments, universities, gender, race, status };
 }
